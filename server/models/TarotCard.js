@@ -1,0 +1,1 @@
+// Tarot card schema (name, image, meaning)

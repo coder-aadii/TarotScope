@@ -1,0 +1,1 @@
+// Tarot reading result (interpretation)
