@@ -1,16 +1,16 @@
-# ![AuraDeck Logo](./assets/logo.png) **AuraDeck**
+# ![TarotScope Logo](./assets/logo.png) **TarotScope**
 
 *Discover the aura of your future, one card at a time.*
 
-## [Click here to visit  AuraDeck](https://auradeck.netlify.app)
+## [Click here to visit  TarotScope](https://TarotScope.netlify.app)
 
 ---
 
-![GitHub issues](https://img.shields.io/github/issues/yourusername/AuraDeck)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/AuraDeck)
-![GitHub stars](https://img.shields.io/github/stars/yourusername/AuraDeck)
-![GitHub license](https://img.shields.io/github/license/yourusername/AuraDeck)
-![Contributors](https://img.shields.io/github/contributors/yourusername/AuraDeck)
+![GitHub issues](https://img.shields.io/github/issues/yourusername/TarotScope)
+![GitHub forks](https://img.shields.io/github/forks/yourusername/TarotScope)
+![GitHub stars](https://img.shields.io/github/stars/yourusername/TarotScope)
+![GitHub license](https://img.shields.io/github/license/yourusername/TarotScope)
+![Contributors](https://img.shields.io/github/contributors/yourusername/TarotScope)
 
 ---
 
@@ -32,11 +32,11 @@
 
 ## **Overview**
 
-**AuraDeck** is a next-generation web application that brings tarot card readings to life with modern technology and interactive design. It offers users an engaging experience by allowing them to choose tarot cards from a visually animated deck to get personalized readings.
+**TarotScope** is a next-generation web application that brings tarot card readings to life with modern technology and interactive design. It offers users an engaging experience by allowing them to choose tarot cards from a visually animated deck to get personalized readings.
 
 ![Deck Animation](./assets/deck-animation.png)
 
-Through **AuraDeck**, users can explore their aura, understand their path, and uncover the mysteries of their past, present, and future. The platform is built with scalability and flexibility in mind, with future support for multiple tarot spread techniques and enhanced user features.
+Through **TarotScope**, users can explore their aura, understand their path, and uncover the mysteries of their past, present, and future. The platform is built with scalability and flexibility in mind, with future support for multiple tarot spread techniques and enhanced user features.
 
 ---
 
@@ -121,8 +121,8 @@ To get a local copy up and running, follow these simple steps:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/AuraDeck.git
-   cd AuraDeck
+   git clone https://github.com/yourusername/TarotScope.git
+   cd TarotScope
    ```
 
 2. **Install NPM packages**:
@@ -136,7 +136,7 @@ To get a local copy up and running, follow these simple steps:
    Create a `.env` file and configure it with your database and authentication secrets:
 
    ```bash
-   DB_CONNECTION=mongodb://localhost:27017/auraDeck
+   DB_CONNECTION=mongodb://localhost:27017/TarotScope
    JWT_SECRET=your_secret_key
    ```
 
@@ -172,7 +172,7 @@ To get a local copy up and running, follow these simple steps:
 ## **Project Structure**
 
 ```bash
-AuraDeck/
+TarotScope/
 │
 ├── assets/                  # Icons and images
 │   ├── logo.png
@@ -209,7 +209,7 @@ AuraDeck/
 
 ## **Contributing**
 
-We welcome contributions to **AuraDeck**! If you'd like to contribute, please follow these steps:
+We welcome contributions to **TarotScope**! If you'd like to contribute, please follow these steps:
 
 1. Fork the repository.
 2. Create your feature branch (`git checkout -b feature/yourFeature`).
