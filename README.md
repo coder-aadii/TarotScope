@@ -6,11 +6,11 @@
 
 ---
 
-![GitHub issues](https://img.shields.io/github/issues/yourusername/TarotScope)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/TarotScope)
-![GitHub stars](https://img.shields.io/github/stars/yourusername/TarotScope)
-![GitHub license](https://img.shields.io/github/license/yourusername/TarotScope)
-![Contributors](https://img.shields.io/github/contributors/yourusername/TarotScope)
+![GitHub issues](https://img.shields.io/github/issues/coder-aadii/TarotScope)
+![GitHub forks](https://img.shields.io/github/forks/coder-aadii/TarotScope)
+![GitHub stars](https://img.shields.io/github/stars/coder-aadii/TarotScope)
+![GitHub license](https://img.shields.io/github/license/coder-aadii/TarotScope)
+![Contributors](https://img.shields.io/github/contributors/coder-aadii/TarotScope)
 
 ---
 
@@ -121,7 +121,7 @@ To get a local copy up and running, follow these simple steps:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/TarotScope.git
+   git clone https://github.com/coder-aadii/TarotScope.git
    cd TarotScope
    ```
 
