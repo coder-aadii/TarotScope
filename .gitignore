@@ -2,6 +2,9 @@
 /node_modules
 /server/node_modules
 /client/node_modules
+
+# Environment Variables
+.env
 /server/.env
 
 # Logs
@@ -20,7 +23,6 @@ server/node_modules/
 
 # Miscellaneous
 .DS_Store
-*.env
 
 # VS Code settings
 .vscode/
