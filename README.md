@@ -1,4 +1,4 @@
-# ![TarotScope Logo](/client/src/assets/images/logo-img.png) **TarotScope**
+# ![TarotScope Logo](/client/src/assets/images/logo-img.png)
 
 *Discover the aura of your future, one card at a time.*
 
