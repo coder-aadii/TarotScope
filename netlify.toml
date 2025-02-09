@@ -1,0 +1,7 @@
+[build]
+  base    = "client"        # This is where Netlify will look for your frontend code
+  publish = "client/build"  # The directory containing the production build output
+  command = "npm run build" # The build command to generate your production build
+
+[functions]
+  directory = "client/netlify/functions"  # Leave this only if you're using Netlify Functions
