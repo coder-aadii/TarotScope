@@ -8,3 +8,4 @@
 
 [build.environment]
   NODE_ENV = "production"
+  NODE_VERSION = "16.20.0"  # Specify the Node.js version to avoid OpenSSL issues
