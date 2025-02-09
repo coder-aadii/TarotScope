@@ -44,7 +44,7 @@ const Home = () => {
                             Unlock the mysteries of the universe and gain deeper insights into your life.
                             TarotScope offers intuitive tarot readings to guide you through life’s challenges.
                         </p>
-                        <a href="/Login" className="cta" >Explore Tarot</a>
+                        <a href="/Login" className="cta">Explore Tarot</a>
                     </article>
 
                     <figure className="mainHeading__image">

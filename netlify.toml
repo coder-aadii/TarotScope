@@ -5,3 +5,6 @@
 
 [functions]
   directory = "client/netlify/functions"  # Leave this only if you're using Netlify Functions
+
+[build.environment]
+  NODE_ENV = "production"
