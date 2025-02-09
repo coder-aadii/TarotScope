@@ -68,13 +68,13 @@ const Home = () => {
             {/* About Section */}
             <div className="about" id='about'>
                 <p>TarotScope helps you gain clarity and insight into your life's journey through intuitive tarot readings. Explore our platform and connect with us on social media!</p>
-                <a className="bg_links social instagram" href="https://www.instagram.com/cod3r.aadi/" target="_blank" rel="noreferrer">
+                <a className="bg_links social instagram" href="https://www.instagram.com/cod3r.aadi/" target="_blank" rel="noopener noreferrer">
                     <span className="icon">Instagram</span>
                 </a>
-                <a className="bg_links social facebook" href="https://www.facebook.com/aadi.insane/" target="_blank" rel="noreferrer">
+                <a className="bg_links social facebook" href="https://www.facebook.com/aadi.insane/" target="_blank" rel="noopener noreferrer">
                     <span className="icon">Facebook</span>
                 </a>
-                <a className="bg_links social twitter" href="https://www.twitter.com/aadi_insane_" target="_blank" rel="noreferrer">
+                <a className="bg_links social twitter" href="https://www.twitter.com/aadi_insane_" target="_blank" rel="noopener noreferrer">
                     <span className="icon">Twitter</span>
                 </a>
             </div>
