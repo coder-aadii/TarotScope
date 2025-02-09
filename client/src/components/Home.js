@@ -22,7 +22,7 @@ const Home = () => {
                     {/* <a href="/Register" className="mainNav__link">Register</a> */}
                 </div>
 
-                {/* <div className="mainNav__icon">
+                <div className="mainNav__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g data-name="Layer 2" fill="#9197AE">
                             <g data-name="menu-2">
@@ -34,7 +34,7 @@ const Home = () => {
                             </g>
                         </g>
                     </svg>
-                </div> */}
+                </div>
             </nav>
 
             {/* Main Heading */}

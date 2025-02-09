@@ -1,116 +1,118 @@
-// Login and Register component
-
 import React, { useState } from 'react';
-import {
-    MDBContainer,
-    MDBTabs,
-    MDBTabsItem,
-    MDBTabsLink,
-    MDBTabsContent,
-    MDBTabsPane,
-    MDBBtn,
-    MDBIcon,
-    MDBInput,
-    MDBCheckbox
-} from 'mdb-react-ui-kit';
+import '../styles/Login.css'; // Ensure you have styles for this component
 
-function Login() {
+const Login = () => {
+    // State to hold email, password, and checkbox state
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
+    const [agreeToTerms, setAgreeToTerms] = useState(false); // For terms and conditions
 
-    const [justifyActive, setJustifyActive] = useState('tab1');
+    // State to hold error messages
+    const [error, setError] = useState('');
 
-    const handleJustifyClick = (value) => {
-        if (value === justifyActive) {
+    // Handler for form submission
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        // Basic validation: Check if all fields are filled
+        if (!email || !password) {
+            setError('Please fill in all fields.');
             return;
         }
-        setJustifyActive(value);
+
+        if (!agreeToTerms) {
+            setError('You must agree to the terms and conditions.');
+            return;
+        }
+
+        // Mock login action (replace with actual authentication logic)
+        console.log('Logging in with:', { email, password });
+
+        // Clear form and error after login
+        setEmail('');
+        setPassword('');
+        setError('');
+        setAgreeToTerms(false);
     };
 
     return (
-        <MDBContainer className="p-3 my-5 d-flex flex-column w-50">
+        <>
+            <a href='/'>
+                <div className='logo-img'></div>
+            </a>
+            <div className="login-container">
+                <h2>Login</h2>
+                {error && <p className="error">{error}</p>}
+                <form onSubmit={handleSubmit}>
+                    {/* Email Input */}
+                    <div className="input-field">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter your email"
+                            required
+                        />
+                    </div>
 
-            <MDBTabs pills justify className='mb-3 d-flex flex-row justify-content-between'>
-                <MDBTabsItem>
-                    <MDBTabsLink onClick={() => handleJustifyClick('tab1')} active={justifyActive === 'tab1'}>
-                        Login
-                    </MDBTabsLink>
-                </MDBTabsItem>
-                <MDBTabsItem>
-                    <MDBTabsLink onClick={() => handleJustifyClick('tab2')} active={justifyActive === 'tab2'}>
-                        Register
-                    </MDBTabsLink>
-                </MDBTabsItem>
-            </MDBTabs>
-
-            <MDBTabsContent>
-
-                <MDBTabsPane show={justifyActive === 'tab1'}>
-                    <div className="text-center mb-3">
-                        <p>Sign in with:</p>
-                        <div className='d-flex justify-content-between mx-auto' style={{ width: '40%' }}>
-                            <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                <MDBIcon fab icon='facebook-f' size="sm" />
-                            </MDBBtn>
-                            <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                <MDBIcon fab icon='twitter' size="sm" />
-                            </MDBBtn>
-                            <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                <MDBIcon fab icon='google' size="sm" />
-                            </MDBBtn>
-                            <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                <MDBIcon fab icon='github' size="sm" />
-                            </MDBBtn>
+                    {/* Password Input with Toggle Visibility */}
+                    <div className="input-field">
+                        <label htmlFor="password">Password</label>
+                        <div className="password-input">
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                id="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Enter your password"
+                                required
+                            />
+                            <button
+                                type="button"
+                                className="password-toggle"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? 'Hide' : 'Show'}
+                            </button>
                         </div>
-                        <p className="text-center mt-3">or:</p>
                     </div>
 
-                    <MDBInput wrapperClass='mb-4' label='Email address' id='loginEmail' type='email' />
-                    <MDBInput wrapperClass='mb-4' label='Password' id='loginPassword' type='password' />
-
-                    <div className="d-flex justify-content-between mx-4 mb-4">
-                        <MDBCheckbox name='flexCheck' value='' id='flexCheckLogin' label='Remember me' />
-                        <a href="!#">Forgot password?</a>
+                    {/* Terms and Conditions Checkbox */}
+                    <div className="input-field checkbox">
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={agreeToTerms}
+                                onChange={(e) => setAgreeToTerms(e.target.checked)}
+                            />
+                            I agree to the <a href="/terms">terms and conditions</a>
+                        </label>
                     </div>
 
-                    <MDBBtn className="mb-4 w-100">Sign in</MDBBtn>
-                    <p className="text-center">Not a member? <a href="#!">Register</a></p>
-                </MDBTabsPane>
+                    {/* Submit Button */}
+                    <button type="submit">Login</button>
 
-                <MDBTabsPane show={justifyActive === 'tab2'}>
-                    <div className="text-center mb-3">
-                        <p>Sign up with:</p>
-                        <div className='d-flex justify-content-between mx-auto' style={{ width: '40%' }}>
-                            <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                <MDBIcon fab icon='facebook-f' size="sm" />
-                            </MDBBtn>
-                            <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                <MDBIcon fab icon='twitter' size="sm" />
-                            </MDBBtn>
-                            <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                <MDBIcon fab icon='google' size="sm" />
-                            </MDBBtn>
-                            <MDBBtn tag='a' color='none' className='m-1' style={{ color: '#1266f1' }}>
-                                <MDBIcon fab icon='github' size="sm" />
-                            </MDBBtn>
-                        </div>
-                        <p className="text-center mt-3">or:</p>
+                    <div className="divider">
+                        <span>OR</span>
                     </div>
 
-                    <MDBInput wrapperClass='mb-4' label='Name' id='registerName' type='text' />
-                    <MDBInput wrapperClass='mb-4' label='Username' id='registerUsername' type='text' />
-                    <MDBInput wrapperClass='mb-4' label='Email' id='registerEmail' type='email' />
-                    <MDBInput wrapperClass='mb-4' label='Password' id='registerPassword' type='password' />
+                    {/* Login with Google */}
+                    <button className="google-login" type="button">
+                        <img src="https://img.icons8.com/?size=20&id=17949&format=png&color=000000" alt="Google" />
+                        Login with Google
+                    </button>
 
-                    <div className='d-flex justify-content-center mb-4'>
-                        <MDBCheckbox name='flexCheck' id='flexCheckRegister' label='I have read and agree to the terms' />
-                    </div>
-
-                    <MDBBtn className="mb-4 w-100">Sign up</MDBBtn>
-                </MDBTabsPane>
-
-            </MDBTabsContent>
-
-        </MDBContainer>
+                    {/* Link to Register */}
+                    <p className="register-link">
+                        Don't have an account? <a href="/register">Create new account</a>
+                    </p>
+                </form>
+            </div>
+        </>
     );
-}
+};
 
 export default Login;

@@ -128,7 +128,7 @@ body {
     max-width: 620px;
     margin-top: 100px;
     width: 70%;
-    backdrop-filter: blur(8px);
+    /* backdrop-filter: blur(8px); */
     animation: text 0.8s 0.6s ease backwards;
     position: relative;
 }
@@ -263,7 +263,8 @@ body {
     transition: all 0.4s ease;
 }
 
-.mainHeading__text, .mainHeading__description{
+.mainHeading__text,
+.mainHeading__description {
     color: var(--m-02);
     background-color: transparent;
     border: 1px solid rgba(var(--m-02), 0.4);
@@ -404,18 +405,29 @@ a {
 
 /* For smaller mobile screens (up to 480px) */
 @media only screen and (max-width: 480px) {
-    .about {
-        padding: 20px 10px;
+
+    .logo-image {
+        width: 80%;
+        margin-left: 2px;
+    }
+
+    .button{
+        margin-left: 85%;
     }
 
     .about p {
         font-size: 1rem;
         padding: 0 10px;
+        width: 100%;
     }
 
     .bg_links .icon {
         font-size: 1rem;
         padding: 8px 15px;
+    }
+
+    .mainHeading__image {
+        display: none;
     }
 }
 
