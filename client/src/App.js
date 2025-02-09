@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react'; // Import React and useEffect
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
@@ -9,8 +10,9 @@ import Home from './components/Home';
 function App() {
   useEffect(() => {
     axios.get('http://localhost:5000/')
+      .then(response => console.log('Response:', response))
       .catch(error => console.error('Error:', error));
-  }, []);
+  }, []); // Empty dependency array so it runs only once after initial render
 
   return (
     <Router>
