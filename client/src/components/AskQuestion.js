@@ -1,1 +1,0 @@
-// Input field for Yes/No and Detailed question types
