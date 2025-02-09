@@ -1,0 +1,125 @@
+/* General styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for the form */
+.MDBContainer {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 50%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .MDBContainer {
+        width: 90%;
+    }
+}
+
+/* Styling for the toggle tabs (Login/Register) */
+.MDBTabsLink {
+    background-color: #e6e6e6;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.MDBTabsLink.active {
+    background-color: #1266f1;
+    color: #fff;
+}
+
+/* Login and Register Form Styling */
+.MDBInput {
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+input:focus {
+    border-color: #1266f1;
+    outline: none;
+    box-shadow: 0px 0px 5px rgba(18, 102, 241, 0.2);
+}
+
+/* Button Styling */
+.MDBBtn {
+    background-color: #1266f1;
+    color: white;
+    border-radius: 50px;
+    padding: 12px;
+    width: 100%;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    border: none;
+}
+
+.MDBBtn:hover {
+    background-color: #0b4fb6;
+}
+
+/* Checkbox styling */
+.MDBCheckbox input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.MDBCheckbox label {
+    font-size: 0.9rem;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #1266f1;
+}
+
+a:hover {
+    color: #0b4fb6;
+}
+
+/* Social login button styling */
+.MDBBtn {
+    border-radius: 50%;
+}
+
+.MDBIcon {
+    font-size: 18px;
+}
+
+/* Responsiveness for mobile */
+@media (max-width: 600px) {
+    .MDBContainer {
+        padding: 10px;
+    }
+
+    .MDBTabsLink {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+
+    input {
+        padding: 10px;
+    }
+
+    .MDBBtn {
+        padding: 10px;
+        font-size: 14px;
+    }
+}

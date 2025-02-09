@@ -7,6 +7,9 @@ import Dashboard from './components/Dashboard';
 import TarotReading from './components/TarotReading';
 import Home from './components/Home';
 
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';  // For Font Awesome icons
+
 function App() {
   // Removed the unused message and setMessage
   useEffect(() => {

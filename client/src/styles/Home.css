@@ -70,7 +70,7 @@ body {
 
 .mainNav__link:hover {
     transform: translateY(-5px);
-    box-shadow: inset 0px -20px 0px white;
+    box-shadow: inset 0px -20px 0px none;
 }
 
 .mainNav__icon {
@@ -186,8 +186,12 @@ body {
 .mainHeading__image {
     right: 0;
     max-width: 600px;
-    width: 60%;
-    height: 600px;
+    width: 80%;
+    height: auto;
+    border-radius: 5%;
+    margin-left: 30px;
+    margin-right: -10%;
+    margin-top: 10%;
     transform: translateY(100px);
     position: absolute;
     overflow: hidden;
@@ -245,7 +249,7 @@ body {
     height: 100%;
 }
 
-.cta {
+.mainHeading__text {
     padding: 16px 32px;
     color: var(--m-02);
     background-color: transparent;
@@ -254,13 +258,19 @@ body {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: 600;
-    margin-top: 32px;
-    cursor: pointer;
+    margin-top: 15%;
     box-shadow: inset 0px 0px 0px rgba(var(--m-02), 0.2);
     transition: all 0.4s ease;
 }
-.cta a{
-    margin-top: 3%;
+
+.mainHeading__text, .mainHeading__description{
+    color: var(--m-02);
+    background-color: transparent;
+    border: 1px solid rgba(var(--m-02), 0.4);
+    color: #637498;
+    text-transform: none;
+    box-shadow: inset 0px 0px 0px rgba(var(--m-02), 0.2);
+    transition: all 0.4s ease;
 }
 
 .cta:hover {
@@ -268,6 +278,68 @@ body {
     box-shadow: inset 0px -80px 0px rgba(var(--m-02), 0.1);
     transform: translateY(-5px);
 }
+
+.button {
+    position: relative;
+    width: 120px;
+    height: 40px;
+    margin-top: 3%;
+    background-color: #172d5e;
+    display: flex;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    border: none;
+    padding: 12px;
+    gap: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    left: -4px;
+    top: -1px;
+    margin: auto;
+    width: 128px;
+    height: 48px;
+    border-radius: 10px;
+    background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
+    z-index: -10;
+    pointer-events: none;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.button::after {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+    transform: translate3d(0, 0, 0) scale(0.95);
+    filter: blur(20px);
+}
+
+.button:hover::after {
+    filter: blur(30px);
+}
+
+.button:hover::before {
+    transform: rotate(-180deg);
+}
+
+.button:active::before {
+    scale: 0.7;
+}
+
+a {
+    text-decoration: none;
+}
+
 
 @media screen and (max-width: 799px) {
     .cta {
@@ -303,14 +375,16 @@ body {
 .bg_links .icon {
     font-size: 1.2rem;
     padding: 10px 20px;
-    background-color: #ffde59; /* Example color */
+    background-color: #ffde59;
+    /* Example color */
     border-radius: 50px;
     color: #fff;
     transition: background-color 0.3s ease;
 }
 
 .bg_links .icon:hover {
-    background-color: #ffbb33; /* Darker hover effect */
+    background-color: #ffbb33;
+    /* Darker hover effect */
 }
 
 /* Social Media Icon Specific Colors */
@@ -374,4 +448,5 @@ body {
         padding: 12px 25px;
     }
 }
+
 /* CSS for about section ends from here  */

@@ -13,13 +13,16 @@ const Home = () => {
                     </Link>
                 </div>
                 <div className="mainNav__links">
+                    <a href="/" className="mainNav__link">Home</a>
                     <a href="#about" className="mainNav__link">About</a>
-                    <a href="#projects" className="mainNav__link">Projects</a>
-                    <a href="#team" className="mainNav__link">Team</a>
-                    <a href="#contacts" className="mainNav__link">Contacts</a>
-                    <a href="/Login.js" className="mainNav__link">Login</a>
+                    {/* <a href="/TarotReading" className="mainNav__link">Tarot Reading</a> */}
+                    <a href="/History" className="mainNav__link">History</a>
+                    <a href="/Contact" className="mainNav__link">Contact</a>
+                    <a href="/Login" className="mainNav__link">Login</a>
+                    {/* <a href="/Register" className="mainNav__link">Register</a> */}
                 </div>
-                <div className="mainNav__icon">
+
+                {/* <div className="mainNav__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <g data-name="Layer 2" fill="#9197AE">
                             <g data-name="menu-2">
@@ -31,7 +34,7 @@ const Home = () => {
                             </g>
                         </g>
                     </svg>
-                </div>
+                </div> */}
             </nav>
 
             {/* Main Heading */}
@@ -44,7 +47,13 @@ const Home = () => {
                             Unlock the mysteries of the universe and gain deeper insights into your life.
                             TarotScope offers intuitive tarot readings to guide you through life’s challenges.
                         </p>
-                        <a href="/Login" className="cta">Explore Tarot</a>
+
+                        <a href="/Login">
+                            <button className="button">
+                                Explore Tarot
+                            </button>
+                        </a>
+
                     </article>
 
                     <figure className="mainHeading__image">
