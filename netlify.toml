@@ -1,11 +1,11 @@
 [build]
   base    = "client"        # This is where Netlify will look for your frontend code
-  publish = "client/build"  # The directory containing the production build output
+  publish = "build"         # Corrected the path for the production build output
   command = "npm run build" # The build command to generate your production build
 
 [functions]
-  directory = "client/netlify/functions"  # Leave this only if you're using Netlify Functions
+  directory = "netlify/functions"  # Leave this only if you're using Netlify Functions
 
 [build.environment]
   NODE_ENV = "production"
-  NODE_VERSION = "18.20.5"  # Updated to match your local Node.js version
+  NODE_VERSION = "18.20.5"  # Update to match your local Node.js version
