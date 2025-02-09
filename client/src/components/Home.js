@@ -5,20 +5,6 @@ import '../styles/Home.css';
 const Home = () => {
     return (
         <div>
-            {/* About Section */}
-            <div className="about">
-                <a className="bg_links social portfolio" href="https://www.rafaelalucas.com" target="_blank" rel="noreferrer">
-                    <span className="icon"></span>
-                </a>
-                <a className="bg_links social dribbble" href="https://dribbble.com/rafaelalucas" target="_blank" rel="noreferrer">
-                    <span className="icon"></span>
-                </a>
-                <a className="bg_links social linkedin" href="https://www.linkedin.com/in/rafaelalucas/" target="_blank" rel="noreferrer">
-                    <span className="icon"></span>
-                </a>
-                <a className="bg_links logo"></a>
-            </div>
-
             {/* Navigation Bar */}
             <nav className="mainNav">
                 <div className="mainNav__logo">
@@ -31,6 +17,7 @@ const Home = () => {
                     <a href="#projects" className="mainNav__link">Projects</a>
                     <a href="#team" className="mainNav__link">Team</a>
                     <a href="#contacts" className="mainNav__link">Contacts</a>
+                    <a href="/Login.js" className="mainNav__link">Login</a>
                 </div>
                 <div className="mainNav__icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -57,9 +44,9 @@ const Home = () => {
                             Unlock the mysteries of the universe and gain deeper insights into your life.
                             TarotScope offers intuitive tarot readings to guide you through life’s challenges.
                         </p>
-                        <button className="cta">Explore Tarot</button>
+                        <a href="/Login" className="cta" >Explore Tarot</a>
                     </article>
-                    
+
                     <figure className="mainHeading__image">
                         <img
                             src="https://res.cloudinary.com/deoegf9on/image/upload/v1739031395/hero-bg-right_c3mhta.jpg"
@@ -68,6 +55,21 @@ const Home = () => {
                     </figure>
                 </div>
             </header>
+
+            {/* About Section */}
+            <div className="about" id='about'>
+                <p>TarotScope helps you gain clarity and insight into your life's journey through intuitive tarot readings. Explore our platform and connect with us on social media!</p>
+                <a className="bg_links social instagram" href="https://www.instagram.com/cod3r.aadi/" target="_blank" rel="noreferrer">
+                    <span className="icon">Instagram</span>
+                </a>
+                <a className="bg_links social facebook" href="https://www.facebook.com/aadi.insane/" target="_blank" rel="noreferrer">
+                    <span className="icon">Facebook</span>
+                </a>
+                <a className="bg_links social twitter" href="https://www.twitter.com/aadi_insane_" target="_blank" rel="noreferrer">
+                    <span className="icon">Twitter</span>
+                </a>
+            </div>
+
         </div>
     );
 };
