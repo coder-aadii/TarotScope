@@ -1,0 +1,1696 @@
+[
+    {
+        "id": 0,
+        "name": "The Fool",
+        "arcana": "Major Arcana",
+        "description": "The Fool represents new beginnings, adventures, and taking risks.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345212/Tarot_00_The_Fool_ywwg5y.jpg",
+        "meanings": {
+            "upright": {
+                "general": "New beginnings, innocence, spontaneity, a free spirit.",
+                "love": "Exciting new relationships.",
+                "career": "Taking risks in career or projects.",
+                "finance": "Exploring unconventional financial opportunities."
+            },
+            "reversed": {
+                "general": "Recklessness, being taken advantage of, inconsideration.",
+                "love": "Reluctance in relationships.",
+                "career": "Fear of career changes.",
+                "finance": "Avoid impulsive financial actions."
+            }
+        }
+    },
+    {
+        "id": 1,
+        "name": "The Magician",
+        "arcana": "Major Arcana",
+        "description": "The Magician symbolizes manifestation, creativity, and personal power.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345212/Tarot_01_Magician_ruqqkp.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Manifestation, resourcefulness, power, inspired action.",
+                "love": "Relationships fueled by creativity.",
+                "career": "Turning ideas into action in your career.",
+                "finance": "Using resources and creativity for financial gain."
+            },
+            "reversed": {
+                "general": "Manipulation, poor planning, unused potential.",
+                "love": "Illusions or deception in relationships.",
+                "career": "Unrealized career goals.",
+                "finance": "Mismanagement or loss of resources."
+            }
+        }
+    },
+    {
+        "id": 2,
+        "name": "The High Priestess",
+        "arcana": "Major Arcana",
+        "description": "The High Priestess embodies intuition, mystery, and inner wisdom.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345212/Tarot_02_High_Priestess_vkfie9.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Intuition, higher powers, subconscious mind.",
+                "love": "Hidden feelings or deep emotional connections.",
+                "career": "Using intuition and trust in decision making.",
+                "finance": "Hidden financial opportunities."
+            },
+            "reversed": {
+                "general": "Secrets, disconnection from intuition, repressed emotions.",
+                "love": "Lack of emotional openness or dishonesty.",
+                "career": "Not trusting your gut in career decisions.",
+                "finance": "Overlooking financial dangers or secrets."
+            }
+        }
+    },
+    {
+        "id": 3,
+        "name": "The Empress",
+        "arcana": "Major Arcana",
+        "description": "The Empress symbolizes fertility, nurturing, and abundance.",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/RWS_Tarot_03_Empress.jpg/330px-RWS_Tarot_03_Empress.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Femininity, beauty, nature, nurturing.",
+                "love": "Nurturing relationships, growth in love.",
+                "career": "Creativity and growth in your career.",
+                "finance": "Financial stability and abundance."
+            },
+            "reversed": {
+                "general": "Creative block, dependence on others.",
+                "love": "Neglect in relationships or emotional burnout.",
+                "career": "Stagnation or creative block in work.",
+                "finance": "Financial difficulties due to lack of planning."
+            }
+        }
+    },
+    {
+        "id": 4,
+        "name": "The Emperor",
+        "arcana": "Major Arcana",
+        "description": "The Emperor represents authority, structure, and control.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345211/Tarot_04_Emperor_t4e5ay.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Authority, establishment, structure, father figure.",
+                "love": "Stability and security in relationships.",
+                "career": "Leadership roles and control over career direction.",
+                "finance": "Financial discipline and responsibility."
+            },
+            "reversed": {
+                "general": "Domination, excessive control, lack of discipline.",
+                "love": "Power struggles in relationships.",
+                "career": "Lack of leadership or guidance in career.",
+                "finance": "Misuse of financial power."
+            }
+        }
+    },
+    {
+        "id": 5,
+        "name": "The Hierophant",
+        "arcana": "Major Arcana",
+        "description": "The Hierophant represents tradition, spirituality, and institutions.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345210/Tarot_05_Hierophant_lq2trk.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Spiritual wisdom, tradition, conformity.",
+                "love": "Commitment and traditional values in love.",
+                "career": "Following established structures in work.",
+                "finance": "Conservative financial decisions and stability."
+            },
+            "reversed": {
+                "general": "Rebellion, non-conformity, new approaches.",
+                "love": "Breaking away from traditional relationship roles.",
+                "career": "Breaking free from career conformity.",
+                "finance": "Risky financial moves or breaking away from traditional investments."
+            }
+        }
+    },
+    {
+        "id": 6,
+        "name": "The Lovers",
+        "arcana": "Major Arcana",
+        "description": "The Lovers represent harmony, relationships, and choices.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345210/Tarot_06_Lovers_dk7qyb.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Love, harmony, partnerships, choices.",
+                "love": "Strong romantic connections or deep love.",
+                "career": "Partnerships or important choices in career.",
+                "finance": "Financial decisions or partnerships affecting finances."
+            },
+            "reversed": {
+                "general": "Disharmony, imbalance, misalignment of values.",
+                "love": "Conflicts or lack of harmony in love.",
+                "career": "Difficult career choices or conflicts in partnerships.",
+                "finance": "Imbalance in financial partnerships or decisions."
+            }
+        }
+    },
+    {
+        "id": 7,
+        "name": "The Chariot",
+        "arcana": "Major Arcana",
+        "description": "The Chariot symbolizes determination, control, and victory.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345210/Tarot_07_Chariot_qntxg2.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Control, willpower, success, determination.",
+                "love": "Progress in relationships or triumph in love.",
+                "career": "Overcoming career challenges through determination.",
+                "finance": "Financial victory and control over resources."
+            },
+            "reversed": {
+                "general": "Lack of control, scattered focus, defeat.",
+                "love": "Stagnation or conflict in love.",
+                "career": "Lack of focus or direction in career.",
+                "finance": "Financial disorganization or lack of control."
+            }
+        }
+    },
+    {
+        "id": 8,
+        "name": "Strength",
+        "arcana": "Major Arcana",
+        "description": "Strength represents courage, resilience, and inner power.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345209/Tarot_08_Strength_v0ry7v.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Strength, courage, persuasion, influence.",
+                "love": "Strong, passionate relationships.",
+                "career": "Overcoming career challenges with strength.",
+                "finance": "Financial resilience and discipline."
+            },
+            "reversed": {
+                "general": "Weakness, self-doubt, lack of confidence.",
+                "love": "Emotional distance or weakness in relationships.",
+                "career": "Insecurity or setbacks in career.",
+                "finance": "Financial mismanagement due to lack of confidence."
+            }
+        }
+    },
+    {
+        "id": 9,
+        "name": "The Hermit",
+        "arcana": "Major Arcana",
+        "description": "The Hermit symbolizes introspection, solitude, and self-discovery.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345209/Tarot_09_Hermit_kgi4wu.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Soul searching, introspection, inner guidance.",
+                "love": "Time for self-reflection and growth in relationships.",
+                "career": "Seeking wisdom in career decisions.",
+                "finance": "Careful financial planning and reflection."
+            },
+            "reversed": {
+                "general": "Isolation, loneliness, withdrawal.",
+                "love": "Emotional withdrawal or isolation in relationships.",
+                "career": "Lack of guidance or direction in career.",
+                "finance": "Financial stagnation or withdrawal."
+            }
+        }
+    },
+    {
+        "id": 10,
+        "name": "The Wheel of Fortune",
+        "arcana": "Major Arcana",
+        "description": "The Wheel of Fortune represents cycles, change, and destiny.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345209/Tarot_10_Wheel_of_Fortune_hsgvfn.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Good luck, karma, life cycles, destiny.",
+                "love": "Positive changes in love, fated relationships.",
+                "career": "Opportunities and luck in career.",
+                "finance": "Improvement in financial fortunes."
+            },
+            "reversed": {
+                "general": "Bad luck, resistance to change, breaking cycles.",
+                "love": "Unforeseen setbacks in relationships.",
+                "career": "Missed opportunities or career stagnation.",
+                "finance": "Unexpected financial loss or misfortune."
+            }
+        }
+    },
+    {
+        "id": 11,
+        "name": "Justice",
+        "arcana": "Major Arcana",
+        "description": "Justice symbolizes fairness, truth, and law.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345210/Tarot_11_Justice_pyuzok.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Justice, fairness, truth, law.",
+                "love": "Balanced and fair relationships.",
+                "career": "Fair decisions and actions in career.",
+                "finance": "Financial balance and fairness."
+            },
+            "reversed": {
+                "general": "Dishonesty, unfairness, lack of accountability.",
+                "love": "Imbalance or dishonesty in relationships.",
+                "career": "Unfair treatment or judgment in career.",
+                "finance": "Financial dishonesty or imbalance."
+            }
+        }
+    },
+    {
+        "id": 12,
+        "name": "The Hanged Man",
+        "arcana": "Major Arcana",
+        "description": "The Hanged Man represents pause, surrender, and new perspectives.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345209/Tarot_12_Hanged_Man_jqczqm.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Pause, surrender, letting go, new perspectives.",
+                "love": "Patience and new perspectives in relationships.",
+                "career": "Taking a break or rethinking career direction.",
+                "finance": "Pause and reflect on financial decisions."
+            },
+            "reversed": {
+                "general": "Delays, resistance to change, indecision.",
+                "love": "Stagnation or resistance in relationships.",
+                "career": "Indecision or delays in career progress.",
+                "finance": "Financial delays or missed opportunities."
+            }
+        }
+    },
+    {
+        "id": 13,
+        "name": "Death",
+        "arcana": "Major Arcana",
+        "description": "Death symbolizes endings, transformation, and change.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345209/Tarot_13_Death_vcms15.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Endings, transformation, transition.",
+                "love": "Endings in relationships or transformation in love.",
+                "career": "Transition or transformation in career.",
+                "finance": "Letting go of old financial habits."
+            },
+            "reversed": {
+                "general": "Resistance to change, personal transformation, fear of endings.",
+                "love": "Clinging to past relationships or resistance to change.",
+                "career": "Fear of career change or stagnation.",
+                "finance": "Reluctance to change financial habits."
+            }
+        }
+    },
+    {
+        "id": 14,
+        "name": "Temperance",
+        "arcana": "Major Arcana",
+        "description": "Temperance represents balance, moderation, and harmony.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345208/Tarot_14_Temperance_qwgrz3.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Balance, moderation, patience, harmony.",
+                "love": "Balanced relationships and harmony.",
+                "career": "Patience and balance in career.",
+                "finance": "Moderation and careful financial planning."
+            },
+            "reversed": {
+                "general": "Imbalance, excess, lack of long-term vision.",
+                "love": "Imbalance or discord in relationships.",
+                "career": "Lack of balance or excess in career.",
+                "finance": "Financial excess or lack of balance."
+            }
+        }
+    },
+    {
+        "id": 15,
+        "name": "The Devil",
+        "arcana": "Major Arcana",
+        "description": "The Devil represents bondage, addiction, and materialism.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345208/Tarot_15_Devil_xqr4is.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Addiction, materialism, bondage, attachment.",
+                "love": "Unhealthy or obsessive relationships.",
+                "career": "Being trapped in unhealthy career habits.",
+                "finance": "Materialism and financial dependence."
+            },
+            "reversed": {
+                "general": "Detachment, breaking free, reclaiming power.",
+                "love": "Breaking free from toxic relationships.",
+                "career": "Breaking free from career constraints.",
+                "finance": "Freedom from materialism or financial dependence."
+            }
+        }
+    },
+    {
+        "id": 16,
+        "name": "The Tower",
+        "arcana": "Major Arcana",
+        "description": "The Tower represents sudden upheaval, chaos, and destruction.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345208/Tarot_16_Tower_qujikx.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Sudden change, upheaval, chaos, revelation.",
+                "love": "Sudden or dramatic changes in relationships.",
+                "career": "Unexpected changes or upheaval in career.",
+                "finance": "Sudden financial loss or disruption."
+            },
+            "reversed": {
+                "general": "Avoiding disaster, fear of change, delayed upheaval.",
+                "love": "Avoiding relationship issues or fear of change.",
+                "career": "Fear of career change or avoiding major decisions.",
+                "finance": "Financial instability or avoiding financial crisis."
+            }
+        }
+    },
+    {
+        "id": 17,
+        "name": "The Star",
+        "arcana": "Major Arcana",
+        "description": "The Star represents hope, inspiration, and renewal.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345207/Tarot_17_Star_ju6tal.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Hope, faith, renewal, inspiration.",
+                "love": "Renewal and inspiration in relationships.",
+                "career": "Hope and inspiration in career opportunities.",
+                "finance": "Renewal or hope in financial situations."
+            },
+            "reversed": {
+                "general": "Lack of faith, despair, discouragement.",
+                "love": "Lack of hope or faith in relationships.",
+                "career": "Discouragement or loss of inspiration in career.",
+                "finance": "Financial despair or lack of resources."
+            }
+        }
+    },
+    {
+        "id": 18,
+        "name": "The Moon",
+        "arcana": "Major Arcana",
+        "description": "The Moon represents illusion, fear, and the subconscious.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345206/Tarot_18_Moon_dssvtu.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Illusion, fear, anxiety, subconscious mind.",
+                "love": "Confusion or misunderstanding in relationships.",
+                "career": "Uncertainty or hidden aspects in career.",
+                "finance": "Financial insecurity or deception."
+            },
+            "reversed": {
+                "general": "Clarity, overcoming fear, truth revealed.",
+                "love": "Clarity or truth in relationships.",
+                "career": "Overcoming career uncertainty or deception.",
+                "finance": "Clarity in financial matters."
+            }
+        }
+    },
+    {
+        "id": 19,
+        "name": "The Sun",
+        "arcana": "Major Arcana",
+        "description": "The Sun represents positivity, success, and vitality.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345207/Tarot_19_Sun_npad8m.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Positivity, success, vitality, joy.",
+                "love": "Happiness and success in relationships.",
+                "career": "Success and recognition in career.",
+                "finance": "Financial success and abundance."
+            },
+            "reversed": {
+                "general": "Temporary setbacks, lack of success, low energy.",
+                "love": "Challenges or temporary setbacks in love.",
+                "career": "Career setbacks or lack of progress.",
+                "finance": "Financial challenges or lack of abundance."
+            }
+        }
+    },
+    {
+        "id": 20,
+        "name": "Judgement",
+        "arcana": "Major Arcana",
+        "description": "Judgement represents reflection, reckoning, and awakening.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345205/Tarot_20_Judgement_gheajj.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Reflection, reckoning, awakening, self-assessment.",
+                "love": "Renewal or awakening in relationships.",
+                "career": "Career decisions or breakthroughs.",
+                "finance": "Self-reflection and financial judgment."
+            },
+            "reversed": {
+                "general": "Self-doubt, refusal to self-examine, avoiding responsibility.",
+                "love": "Inability to move on in relationships.",
+                "career": "Avoiding important career decisions.",
+                "finance": "Ignoring financial problems or decisions."
+            }
+        }
+    },
+    {
+        "id": 21,
+        "name": "The World",
+        "arcana": "Major Arcana",
+        "description": "The World symbolizes completion, fulfillment, and accomplishment.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345201/Tarot_21_World_qpe4jr.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Completion, fulfillment, accomplishment, travel.",
+                "love": "Successful and fulfilling relationships.",
+                "career": "Achievement and completion in career.",
+                "finance": "Financial success and stability."
+            },
+            "reversed": {
+                "general": "Lack of closure, incomplete goals, stagnation.",
+                "love": "Unfinished business in relationships.",
+                "career": "Lack of completion or progress in career.",
+                "finance": "Unfinished financial goals or instability."
+            }
+        }
+    },
+    {
+        "id": 22,
+        "name": "Ace of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Ace of Wands symbolizes inspiration, new opportunities, and creativity.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345160/Wands01_joaeu7.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Inspiration, new opportunities, growth.",
+                "love": "Passionate new beginnings in love.",
+                "career": "Creative projects and new ventures.",
+                "finance": "Financial opportunities through innovation."
+            },
+            "reversed": {
+                "general": "Lack of direction, delays, missed opportunities.",
+                "love": "Uncertainty or delays in relationships.",
+                "career": "Creative block or lack of progress.",
+                "finance": "Missed financial opportunities or delays."
+            }
+        }
+    },
+    {
+        "id": 23,
+        "name": "Two of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Two of Wands represents planning, decisions, and future goals.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345148/Wands02_mhbzv6.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Planning, future decisions, progress.",
+                "love": "Decisions or future planning in relationships.",
+                "career": "Career planning and strategy.",
+                "finance": "Financial planning and investment."
+            },
+            "reversed": {
+                "general": "Indecision, fear of the unknown, lack of planning.",
+                "love": "Uncertainty or lack of direction in relationships.",
+                "career": "Failure to plan or progress in career.",
+                "finance": "Financial indecision or lack of planning."
+            }
+        }
+    },
+    {
+        "id": 24,
+        "name": "Three of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Three of Wands signifies expansion, exploration, and foresight.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345142/Wands03_ztdywy.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Expansion, foresight, growth, exploration.",
+                "love": "Expanding horizons in relationships.",
+                "career": "Career progress and long-term success.",
+                "finance": "Financial growth and exploration."
+            },
+            "reversed": {
+                "general": "Delays, lack of foresight, obstacles.",
+                "love": "Setbacks or delays in relationships.",
+                "career": "Career delays or failure to plan ahead.",
+                "finance": "Financial obstacles or lack of progress."
+            }
+        }
+    },
+    {
+        "id": 25,
+        "name": "Four of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Four of Wands symbolizes celebration, harmony, and community.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345148/Wands04_xrxrfo.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Celebration, harmony, community, home.",
+                "love": "Happy and harmonious relationships.",
+                "career": "Career celebrations and team success.",
+                "finance": "Financial stability and reward."
+            },
+            "reversed": {
+                "general": "Disruptions, lack of harmony, instability.",
+                "love": "Tensions or instability in relationships.",
+                "career": "Career disruptions or lack of teamwork.",
+                "finance": "Financial instability or lack of support."
+            }
+        }
+    },
+    {
+        "id": 26,
+        "name": "Five of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Five of Wands represents conflict, competition, and disagreement.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345146/Wands05_gaq1be.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Conflict, competition, disagreement, tension.",
+                "love": "Disagreements or tension in relationships.",
+                "career": "Workplace conflict or competition.",
+                "finance": "Financial competition or challenges."
+            },
+            "reversed": {
+                "general": "Avoiding conflict, compromise, resolution.",
+                "love": "Resolving relationship issues.",
+                "career": "Avoiding career disputes or finding resolutions.",
+                "finance": "Financial compromise or resolution."
+            }
+        }
+    },
+    {
+        "id": 27,
+        "name": "Six of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Six of Wands signifies victory, recognition, and success.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345146/Wands06_ys4cen.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Victory, success, recognition, achievement.",
+                "love": "Success and recognition in relationships.",
+                "career": "Career success and public recognition.",
+                "finance": "Financial success and achievement."
+            },
+            "reversed": {
+                "general": "Failure, lack of recognition, insecurity.",
+                "love": "Lack of success or recognition in relationships.",
+                "career": "Career failure or lack of recognition.",
+                "finance": "Financial insecurity or failure."
+            }
+        }
+    },
+    {
+        "id": 28,
+        "name": "Seven of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Seven of Wands represents defense, perseverance, and challenge.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345134/Wands07_xhfymp.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Defense, perseverance, standing your ground.",
+                "love": "Defending or protecting relationships.",
+                "career": "Standing your ground in career.",
+                "finance": "Financial challenges and perseverance."
+            },
+            "reversed": {
+                "general": "Overwhelmed, giving up, lack of defense.",
+                "love": "Feeling overwhelmed or giving up on relationships.",
+                "career": "Feeling overpowered or giving up in career.",
+                "finance": "Financial overwhelm or giving up."
+            }
+        }
+    },
+    {
+        "id": 29,
+        "name": "Eight of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Eight of Wands represents fast movement, action, and progress.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345129/Wands08_ay0kod.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Fast movement, action, progress, travel.",
+                "love": "Fast progress in relationships.",
+                "career": "Quick movement or decisions in career.",
+                "finance": "Fast financial progress or decisions."
+            },
+            "reversed": {
+                "general": "Delays, lack of progress, frustration.",
+                "love": "Delays or frustrations in relationships.",
+                "career": "Career delays or lack of progress.",
+                "finance": "Financial delays or slow progress."
+            }
+        }
+    },
+    {
+        "id": 30,
+        "name": "Nine of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Nine of Wands represents resilience, perseverance, and standing strong in the face of adversity.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345133/Wands09_c2zhmv.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Resilience, perseverance, courage under pressure.",
+                "love": "Challenges in relationships but persevering.",
+                "career": "Perseverance and persistence in career challenges.",
+                "finance": "Financial strain but holding strong."
+            },
+            "reversed": {
+                "general": "Exhaustion, giving up, feeling overwhelmed.",
+                "love": "Giving up on a struggling relationship.",
+                "career": "Feeling overwhelmed by career obstacles.",
+                "finance": "Exhaustion due to financial pressures."
+            }
+        }
+    },
+    {
+        "id": 31,
+        "name": "Ten of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Ten of Wands represents burdens, responsibilities, and stress.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345122/Wands10_qeexmu.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Burdens, responsibilities, stress, feeling weighed down.",
+                "love": "Feeling burdened in relationships.",
+                "career": "Heavy workload and responsibility in career.",
+                "finance": "Financial burdens and stress."
+            },
+            "reversed": {
+                "general": "Release of burdens, delegation, letting go.",
+                "love": "Releasing relationship pressures or burdens.",
+                "career": "Delegating tasks to ease career responsibilities.",
+                "finance": "Releasing financial burdens or debts."
+            }
+        }
+    },
+    {
+        "id": 32,
+        "name": "Page of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Page of Wands represents enthusiasm, discovery, and a thirst for new experiences.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345117/Wands11_gvhfpy.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Enthusiasm, discovery, creativity, new ideas.",
+                "love": "Excitement and curiosity in love.",
+                "career": "New opportunities or creative projects in career.",
+                "finance": "Exploring new financial opportunities."
+            },
+            "reversed": {
+                "general": "Lack of direction, procrastination, immaturity.",
+                "love": "Lack of commitment or immaturity in relationships.",
+                "career": "Unrealized career potential or creative block.",
+                "finance": "Immature financial decisions or lack of direction."
+            }
+        }
+    },
+    {
+        "id": 33,
+        "name": "Knight of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Knight of Wands represents energy, passion, and impulsiveness.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345107/Wands12_hhseg0.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Energy, passion, adventure, impulsiveness.",
+                "love": "Passionate but impulsive romantic energy.",
+                "career": "Bold actions and risk-taking in career.",
+                "finance": "Impulsive financial decisions with potential gains."
+            },
+            "reversed": {
+                "general": "Recklessness, impatience, lack of direction.",
+                "love": "Impulsive or reckless behavior in relationships.",
+                "career": "Impatience or recklessness in career decisions.",
+                "finance": "Reckless financial actions leading to instability."
+            }
+        }
+    },
+    {
+        "id": 34,
+        "name": "Queen of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The Queen of Wands represents confidence, determination, and self-assuredness.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345099/Wands13_cr71nr.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Confidence, determination, independence.",
+                "love": "Attracting love through confidence and passion.",
+                "career": "Taking charge with confidence and leadership.",
+                "finance": "Confident financial decisions and stability."
+            },
+            "reversed": {
+                "general": "Insecurity, jealousy, introversion.",
+                "love": "Insecurity or jealousy in relationships.",
+                "career": "Lack of confidence or leadership in career.",
+                "finance": "Financial insecurity or instability."
+            }
+        }
+    },
+    {
+        "id": 35,
+        "name": "King of Wands",
+        "arcana": "Minor Arcana",
+        "suit": "Wands",
+        "description": "The King of Wands symbolizes leadership, vision, and mastery.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345130/Wands14_xx9sxr.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Leadership, vision, taking control of situations.",
+                "love": "Confident and strong leadership in relationships.",
+                "career": "Ambitious and visionary leadership in career.",
+                "finance": "Taking control of finances and leading wisely."
+            },
+            "reversed": {
+                "general": "Tyranny, arrogance, impulsiveness.",
+                "love": "Overbearing or controlling behavior in relationships.",
+                "career": "Arrogance or misuse of power in career.",
+                "finance": "Impulsive or tyrannical control of finances."
+            }
+        }
+    },
+    {
+        "id": 36,
+        "name": "Ace of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Ace of Cups symbolizes new emotional beginnings, love, and compassion.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345205/Cups01_f2zbv7.jpg",
+        "meanings": {
+            "upright": {
+                "general": "New beginnings in love, emotions, compassion.",
+                "love": "New romantic opportunities and emotional fulfillment.",
+                "career": "Emotional satisfaction and fulfillment in career.",
+                "finance": "Financial opportunities through emotional connections."
+            },
+            "reversed": {
+                "general": "Emotional blockages, repressed feelings, sadness.",
+                "love": "Emotional distance or blocked relationships.",
+                "career": "Lack of emotional satisfaction in career.",
+                "finance": "Financial issues stemming from emotional stress."
+            }
+        }
+    },
+    {
+        "id": 37,
+        "name": "Two of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Two of Cups represents partnership, unity, and mutual respect.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345205/Cups02_rqtlit.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Partnership, unity, mutual respect, harmony.",
+                "love": "Balanced and harmonious relationships.",
+                "career": "Partnerships or collaborations in career.",
+                "finance": "Financial success through partnerships."
+            },
+            "reversed": {
+                "general": "Imbalance, disconnection, disharmony.",
+                "love": "Imbalance or tension in relationships.",
+                "career": "Lack of cooperation or disharmony in career.",
+                "finance": "Financial issues due to disconnection or imbalance."
+            }
+        }
+    },
+    {
+        "id": 38,
+        "name": "Three of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Three of Cups represents celebration, friendship, and joy.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345208/Cups03_kyc8we.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Celebration, friendship, joy, social gatherings.",
+                "love": "Happiness and support in relationships.",
+                "career": "Celebration and teamwork in career.",
+                "finance": "Financial rewards through group efforts."
+            },
+            "reversed": {
+                "general": "Isolation, overindulgence, disconnection.",
+                "love": "Disconnection or lack of support in relationships.",
+                "career": "Lack of collaboration or isolation in career.",
+                "finance": "Financial instability due to excess or isolation."
+            }
+        }
+    },
+    {
+        "id": 39,
+        "name": "Four of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Four of Cups represents contemplation, apathy, and reevaluation.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345212/Cups04_dvteqp.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Contemplation, reevaluation, apathy, discontent.",
+                "love": "Reevaluation or disinterest in relationships.",
+                "career": "Boredom or lack of fulfillment in career.",
+                "finance": "Apathy or dissatisfaction with financial situation."
+            },
+            "reversed": {
+                "general": "New opportunities, acceptance, motivation.",
+                "love": "Renewed interest or opportunities in relationships.",
+                "career": "New motivation or opportunity in career.",
+                "finance": "Financial opportunities through renewed effort."
+            }
+        }
+    },
+    {
+        "id": 40,
+        "name": "Five of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Five of Cups symbolizes loss, grief, and focusing on the negative.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345194/Cups05_zxp9kr.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Loss, grief, focusing on the negative, regret.",
+                "love": "Sadness or regret in relationships.",
+                "career": "Disappointment or setbacks in career.",
+                "finance": "Financial loss or regret over past decisions."
+            },
+            "reversed": {
+                "general": "Acceptance, moving on, finding peace.",
+                "love": "Healing and moving on from past relationships.",
+                "career": "Recovery from career setbacks.",
+                "finance": "Accepting financial losses and moving forward."
+            }
+        }
+    },
+    {
+        "id": 41,
+        "name": "Six of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Six of Cups represents nostalgia, memories, and reconnecting with the past.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345194/Cups06_xjzwlw.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Nostalgia, memories, reconnecting with the past.",
+                "love": "Reconnecting with a past lover or relationship.",
+                "career": "Returning to an old career or past work experience.",
+                "finance": "Financial gain from past efforts or investments."
+            },
+            "reversed": {
+                "general": "Living in the past, being stuck in memories.",
+                "love": "Unable to move on from a past relationship.",
+                "career": "Holding onto past career mistakes or experiences.",
+                "finance": "Financial troubles due to clinging to past strategies."
+            }
+        }
+    },
+    {
+        "id": 42,
+        "name": "Seven of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Seven of Cups represents choices, fantasies, and illusions.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345194/Cups07_uhbxmx.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Choices, illusions, fantasies, daydreams.",
+                "love": "Multiple romantic options or fantasies.",
+                "career": "Many career paths but confusion about direction.",
+                "finance": "Unclear financial opportunities or decisions."
+            },
+            "reversed": {
+                "general": "Clarity, focus, realistic choices.",
+                "love": "Clarity in romantic decisions.",
+                "career": "A clear focus and direction in career.",
+                "finance": "Making realistic and clear financial decisions."
+            }
+        }
+    },
+    {
+        "id": 43,
+        "name": "Eight of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Eight of Cups symbolizes walking away, abandonment, and seeking deeper meaning.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345193/Cups08_aibarb.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Walking away, abandonment, seeking meaning.",
+                "love": "Leaving a relationship that no longer serves you.",
+                "career": "Leaving an unfulfilling career path.",
+                "finance": "Walking away from unsatisfactory financial situations."
+            },
+            "reversed": {
+                "general": "Fear of moving on, stagnation, avoidance.",
+                "love": "Fear of leaving a toxic relationship.",
+                "career": "Stagnation in an unsatisfactory career.",
+                "finance": "Avoiding necessary changes in financial matters."
+            }
+        }
+    },
+    {
+        "id": 44,
+        "name": "Nine of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Nine of Cups represents emotional fulfillment, satisfaction, and contentment.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345198/Cups09_lgrcbm.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Emotional fulfillment, satisfaction, contentment.",
+                "love": "Emotional satisfaction and happiness in relationships.",
+                "career": "Achieving career goals and contentment.",
+                "finance": "Financial satisfaction and rewards."
+            },
+            "reversed": {
+                "general": "Greed, dissatisfaction, overindulgence.",
+                "love": "Emotional dissatisfaction or unmet expectations in relationships.",
+                "career": "Dissatisfaction with career achievements.",
+                "finance": "Greed or financial dissatisfaction."
+            }
+        }
+    },
+    {
+        "id": 45,
+        "name": "Ten of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Ten of Cups represents emotional harmony, happiness, and family unity.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345185/Cups10_g8u0g7.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Harmony, happiness, family unity, emotional fulfillment.",
+                "love": "Emotional harmony and happiness in relationships.",
+                "career": "A fulfilling and harmonious career.",
+                "finance": "Financial security and contentment."
+            },
+            "reversed": {
+                "general": "Disconnection, broken relationships, disharmony.",
+                "love": "Emotional disconnection or family disharmony.",
+                "career": "Lack of fulfillment or harmony in career.",
+                "finance": "Financial instability or discord."
+            }
+        }
+    },
+    {
+        "id": 46,
+        "name": "Page of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Page of Cups represents creativity, intuition, and new emotional experiences.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345185/Cups11_lea9y2.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Creativity, intuition, new emotional experiences.",
+                "love": "New romantic possibilities and emotional openness.",
+                "career": "Creative opportunities and intuitive career decisions.",
+                "finance": "Exploring new financial possibilities with creativity."
+            },
+            "reversed": {
+                "general": "Emotional immaturity, creative block, insecurity.",
+                "love": "Emotional immaturity or insecurity in relationships.",
+                "career": "Creative block or lack of direction in career.",
+                "finance": "Immature or insecure financial decisions."
+            }
+        }
+    },
+    {
+        "id": 47,
+        "name": "Knight of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Knight of Cups symbolizes romance, charm, and following one's heart.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345185/Cups12_otat9k.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Romance, charm, following one's heart, creativity.",
+                "love": "Romantic gestures and emotional connections in relationships.",
+                "career": "Following one's passions in career, creative projects.",
+                "finance": "Financial success through following one's heart."
+            },
+            "reversed": {
+                "general": "Unrealistic expectations, moodiness, disappointment.",
+                "love": "Unrealistic romantic expectations or mood swings.",
+                "career": "Disappointment or lack of direction in career.",
+                "finance": "Financial issues due to unrealistic expectations."
+            }
+        }
+    },
+    {
+        "id": 48,
+        "name": "Queen of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The Queen of Cups represents compassion, emotional stability, and intuition.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345180/Cups13_ovfmyf.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Compassion, emotional stability, intuition, nurturing.",
+                "love": "Emotional depth and compassion in relationships.",
+                "career": "Empathy and intuition in career decisions.",
+                "finance": "Financial stability and emotional fulfillment."
+            },
+            "reversed": {
+                "general": "Emotional insecurity, codependency, moodiness.",
+                "love": "Emotional instability or codependency in relationships.",
+                "career": "Lack of emotional balance or direction in career.",
+                "finance": "Financial insecurity due to emotional instability."
+            }
+        }
+    },
+    {
+        "id": 49,
+        "name": "King of Cups",
+        "arcana": "Minor Arcana",
+        "suit": "Cups",
+        "description": "The King of Cups symbolizes emotional balance, compassion, and wisdom.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345183/Cups14_sigath.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Emotional balance, compassion, wisdom, diplomacy.",
+                "love": "Emotional maturity and balance in relationships.",
+                "career": "Wise and compassionate career decisions.",
+                "finance": "Financial success through emotional balance and wisdom."
+            },
+            "reversed": {
+                "general": "Emotional manipulation, moodiness, imbalance.",
+                "love": "Emotional manipulation or instability in relationships.",
+                "career": "Poor decisions due to emotional instability.",
+                "finance": "Financial imbalance due to emotional issues."
+            }
+        }
+    },
+    {
+        "id": 50,
+        "name": "Ace of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Ace of Swords represents clarity, breakthroughs, and mental clarity.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345094/Swords01_lvz9p7.jpg",
+        "meanings": {
+            "upright": {
+                "general": "New ideas, clarity, breakthroughs, mental clarity.",
+                "love": "Clear communication and honesty in relationships.",
+                "career": "A breakthrough or new direction in career.",
+                "finance": "Clarity in financial matters, new opportunities."
+            },
+            "reversed": {
+                "general": "Confusion, lack of clarity, miscommunication.",
+                "love": "Misunderstandings or lack of communication in relationships.",
+                "career": "Setbacks or confusion in career direction.",
+                "finance": "Financial confusion or lack of clarity in decisions."
+            }
+        }
+    },
+    {
+        "id": 51,
+        "name": "Two of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Two of Swords represents difficult decisions, indecision, and a stalemate.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345124/Swords02_nyjrua.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Difficult decisions, stalemate, indecision, blocked emotions.",
+                "love": "Indecision or uncertainty in relationships.",
+                "career": "Difficult career choices, feeling stuck.",
+                "finance": "Tough financial decisions, weighing options."
+            },
+            "reversed": {
+                "general": "Avoiding decisions, emotional overload, confusion.",
+                "love": "Avoiding relationship issues or decisions.",
+                "career": "Procrastination or avoiding career decisions.",
+                "finance": "Financial instability due to avoiding decisions."
+            }
+        }
+    },
+    {
+        "id": 52,
+        "name": "Three of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Three of Swords represents heartbreak, sorrow, and emotional pain.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345148/Swords03_a1xxsd.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Heartbreak, sorrow, emotional pain, grief.",
+                "love": "Heartbreak or emotional separation in relationships.",
+                "career": "Disappointment or pain in career.",
+                "finance": "Financial setbacks or emotional distress regarding finances."
+            },
+            "reversed": {
+                "general": "Healing, forgiveness, overcoming sorrow.",
+                "love": "Healing from heartbreak, reconciliation.",
+                "career": "Recovery from career setbacks.",
+                "finance": "Financial recovery or moving past financial pain."
+            }
+        }
+    },
+    {
+        "id": 53,
+        "name": "Four of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Four of Swords represents rest, recuperation, and recovery after challenges.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345130/Swords04_sq1v5g.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Rest, recuperation, recovery, meditation, contemplation.",
+                "love": "Taking a break or time apart in relationships.",
+                "career": "Taking time to reflect on career challenges.",
+                "finance": "Resting or pausing financial activities."
+            },
+            "reversed": {
+                "general": "Restlessness, burnout, stress.",
+                "love": "Restlessness or difficulty taking a break in relationships.",
+                "career": "Burnout or stress in career.",
+                "finance": "Financial stress due to overactivity."
+            }
+        }
+    },
+    {
+        "id": 54,
+        "name": "Five of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Five of Swords represents conflict, tension, and betrayal.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345161/Swords05_jxexbh.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Conflict, tension, betrayal, defeat, dishonor.",
+                "love": "Conflict or tension in relationships.",
+                "career": "Conflict or power struggles in career.",
+                "finance": "Financial dishonesty or conflict."
+            },
+            "reversed": {
+                "general": "Resolution, forgiveness, moving on from conflict.",
+                "love": "Resolving relationship conflicts, forgiveness.",
+                "career": "Moving past career conflicts or struggles.",
+                "finance": "Recovering from financial disputes or dishonesty."
+            }
+        }
+    },
+    {
+        "id": 55,
+        "name": "Six of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Six of Swords represents transition, moving on, and leaving the past behind.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345117/Swords06_gsxzd5.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Transition, moving on, leaving the past behind, recovery.",
+                "love": "Moving on from a difficult relationship or emotional pain.",
+                "career": "Transitioning to a new career or leaving a stressful job.",
+                "finance": "Leaving financial difficulties behind, recovery."
+            },
+            "reversed": {
+                "general": "Resisting change, stagnation, difficulty moving on.",
+                "love": "Difficulty letting go of a past relationship.",
+                "career": "Resisting career change or transition.",
+                "finance": "Financial stagnation or difficulty recovering from loss."
+            }
+        }
+    },
+    {
+        "id": 56,
+        "name": "Seven of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Seven of Swords represents deception, betrayal, and strategy.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345112/Swords07_mulpoh.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Deception, betrayal, strategy, trickery.",
+                "love": "Deception or dishonesty in relationships.",
+                "career": "Strategic moves or dishonesty in career.",
+                "finance": "Financial deception or strategic financial decisions."
+            },
+            "reversed": {
+                "general": "Confession, conscience, coming clean.",
+                "love": "Confessing the truth in a relationship.",
+                "career": "Acknowledging dishonesty or coming clean in career.",
+                "finance": "Revealing financial deception or correcting past mistakes."
+            }
+        }
+    },
+    {
+        "id": 57,
+        "name": "Eight of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Eight of Swords represents feeling trapped, restricted, and powerless.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345098/Swords08_rwrcbr.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Feeling trapped, restricted, powerless, fear.",
+                "love": "Feeling trapped or restricted in relationships.",
+                "career": "Feeling stuck or powerless in career.",
+                "finance": "Financial restriction or feeling powerless to improve the situation."
+            },
+            "reversed": {
+                "general": "Release, freedom, empowerment.",
+                "love": "Freeing yourself from a restrictive relationship.",
+                "career": "Gaining freedom or empowerment in career.",
+                "finance": "Breaking free from financial restrictions."
+            }
+        }
+    },
+    {
+        "id": 58,
+        "name": "Nine of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Nine of Swords represents anxiety, fear, and nightmares.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345115/Swords09_oxlaqv.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Anxiety, fear, nightmares, worry, guilt.",
+                "love": "Anxiety or fear affecting relationships.",
+                "career": "Worry or fear about career progress.",
+                "finance": "Financial anxiety or stress."
+            },
+            "reversed": {
+                "general": "Recovery, hope, overcoming fear.",
+                "love": "Overcoming fear or anxiety in relationships.",
+                "career": "Recovery from career worries or anxiety.",
+                "finance": "Recovering from financial anxiety."
+            }
+        }
+    },
+    {
+        "id": 59,
+        "name": "Ten of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Ten of Swords represents betrayal, painful endings, and rock bottom.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345106/Swords10_kvtthf.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Betrayal, painful endings, rock bottom, collapse.",
+                "love": "A painful ending or betrayal in relationships.",
+                "career": "A career downfall or painful setback.",
+                "finance": "Financial collapse or painful financial loss."
+            },
+            "reversed": {
+                "general": "Recovery, regeneration, moving on from pain.",
+                "love": "Recovering from betrayal or heartbreak in relationships.",
+                "career": "Starting anew after career setbacks.",
+                "finance": "Recovering from financial losses."
+            }
+        }
+    },
+    {
+        "id": 60,
+        "name": "Page of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Page of Swords represents curiosity, new ideas, and mental energy.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345104/Swords11_cae8lg.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Curiosity, new ideas, mental energy, enthusiasm.",
+                "love": "Curiosity or eagerness in relationships.",
+                "career": "New ideas or enthusiasm for career projects.",
+                "finance": "Exploring new financial opportunities or investments."
+            },
+            "reversed": {
+                "general": "Deception, manipulation, scattered energy.",
+                "love": "Miscommunication or deception in relationships.",
+                "career": "Unfocused efforts or manipulation at work.",
+                "finance": "Financial confusion or scattered focus."
+            }
+        }
+    },
+    {
+        "id": 61,
+        "name": "Knight of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Knight of Swords represents ambition, action, and haste.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345091/Swords12_mymtg3.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Ambition, action, haste, focused energy.",
+                "love": "Rushing into relationships or passionate pursuits.",
+                "career": "Ambitious and swift action in career.",
+                "finance": "Making quick financial decisions, sometimes impulsively."
+            },
+            "reversed": {
+                "general": "Recklessness, impatience, lack of direction.",
+                "love": "Rushing without thinking in relationships.",
+                "career": "Impulsiveness or lack of planning in career.",
+                "finance": "Reckless financial decisions or lack of planning."
+            }
+        }
+    },
+    {
+        "id": 62,
+        "name": "Queen of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The Queen of Swords represents independence, clear thinking, and honesty.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345091/Swords13_awjarh.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Independence, clear thinking, honesty, objectivity.",
+                "love": "Honesty and clarity in relationships.",
+                "career": "Clear, objective decisions in career.",
+                "finance": "Honest and logical financial decisions."
+            },
+            "reversed": {
+                "general": "Coldness, harshness, over-critical thinking.",
+                "love": "Emotional detachment or harshness in relationships.",
+                "career": "Overly critical or cold approach to career matters.",
+                "finance": "Being overly harsh or critical in financial decisions."
+            }
+        }
+    },
+    {
+        "id": 63,
+        "name": "King of Swords",
+        "arcana": "Minor Arcana",
+        "suit": "Swords",
+        "description": "The King of Swords represents authority, intellect, and clarity of mind.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345208/Swords14_titafw.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Authority, intellect, clear thinking, truth.",
+                "love": "Clear, rational communication in relationships.",
+                "career": "Logical and authoritative decisions in career.",
+                "finance": "Clear and intelligent financial planning."
+            },
+            "reversed": {
+                "general": "Manipulation, misuse of power, lack of clarity.",
+                "love": "Manipulative or dishonest communication in relationships.",
+                "career": "Abusing power or intellect in career matters.",
+                "finance": "Misusing financial power or making unclear decisions."
+            }
+        }
+    },
+    {
+        "id": 64,
+        "name": "Ace of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Ace of Pentacles represents new financial opportunities, prosperity, and abundance.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345181/Pents01_pyhhvt.jpg",
+        "meanings": {
+            "upright": {
+                "general": "New financial opportunities, prosperity, abundance, manifestation.",
+                "love": "New stable relationships or financial harmony in love.",
+                "career": "A new job or financial opportunity.",
+                "finance": "Financial prosperity or a new source of income."
+            },
+            "reversed": {
+                "general": "Lost opportunities, lack of planning, financial instability.",
+                "love": "Missed chances for financial security in relationships.",
+                "career": "Missed opportunities or poor planning in career.",
+                "finance": "Financial instability or poor financial decisions."
+            }
+        }
+    },
+    {
+        "id": 65,
+        "name": "Two of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Two of Pentacles represents balance, adaptability, and juggling multiple responsibilities.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345174/Pents02_ojvpdd.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Balance, adaptability, multitasking, time management.",
+                "love": "Balancing relationships with other life responsibilities.",
+                "career": "Balancing multiple career opportunities or projects.",
+                "finance": "Managing financial resources carefully and balancing priorities."
+            },
+            "reversed": {
+                "general": "Imbalance, disorganization, overwhelm.",
+                "love": "Struggling to balance relationship and personal life.",
+                "career": "Overwhelm or lack of balance in career.",
+                "finance": "Financial instability or difficulty managing finances."
+            }
+        }
+    },
+    {
+        "id": 66,
+        "name": "Three of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Three of Pentacles represents teamwork, collaboration, and building something of value.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345171/Pents03_zchutb.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Teamwork, collaboration, skill development, quality craftsmanship.",
+                "love": "Collaborative relationships or working together in love.",
+                "career": "Success through teamwork or skill-building in career.",
+                "finance": "Collaborating on financial projects or investments."
+            },
+            "reversed": {
+                "general": "Lack of teamwork, disorganization, poor workmanship.",
+                "love": "Lack of cooperation or effort in relationships.",
+                "career": "Disorganization or conflict in team efforts at work.",
+                "finance": "Mismanagement or lack of cooperation in financial matters."
+            }
+        }
+    },
+    {
+        "id": 67,
+        "name": "Four of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Four of Pentacles represents holding on to possessions, security, and financial stability.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345166/Pents04_gghctg.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Holding on to possessions, security, material stability, conservation.",
+                "love": "Clinging to relationships or being possessive.",
+                "career": "Holding on to job security or being protective of career achievements.",
+                "finance": "Financial security or a conservative approach to spending."
+            },
+            "reversed": {
+                "general": "Greed, materialism, financial instability, miserliness.",
+                "love": "Letting go of possessive behaviors or materialism in relationships.",
+                "career": "Fear of losing job security or financial control.",
+                "finance": "Financial insecurity or hoarding money unnecessarily."
+            }
+        }
+    },
+    {
+        "id": 68,
+        "name": "Five of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Five of Pentacles represents financial hardship, isolation, and struggles with security.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345170/Pents05_lyap2e.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Financial hardship, isolation, poverty, insecurity.",
+                "love": "Struggles or lack of support in relationships.",
+                "career": "Job loss or financial instability in career.",
+                "finance": "Financial hardship, insecurity, or poverty."
+            },
+            "reversed": {
+                "general": "Recovery, improving financial conditions, hope.",
+                "love": "Recovery in relationships or renewed support.",
+                "career": "Recovering from job loss or financial struggles in career.",
+                "finance": "Improving financial conditions or overcoming hardship."
+            }
+        }
+    },
+    {
+        "id": 69,
+        "name": "Six of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Six of Pentacles represents generosity, charity, and giving or receiving help.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345180/Pents06_ftopih.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Generosity, charity, giving or receiving help, balance in wealth.",
+                "love": "Mutual support or generosity in relationships.",
+                "career": "Support from others or giving back in career.",
+                "finance": "Financial balance, generosity, or receiving financial help."
+            },
+            "reversed": {
+                "general": "Selfishness, inequality, financial imbalance.",
+                "love": "Imbalance or selfishness in relationships.",
+                "career": "Lack of support or imbalance in work contributions.",
+                "finance": "Financial inequality or selfishness."
+            }
+        }
+    },
+    {
+        "id": 70,
+        "name": "Seven of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Seven of Pentacles represents patience, hard work, and waiting for results.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345172/Pents07_e7yajr.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Patience, hard work, long-term success, perseverance.",
+                "love": "Taking time and being patient in relationships.",
+                "career": "Long-term projects and investments in career.",
+                "finance": "Waiting for financial returns or carefully planned investments."
+            },
+            "reversed": {
+                "general": "Lack of progress, frustration, impatience.",
+                "love": "Impatience or lack of progress in relationships.",
+                "career": "Frustration over slow results or lack of progress at work.",
+                "finance": "Financial delays or lack of returns."
+            }
+        }
+    },
+    {
+        "id": 71,
+        "name": "Eight of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Eight of Pentacles represents mastery, skill development, and hard work.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345166/Pents08_q3fqu9.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Skill development, mastery, hard work, craftsmanship.",
+                "love": "Dedication and effort in relationships.",
+                "career": "Hard work and dedication leading to career success.",
+                "finance": "Careful planning and effort in financial matters."
+            },
+            "reversed": {
+                "general": "Lack of focus, perfectionism, mediocrity.",
+                "love": "Neglecting relationships or lack of effort.",
+                "career": "Burnout or dissatisfaction with work progress.",
+                "finance": "Unfocused financial planning or perfectionism leading to delays."
+            }
+        }
+    },
+    {
+        "id": 72,
+        "name": "Nine of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Nine of Pentacles represents self-sufficiency, financial independence, and luxury.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345161/Pents09_rwhbjx.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Self-sufficiency, financial independence, luxury, security.",
+                "love": "Contentment and independence in relationships.",
+                "career": "Achieving success and independence in career.",
+                "finance": "Financial independence or enjoying luxury."
+            },
+            "reversed": {
+                "general": "Overindulgence, financial instability, loneliness.",
+                "love": "Loneliness or emotional isolation in relationships.",
+                "career": "Unfulfillment despite financial success at work.",
+                "finance": "Instability due to overindulgence or mismanagement of resources."
+            }
+        }
+    },
+    {
+        "id": 73,
+        "name": "Ten of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Ten of Pentacles represents financial stability, legacy, and long-term success.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345161/Pents10_jjv7zb.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Financial stability, legacy, long-term success, family prosperity.",
+                "love": "Building a long-term and secure relationship.",
+                "career": "Achieving lasting success in career.",
+                "finance": "Financial security and creating a legacy."
+            },
+            "reversed": {
+                "general": "Financial loss, instability, family issues.",
+                "love": "Financial disagreements or family issues affecting relationships.",
+                "career": "Instability in long-term career goals.",
+                "finance": "Financial difficulties or loss of legacy."
+            }
+        }
+    },
+    {
+        "id": 74,
+        "name": "Page of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Page of Pentacles represents ambition, desire for growth, and new beginnings in finance or career.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345160/Pents11_uu9gxq.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Ambition, desire for growth, new financial or career opportunities.",
+                "love": "Exciting new beginnings or opportunities in love.",
+                "career": "Ambitious plans and new career opportunities.",
+                "finance": "Financial growth or new investment opportunities."
+            },
+            "reversed": {
+                "general": "Laziness, lack of progress, missed opportunities.",
+                "love": "Lack of initiative in relationships.",
+                "career": "Missed career opportunities or lack of ambition.",
+                "finance": "Financial delays or missed opportunities for growth."
+            }
+        }
+    },
+    {
+        "id": 75,
+        "name": "Knight of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Knight of Pentacles represents hard work, dedication, and a methodical approach to achieving goals.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345169/Pents12_hkjqei.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Hard work, dedication, methodical approach, persistence.",
+                "love": "Stable and committed approach to relationships.",
+                "career": "Hard work and persistence paying off in career.",
+                "finance": "Methodical financial planning and investments."
+            },
+            "reversed": {
+                "general": "Stubbornness, laziness, lack of progress.",
+                "love": "Lack of excitement or slow progress in relationships.",
+                "career": "Procrastination or lack of drive in career.",
+                "finance": "Financial stagnation or reluctance to take risks."
+            }
+        }
+    },
+    {
+        "id": 76,
+        "name": "Queen of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The Queen of Pentacles represents nurturing, practicality, and financial security.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345155/Pents13_aaklpg.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Nurturing, practicality, financial security, domestic success.",
+                "love": "Nurturing and supportive relationships.",
+                "career": "Practical and nurturing approach leading to career success.",
+                "finance": "Financial stability through practicality and nurturing resources."
+            },
+            "reversed": {
+                "general": "Selfishness, imbalance, overworking.",
+                "love": "Neglecting emotional needs in relationships.",
+                "career": "Overworking or neglecting personal life for career success.",
+                "finance": "Financial imbalance due to overworking or neglecting other areas."
+            }
+        }
+    },
+    {
+        "id": 77,
+        "name": "King of Pentacles",
+        "arcana": "Minor Arcana",
+        "suit": "Pentacles",
+        "description": "The King of Pentacles represents financial success, stability, and leadership.",
+        "image": "https://res.cloudinary.com/deoegf9on/image/upload/v1739345155/Pents14_woptyr.jpg",
+        "meanings": {
+            "upright": {
+                "general": "Financial success, leadership, stability, discipline.",
+                "love": "Stable and secure relationships.",
+                "career": "Success and leadership in career.",
+                "finance": "Achieving financial success and stability through discipline."
+            },
+            "reversed": {
+                "general": "Greed, materialism, financial instability.",
+                "love": "Focusing too much on material aspects in relationships.",
+                "career": "Greed or misuse of power in career.",
+                "finance": "Financial instability or greed affecting success."
+            }
+        }
+    }
+]

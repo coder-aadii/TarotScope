@@ -1,7 +1,5 @@
 // Entry point for the backend server
 
-// Entry point for the backend server
-
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db'); // Import the DB connection
@@ -13,12 +11,28 @@ const app = express();
 connectDB();
 
 // Middleware
-app.use(express.json());
-app.use(cors());
+app.use(express.json()); // Parse JSON requests
+app.use(cors()); // Enable CORS
 
-// Basic route
+// Routes
+app.use('/api/users', require('./routes/userRoutes')); // User routes
+app.use('/api/history', require('./routes/historyRoutes')); // History routes
+app.use('/api/tarotcards', require('./routes/tarotRoutes')); // Tarot card routes
+
+// Basic route for health check
 app.get('/', (req, res) => {
-  res.send('AuraDeck backend is working');
+  res.send('TarotScope backend is working');
+});
+
+// 404 route handling
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Something went wrong!' });
 });
 
 // Start the server

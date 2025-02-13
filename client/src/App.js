@@ -6,6 +6,7 @@ import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import TarotReading from './components/TarotReading';
 import Home from './components/Home';
+import CardSelection from './components/CardSelection';
 
 function App() {
   useEffect(() => {
@@ -22,7 +23,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/tarot-reading" element={<TarotReading />} />
+          {/* <Route path="/tarot-reading" element={<TarotReading />} /> */}
+          <Route path="/tarot-reading" element={<CardSelection />} />
         </Routes>
       </div>
     </Router>
