@@ -4,9 +4,15 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard';
-import TarotReading from './components/TarotReading';
+// import TarotReading from './components/TarotReading';
 import Home from './components/Home';
 import CardSelection from './components/CardSelection';
+import AboutUs from './components/AboutUs';
+import Footer from './components/Footer'; // Import Footer component
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 function App() {
   useEffect(() => {
@@ -23,9 +29,11 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          {/* <Route path="/tarot-reading" element={<TarotReading />} /> */}
           <Route path="/tarot-reading" element={<CardSelection />} />
+          {/* <Route path="/tarot-reading" element={<TarotReading />} /> */}
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
+        <Footer /> {/* Footer will be displayed on all pages */}
       </div>
     </Router>
   );
