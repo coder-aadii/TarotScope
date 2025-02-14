@@ -20,7 +20,7 @@ const TarotCardSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        type: String, // Assuming you'll store the URL of the image as a string
+        type: String,
         required: true
     },
     meanings: {

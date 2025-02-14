@@ -6,20 +6,20 @@ const Dashboard = () => {
     const [randomCard, setRandomCard] = useState(null);  // State to store random card
     const [currentDateTime, setCurrentDateTime] = useState(new Date());  // State to store current date and time
 
-    // Fetch random card from the backend
+    // Fetch "Card of the Day" from the backend
     useEffect(() => {
         const fetchRandomCard = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/tarotcards/random');
-                setRandomCard(response.data);
+                const response = await axios.get('http://localhost:5000/api/tarotcards/day');  // Fetch from the correct endpoint
+                setRandomCard(response.data);  // Set the "Card of the Day" from the backend
             } catch (error) {
-                console.error('Error fetching random card:', error);
+                console.error('Error fetching card of the day:', error);
             }
         };
 
         fetchRandomCard();
 
-        // Update the date and time every second
+        // Update the date and time every second (optional)
         const timer = setInterval(() => {
             setCurrentDateTime(new Date());
         }, 1000);
@@ -36,14 +36,14 @@ const Dashboard = () => {
                 <p>Your tarot journey begins here. Ready to ask the cards a question?</p>
 
                 <div className="mt-4">
-                    <a href="/ask-question" className="btn btn-primary btn-lg">Start a Tarot Reading</a>
+                    <a href="/AskQuestion" className="btn btn-primary btn-lg">Start a Tarot Reading</a>
                 </div>
 
                 <div className="mt-5">
                     <h4>Last Reading</h4>
                     <p>Last reading date: [Date]</p>
                     <p>Cards drawn: [Card 1], [Card 2], [Card 3]</p>
-                    <a href="/past-readings" className="btn btn-secondary">View All Past Readings</a>
+                    <a href="/History" className="btn btn-secondary">View All Past Readings</a>
                 </div>
 
                 {/* Card of the Day */}
@@ -73,6 +73,6 @@ const Dashboard = () => {
             </div>
         </>
     );
-}
+};
 
 export default Dashboard;

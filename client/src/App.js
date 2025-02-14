@@ -1,39 +1,49 @@
-import React, { useEffect } from 'react'; // Import React and useEffect
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+// Import components
 import Login from './components/Login';
 import Register from './components/Register';
-import Dashboard from './components/Dashboard';
-// import TarotReading from './components/TarotReading';
+import Dashboard from './components/Dashboard/Dashboard';
 import Home from './components/Home';
-import CardSelection from './components/CardSelection';
+import CardSelection from './components/Dashboard/CardSelection';
 import AboutUs from './components/AboutUs';
-import Footer from './components/Footer'; // Import Footer component
+import AskQuestion from './components/Dashboard/AskQuestion';
+import TarotGuide from './components/Dashboard/TarotGuide';
+import PastReadings from './components/Dashboard/History';  // Renamed to PastReadings for clarity
+import ReadingInsights from './components/Dashboard/ReadingInsights';
+import Footer from './components/Footer'; 
 
+// Import CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
 
 function App() {
   useEffect(() => {
     axios.get('http://localhost:5000/')
       .then(response => console.log('Response:', response))
       .catch(error => console.error('Error:', error));
-  }, []); // Empty dependency array so it runs only once after initial render
+  }, []); // Runs once after initial render
 
   return (
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/tarot-reading" element={<CardSelection />} />
-          {/* <Route path="/tarot-reading" element={<TarotReading />} /> */}
-          <Route path="/about" element={<AboutUs />} />
+          <Route path="/" element={<Home />} />                {/* Home page */}
+          <Route path="/login" element={<Login />} />          {/* Login page */}
+          <Route path="/register" element={<Register />} />    {/* Register page */}
+          <Route path="/dashboard" element={<Dashboard />} />  {/* Dashboard page */}
+          <Route path="/tarot-reading" element={<CardSelection />} />  {/* Tarot Reading page */}
+          <Route path="/about" element={<AboutUs />} />        {/* About Us page */}
+
+          {/* Dashboard-specific routes */}
+          <Route path="/AskQuestion" element={<AskQuestion />} />    {/* Ask a Question */}
+          <Route path="/tarot-guide" element={<TarotGuide />} />     {/* Tarot Guide */}
+          <Route path="/PastReadings" element={<PastReadings />} />  {/* Past Readings */}
+          <Route path="/ReadingInsights" element={<ReadingInsights />} /> {/* Reading Insights */}
         </Routes>
-        <Footer /> {/* Footer will be displayed on all pages */}
+        <Footer /> {/* Footer displayed on all pages */}
       </div>
     </Router>
   );

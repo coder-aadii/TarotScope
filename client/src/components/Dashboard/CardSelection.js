@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles/CardSelection.css';
+import '../Dashboard/styles/CardSelection.css'; // Correct the path
 
 const CardSelection = () => {
     const [cards, setCards] = useState([]);
