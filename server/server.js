@@ -3,6 +3,8 @@
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db'); // Import the DB connection
+const insightsRoutes = require('./routes/insightsRoutes'); // Import insights routes
+
 require('dotenv').config(); // Load environment variables from .env
 
 const app = express();
@@ -18,6 +20,8 @@ app.use(cors()); // Enable CORS
 app.use('/api/users', require('./routes/userRoutes')); // User routes
 app.use('/api/history', require('./routes/historyRoutes')); // History routes
 app.use('/api/tarotcards', require('./routes/tarotRoutes')); // Tarot card routes
+app.use('/api', insightsRoutes); // insights routes
+
 
 // Basic route for health check
 app.get('/', (req, res) => {

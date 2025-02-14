@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';  // Assuming Navbar is already built
-import './Profile.css';  // Add some custom styling for the profile page
+// import './Profile.css';  // Add some custom styling for the profile page
 
 const Profile = () => {
     const [profileData, setProfileData] = useState({

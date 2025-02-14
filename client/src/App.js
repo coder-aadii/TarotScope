@@ -18,6 +18,7 @@ import Footer from './components/Footer';
 // Import CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import Profile from './components/Dashboard/Profile';
 
 function App() {
   useEffect(() => {
@@ -39,9 +40,10 @@ function App() {
 
           {/* Dashboard-specific routes */}
           <Route path="/AskQuestion" element={<AskQuestion />} />    {/* Ask a Question */}
-          <Route path="/tarot-guide" element={<TarotGuide />} />     {/* Tarot Guide */}
+          <Route path="/TarotGuide" element={<TarotGuide />} />     {/* Tarot Guide */}
           <Route path="/PastReadings" element={<PastReadings />} />  {/* Past Readings */}
           <Route path="/ReadingInsights" element={<ReadingInsights />} /> {/* Reading Insights */}
+          <Route path="/Profile" element={<Profile />} /> {/* User Profile */}
         </Routes>
         <Footer /> {/* Footer displayed on all pages */}
       </div>
