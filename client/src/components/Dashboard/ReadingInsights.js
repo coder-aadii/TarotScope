@@ -47,7 +47,7 @@ const ReadingInsights = () => {
         <>
             <Navbar />
             <div className="container mt-5">
-                <h2 className="text-center mb-4">Reading Insights</h2>
+                <h2 className="text-center mb-4" style={{ paddingTop: '30px' }}>Reading Insights</h2>
 
                 {/* Reading Frequency Section */}
                 {readingStats && readingStats.readingFrequency && (

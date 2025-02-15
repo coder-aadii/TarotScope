@@ -4,7 +4,7 @@ import logo from '../../assets/images/logo-img.png'; // Correct path to the logo
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div className="container-fluid">
                 <button
                     className="navbar-toggler"

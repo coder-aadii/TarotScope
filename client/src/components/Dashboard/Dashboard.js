@@ -6,6 +6,7 @@ import Footer from '../Footer';
 const Dashboard = () => {
     const [randomCard, setRandomCard] = useState(null);  // State to store random card
     const [currentDateTime, setCurrentDateTime] = useState(new Date());  // State to store current date and time
+    const [user, setUser] = useState(null);  // State to store user data
 
     // Fetch "Card of the Day" from the backend
     useEffect(() => {
@@ -20,6 +21,24 @@ const Dashboard = () => {
 
         fetchRandomCard();
 
+        const fetchUserData = async () => {
+            try {
+                // Assuming your API endpoint for fetching user data is /api/user/profile
+                const response = await axios.get('http://localhost:5000/api/user/profile');
+                console.log(response.data); // Add this line to check the API response
+
+                // Destructuring to get only the required fields: name, bio, and city
+                const { username, bio, city } = response.data;
+
+                // Set the fetched data to user state
+                setUser({ username, bio, city });
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+            }
+        };
+
+        fetchUserData();
+
         // Update the date and time every second (optional)
         const timer = setInterval(() => {
             setCurrentDateTime(new Date());
@@ -32,9 +51,24 @@ const Dashboard = () => {
     return (
         <>
             <Navbar />  {/* Navbar Component */}
-            <div className="container mt-5">
-                <h2>Welcome, [User's Name]!</h2>
+            <div className="container mt-5" style={{ paddingTop: '30px' }}>
+                <h2>Welcome, {user ? user.username : 'Loading...'}!</h2>
                 <p>Your tarot journey begins here. Ready to ask the cards a question?</p>
+
+                {/* Optional dynamic elements to enhance the dashboard */}
+                {user && user.city && (
+                    <div className="mt-3">
+                        <h4>Your Location</h4>
+                        <p>{user.city}</p>
+                    </div>
+                )}
+
+                {user && user.bio && (
+                    <div className="mt-3">
+                        <h4>About You</h4>
+                        <p>{user.bio}</p>
+                    </div>
+                )}
 
                 <div className="mt-4">
                     <a href="/AskQuestion" className="btn btn-primary btn-lg">Start a Tarot Reading</a>

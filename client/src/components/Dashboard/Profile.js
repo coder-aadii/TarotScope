@@ -67,7 +67,7 @@ const Profile = () => {
             <Navbar /> {/* Navbar at the top */}
 
             <div className="profile-page container">
-                <div className="profile-header">
+                <div className="profile-header" style={{ paddingTop: '70px' }}>
                     <h2>Profile</h2>
                 </div>
 
