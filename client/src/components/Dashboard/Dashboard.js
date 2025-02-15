@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
+import Footer from '../Footer';
 
 const Dashboard = () => {
     const [randomCard, setRandomCard] = useState(null);  // State to store random card
@@ -71,6 +72,7 @@ const Dashboard = () => {
                     <p>{currentDateTime.toLocaleDateString()} {currentDateTime.toLocaleTimeString()}</p>
                 </div>
             </div>
+            <Footer /> {/* Footer displayed on all pages */}
         </>
     );
 };

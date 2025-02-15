@@ -13,7 +13,6 @@ import AskQuestion from './components/Dashboard/AskQuestion';
 import TarotGuide from './components/Dashboard/TarotGuide';
 import PastReadings from './components/Dashboard/History';  // Renamed to PastReadings for clarity
 import ReadingInsights from './components/Dashboard/ReadingInsights';
-import Footer from './components/Footer'; 
 
 // Import CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -45,7 +44,6 @@ function App() {
           <Route path="/ReadingInsights" element={<ReadingInsights />} /> {/* Reading Insights */}
           <Route path="/Profile" element={<Profile />} /> {/* User Profile */}
         </Routes>
-        <Footer /> {/* Footer displayed on all pages */}
       </div>
     </Router>
   );

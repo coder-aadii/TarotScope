@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar'; // Assuming Navbar is a local component
 import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import Footer from '../Footer';
 
 const ReadingInsights = () => {
     const [readingStats, setReadingStats] = useState(null); // Store reading stats
@@ -149,6 +150,7 @@ const ReadingInsights = () => {
                     </div>
                 )}
             </div>
+            <Footer />
         </>
     );
 };

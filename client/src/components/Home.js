@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
+import Footer from './Footer';
 
 const Home = () => {
     return (
@@ -16,7 +17,7 @@ const Home = () => {
                     <a href="/" className="mainNav__link">Home</a>
                     <a href="#about" className="mainNav__link">About</a>
                     {/* <a href="/TarotReading" className="mainNav__link">Tarot Reading</a> */}
-                    <a href="/History" className="mainNav__link">History</a>
+                    {/* <a href="/History" className="mainNav__link">History</a> */}
                     <a href="/Contact" className="mainNav__link">Contact</a>
                     <a href="/Login" className="mainNav__link">Login</a>
                     {/* <a href="/Register" className="mainNav__link">Register</a> */}
@@ -91,7 +92,7 @@ const Home = () => {
                     </div>
                     <section className="para2">
                         <p>
-                            Our unique tarot spreads, including the popular Three-Card Spread, are designed to give you actionable insights. Currently, the Three-Card Spread is available, offering a quick overview of a situation by representing the past, present, and future. Our readings offer both upright and reversed card interpretations to provide clarity in every aspect of life.
+                            Our unique tarot spreads, including the popular <strong>Three-Card Spread</strong>, are designed to give you actionable insights. Currently, the Three-Card Spread is available, offering a quick overview of a situation by representing the past, present, and future. Our readings offer both upright and reversed card interpretations to provide clarity in every aspect of life.
                         </p>
                         <div className="para3">
                             <h3>Coming Soon!!!</h3>
@@ -104,7 +105,6 @@ const Home = () => {
 
                                 <li><strong>Path Spread:</strong> A spread that compares current actions with suggested behaviors to achieve a desired outcome, focusing on rational, emotional, and external stances.</li>
                             </ul>
-
                         </div>
                         <p>
                             Explore your past, present, and future in a way that’s meaningful and transformative. Discover more about our story and how TarotScope can help you unlock the mysteries of your life by visiting our About Us page!
@@ -192,6 +192,7 @@ const Home = () => {
                     </div>
                 </div>
             </section >
+            <Footer />
         </div >
     );
 };
