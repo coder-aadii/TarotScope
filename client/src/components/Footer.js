@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <footer
             className="text-center text-lg-start text-white"
-            style={{ backgroundColor: "#1c2331" }}
+            style={{ backgroundColor: "#1c2331", marginTop: '30px' }}
         >
             {/* Section: Social media */}
             <section

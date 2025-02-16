@@ -13,6 +13,7 @@ import AskQuestion from './components/Dashboard/AskQuestion';
 import TarotGuide from './components/Dashboard/TarotGuide';
 import PastReadings from './components/Dashboard/History';  // Renamed to PastReadings for clarity
 import ReadingInsights from './components/Dashboard/ReadingInsights';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,7 +41,7 @@ function App() {
           {/* Dashboard-specific routes */}
           <Route path="/AskQuestion" element={<AskQuestion />} />    {/* Ask a Question */}
           <Route path="/TarotGuide" element={<TarotGuide />} />     {/* Tarot Guide */}
-          <Route path="/PastReadings" element={<PastReadings />} />  {/* Past Readings */}
+          <Route path="/History" element={<PastReadings />} />  {/* Past Readings */}
           <Route path="/ReadingInsights" element={<ReadingInsights />} /> {/* Reading Insights */}
           <Route path="/Profile" element={<Profile />} /> {/* User Profile */}
         </Routes>

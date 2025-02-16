@@ -20,7 +20,7 @@ const Register = () => {
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     // Handler for form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Basic validation: Check if all fields are filled
@@ -55,16 +55,27 @@ const Register = () => {
             return;
         }
 
-        // Mock registration action (replace with actual registration logic)
-        console.log('Registering with:', { name, email, password });
+        try {
+            const response = await fetch('http://localhost:5000/api/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name, email, password }),
+            });
 
-        // Clear form and error after registration
-        setName('');
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
-        setError('');
-        setAgreeToTerms(false);
+            const data = await response.json();
+
+            if (response.ok) {
+                console.log('Registration successful:', data);
+                // Redirect to login or perform further actions
+            } else {
+                setError(data.message || 'Registration failed.');
+            }
+        } catch (err) {
+            console.error('Error during registration:', err);
+            setError('An error occurred during registration. Please try again later.');
+        }
     };
 
     return (
@@ -166,7 +177,7 @@ const Register = () => {
 
                     {/* Link to Login */}
                     <p className="register-link">
-                        Already have an account? <a href="/login">Login Here</a>
+                        Already have an account? <a href="/login">Login</a>
                     </p>
                 </form>
             </div>

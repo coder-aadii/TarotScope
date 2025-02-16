@@ -11,8 +11,11 @@ const Login = () => {
     // State to hold error messages
     const [error, setError] = useState('');
 
+    // State for login status
+    const [loading, setLoading] = useState(false);
+
     // Handler for form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Basic validation: Check if all fields are filled
@@ -26,14 +29,38 @@ const Login = () => {
             return;
         }
 
-        // Mock login action (replace with actual authentication logic)
-        console.log('Logging in with:', { email, password });
+        try {
+            setLoading(true);
+            setError('');
 
-        // Clear form and error after login
-        setEmail('');
-        setPassword('');
-        setError('');
-        setAgreeToTerms(false);
+            // Mock login action (replace with actual authentication logic)
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || 'Login failed');
+            }
+
+            console.log('Login successful:', data);
+
+            // Clear form and error after login
+            setEmail('');
+            setPassword('');
+            setAgreeToTerms(false);
+
+            // Redirect to dashboard or handle success
+            window.location.href = '/dashboard'; // Redirect to dashboard
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -93,7 +120,9 @@ const Login = () => {
                     </div>
 
                     {/* Submit Button */}
-                    <button type="submit">Login</button>
+                    <button type="submit" disabled={loading}>
+                        {loading ? 'Logging in...' : 'Login'}
+                    </button>
 
                     <div className="divider">
                         <span>OR</span>

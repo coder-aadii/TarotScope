@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar from './Navbar';  // Assuming Navbar is already built
+import Navbar from './Navbar';
 import Footer from '../Footer';
-// import './Profile.css';  // Add some custom styling for the profile page
 
 const Profile = () => {
     const [profileData, setProfileData] = useState({
@@ -10,7 +9,11 @@ const Profile = () => {
         email: '',
         city: '',
         bio: '',
-        profileImageUrl: ''
+        profileImageUrl: '',
+        favoriteCards: [],  // New field
+        readingPreferences: { preferredSpread: '', preferredQuestionType: '' },  // New field
+        socialMediaHandles: { twitter: '', instagram: '' },  // New field
+        bookmarks: [],  // New field
     });
     const [editMode, setEditMode] = useState(false);
     const [selectedImage, setSelectedImage] = useState(null);
@@ -46,6 +49,14 @@ const Profile = () => {
             formData.append('username', profileData.username);
             formData.append('city', profileData.city);
             formData.append('bio', profileData.bio);
+
+            // Append reading preferences
+            formData.append('preferredSpread', profileData.readingPreferences.preferredSpread);
+            formData.append('preferredQuestionType', profileData.readingPreferences.preferredQuestionType);
+
+            // Append social media handles
+            formData.append('twitter', profileData.socialMediaHandles.twitter);
+            formData.append('instagram', profileData.socialMediaHandles.instagram);
 
             if (selectedImage) {
                 formData.append('profileImage', selectedImage);  // Image upload
@@ -130,6 +141,102 @@ const Profile = () => {
                                 />
                             ) : (
                                 <p>{profileData.bio}</p>
+                            )}
+                        </div>
+
+                        {/* Favorite Cards */}
+                        <div className="form-group">
+                            <label>Favorite Cards:</label>
+                            <ul>
+                                {profileData.favoriteCards.length ? (
+                                    profileData.favoriteCards.map((card, idx) => (
+                                        <li key={idx}>{card.name}</li>
+                                    ))
+                                ) : (
+                                    <p>No favorite cards selected</p>
+                                )}
+                            </ul>
+                        </div>
+
+                        {/* Reading Preferences */}
+                        <div className="form-group">
+                            <label>Preferred Spread:</label>
+                            {editMode ? (
+                                <input
+                                    type="text"
+                                    name="preferredSpread"
+                                    value={profileData.readingPreferences.preferredSpread}
+                                    onChange={(e) =>
+                                        setProfileData((prev) => ({
+                                            ...prev,
+                                            readingPreferences: { ...prev.readingPreferences, preferredSpread: e.target.value },
+                                        }))
+                                    }
+                                    className="form-control"
+                                />
+                            ) : (
+                                <p>{profileData.readingPreferences.preferredSpread || 'None'}</p>
+                            )}
+                        </div>
+
+                        <div className="form-group">
+                            <label>Preferred Question Type:</label>
+                            {editMode ? (
+                                <input
+                                    type="text"
+                                    name="preferredQuestionType"
+                                    value={profileData.readingPreferences.preferredQuestionType}
+                                    onChange={(e) =>
+                                        setProfileData((prev) => ({
+                                            ...prev,
+                                            readingPreferences: { ...prev.readingPreferences, preferredQuestionType: e.target.value },
+                                        }))
+                                    }
+                                    className="form-control"
+                                />
+                            ) : (
+                                <p>{profileData.readingPreferences.preferredQuestionType || 'None'}</p>
+                            )}
+                        </div>
+
+                        {/* Social Media Handles */}
+                        <div className="form-group">
+                            <label>Twitter Handle:</label>
+                            {editMode ? (
+                                <input
+                                    type="text"
+                                    name="twitter"
+                                    value={profileData.socialMediaHandles.twitter}
+                                    onChange={(e) =>
+                                        setProfileData((prev) => ({
+                                            ...prev,
+                                            socialMediaHandles: { ...prev.socialMediaHandles, twitter: e.target.value },
+                                        }))
+                                    }
+                                    className="form-control"
+                                />
+                            ) : (
+                                <p>{profileData.socialMediaHandles.twitter || 'Not provided'}</p>
+                            )}
+                        </div>
+
+                        <div className="form-group mb-5">
+                            <label>Instagram Handle:</label>
+                            {editMode ? (
+                                <input
+                                    type="text"
+                                    name="instagram"
+                                    value={profileData.socialMediaHandles.instagram}
+                                    onChange={(e) =>
+                                        setProfileData((prev) => ({
+                                            ...prev,
+                                            socialMediaHandles: { ...prev.socialMediaHandles, instagram: e.target.value },
+                                        }))
+                                    }
+                                    className="form-control"
+                                />
+                            ) : (
+                                <p>{profileData.socialMediaHandles.instagram || 'Not provided'}</p>
                             )}
                         </div>
 

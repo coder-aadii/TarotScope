@@ -17,11 +17,10 @@ app.use(express.json()); // Parse JSON requests
 app.use(cors()); // Enable CORS
 
 // Routes
-app.use('/api/users', require('./routes/userRoutes')); // User routes
+app.use('/api/auth', require('./routes/userRoutes')); // User routes (auth routes for register, login, etc.)
 app.use('/api/history', require('./routes/historyRoutes')); // History routes
 app.use('/api/tarotcards', require('./routes/tarotRoutes')); // Tarot card routes
-app.use('/api', insightsRoutes); // insights routes
-
+app.use('/api', insightsRoutes); // Insights routes
 
 // Basic route for health check
 app.get('/', (req, res) => {

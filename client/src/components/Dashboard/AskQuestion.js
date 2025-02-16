@@ -1,5 +1,3 @@
-// Input field for Yes/No and Detailed question types
-
 import React, { useState } from 'react';
 import Navbar from './Navbar';
 import Footer from '../Footer';
@@ -20,16 +18,17 @@ const AskQuestion = ({ onSubmit }) => {
     return (
         <>
             <Navbar />
-            <div className="ask-question-container p-4">
-                <h2 className="text-2xl font-bold mb-4" style={{ paddingTop: '70px' }}>Ask Your Tarot Question</h2>
-                <p className="text-gray-600 mb-4">Choose a question type and ask the tarot.</p>
+            <div className="container p-4">
+                <h2 className="display-4 mb-4" style={{ paddingTop: '70px' }}>Ask Your Tarot Question</h2>
+                <p className="text-muted mb-4">Choose a question type and ask the tarot.</p>
 
                 <div className="mb-4">
-                    <h3 className="text-lg font-semibold mb-2">Question Type</h3>
-                    <div className="space-y-">
-                        <label>
+                    <h3 className="h5 mb-2">Question Type</h3>
+                    <div>
+                        <label className="form-check-label">
                             <input
                                 type="radio"
+                                className="form-check-input"
                                 name="questionType"
                                 value="yesNo"
                                 checked={questionType === 'yesNo'}
@@ -38,9 +37,10 @@ const AskQuestion = ({ onSubmit }) => {
                             Yes/No Question
                         </label>
                         <br />
-                        <label>
+                        <label className="form-check-label">
                             <input
                                 type="radio"
+                                className="form-check-input"
                                 name="questionType"
                                 value="detailed"
                                 checked={questionType === 'detailed'}
@@ -52,21 +52,22 @@ const AskQuestion = ({ onSubmit }) => {
                 </div>
 
                 <div className="mb-4">
-                    <h3 className="text-lg font-semibold mb-2">Your Question</h3>
+                    <h3 className="h5 mb-2">Your Question</h3>
                     <input
                         type="text"
-                        className="w-3/4 p-2 border border-gray-300 rounded-md"
+                        className="form-control w-75"
                         placeholder="Type your question here"
                         value={question}
                         onChange={(e) => setQuestion(e.target.value)}
                     />
                 </div>
                 <button
-                    className="bg-indigo-500 text-white py-2 px-4 rounded-md"
+                    className="btn btn-primary w-50"
                     onClick={handleSubmit}
                 >
                     Submit
                 </button>
+
             </div>
             <Footer />
         </>
