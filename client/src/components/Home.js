@@ -1,9 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 import Footer from './Footer';
 
 const Home = () => {
+
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: '',
+    });
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.id]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/contact/send`, formData);
+            if (response.status === 200) {
+                alert('Message sent successfully!');
+                // Reset form fields after successful submission
+                setFormData({
+                    name: '',
+                    email: '',
+                    message: '',
+                });
+            }
+        } catch (error) {
+            console.error('Error sending message', error);
+            alert('Failed to send message. Please try again later.');
+        }
+    };
+
     return (
         <div>
             {/* Navigation Bar */}
@@ -18,7 +49,7 @@ const Home = () => {
                     <a href="#about" className="mainNav__link">About</a>
                     {/* <a href="/TarotReading" className="mainNav__link">Tarot Reading</a> */}
                     {/* <a href="/History" className="mainNav__link">History</a> */}
-                    <a href="/Contact" className="mainNav__link">Contact</a>
+                    <a href="#contact" className="mainNav__link">Contact</a>
                     <a href="/Login" className="mainNav__link">Login</a>
                     {/* <a href="/Register" className="mainNav__link">Register</a> */}
                 </div>
@@ -192,6 +223,59 @@ const Home = () => {
                     </div>
                 </div>
             </section >
+
+            {/* Contact Section */}
+            <section id="contact" className="contact-section py-5">
+                <div className="container">
+                    <h2 className="text-center mb-4">Contact Us</h2>
+                    <div className="row justify-content-center">
+                        <div className="col-lg-6">
+                            <form onSubmit={handleSubmit}>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="name">Name</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="name"
+                                        placeholder="Enter your name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="email">Email</label>
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        id="email"
+                                        placeholder="Enter your email"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label htmlFor="message">Message</label>
+                                    <textarea
+                                        className="form-control"
+                                        id="message"
+                                        rows="4"
+                                        placeholder="Write your message"
+                                        value={formData.message}
+                                        onChange={handleChange}
+                                        required
+                                    ></textarea>
+                                </div>
+                                <div className="text-center">
+                                    <button type="submit" className="btn btn-primary">Send Message</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <Footer />
         </div >
     );

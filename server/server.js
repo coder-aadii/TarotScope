@@ -6,6 +6,7 @@ const connectDB = require('./config/db'); // Import the DB connection
 const insightsRoutes = require('./routes/insightsRoutes'); // Import insights routes
 const tarotRoutes = require('./routes/tarotRoutes'); // Import tarot card routes
 const historyRoutes = require('./routes/historyRoutes'); // Import the history routes
+const contactRoutes = require('./routes/contactRoutes');
 
 require('dotenv').config(); // Load environment variables from .env
 
@@ -20,11 +21,12 @@ app.use(cors()); // Enable CORS
 
 // Routes
 app.use('/api/auth', require('./routes/userRoutes')); // User routes (auth routes for register, login, etc.)
-app.use('/api/history', require('./routes/historyRoutes')); // History routes
 app.use('/api/tarotcards', tarotRoutes); // Tarot card routes
 app.use('/api/insights', insightsRoutes); // Insights routes
 app.use('/api/user', require('./routes/userRoutes')); // User routes for fetching profile
 app.use('/api/history', historyRoutes); // Register history routes under '/api/history'
+app.use('/api/contact', contactRoutes);
+
 
 // Basic route for health check
 app.get('/', (req, res) => {

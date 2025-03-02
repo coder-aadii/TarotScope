@@ -14,6 +14,7 @@ const Register = () => {
 
     // State to hold error messages
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false); // Loading state for showing loader
 
     // Regular expression for email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -57,6 +58,9 @@ const Register = () => {
             return;
         }
 
+        // Start loading
+        setLoading(true);
+
         try {
             const response = await fetch(`${apiUrl}/api/auth/register`, {
                 method: 'POST',
@@ -91,11 +95,20 @@ const Register = () => {
         } catch (err) {
             console.error('Error during registration:', err);
             setError('An error occurred during registration. Please try again later.');
+        } finally {
+            // Stop loading
+            setLoading(false);
         }
     };
 
     return (
         <>
+            {/* Loading Animation */}
+            {loading && (
+                <div className="loader-overlay">
+                    <div className="loader"></div>
+                </div>
+            )}
             <a href='/'>
                 <div className='logo-img'></div>
             </a>

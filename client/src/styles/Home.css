@@ -605,10 +605,6 @@ a {
     transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-    background-color: #ffff00;
-}
-
 .btn-primary i {
     margin-left: 10px;
 }
