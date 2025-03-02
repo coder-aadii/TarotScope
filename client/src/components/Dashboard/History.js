@@ -5,6 +5,8 @@ import DashboardNavbar from './DashboardNavbar';
 import Footer from '../Footer';
 import './History.css'; // Import the CSS file for styling
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const History = () => {
     const [history, setHistory] = useState([]); // State to store history data
     const { user } = useContext(UserContext);  // Get the logged-in user info (including userId)
@@ -14,7 +16,7 @@ const History = () => {
             if (!user) return;  // Ensure we have the user before proceeding
             try {
                 const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
-                const response = await axios.get(`http://localhost:5000/api/tarotcards/history/${user.userId}`, {
+                const response = await axios.get(`${apiUrl}/api/tarotcards/history/${user.userId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`, // Pass the token for authentication
                     },

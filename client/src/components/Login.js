@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../styles/Login.css'; // Ensure you have styles for this component
 import { jwtDecode } from 'jwt-decode';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const Login = () => {
     // State to hold email, password, and checkbox state
     const [email, setEmail] = useState('');
@@ -35,7 +37,7 @@ const Login = () => {
             setError('');
 
             // Mock login action (replace with actual authentication logic)
-            const response = await fetch('http://localhost:5000/api/auth/login', {
+            const response = await fetch(`${apiUrl}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

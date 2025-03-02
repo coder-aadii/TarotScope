@@ -7,8 +7,6 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard/Dashboard';
 import Home from './components/Home';
-// import CardSelection from './components/Dashboard/CardSelection';
-// import AboutUs from './components/AboutUs';
 import AskQuestion from './components/Dashboard/AskQuestion';
 import TarotGuide from './components/Dashboard/TarotGuide';
 import PastReadings from './components/Dashboard/History';  // Renamed to PastReadings for clarity
@@ -23,14 +21,13 @@ import { UserProvider } from './context/UserContext';
 // Import PrivateRoute for route protection
 import PrivateRoute from './components/PrivateRoute';
 
-// Import CSS
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 import TarotReading from './components/Dashboard/TarotReading';
+
+const apiUrl = process.env.REACT_APP_API_URL;
 
 function App() {
   useEffect(() => {
-    axios.get('http://localhost:5000/')
+    axios.get(`${apiUrl}/`)
       .then(response => console.log('Response:', response))
       .catch(error => console.error('Error:', error));
   }, []); // Runs once after initial render

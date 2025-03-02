@@ -7,10 +7,12 @@ const testUser = {
   password: "Password123",
 };
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 // Register user function
 const registerUser = async () => {
   try {
-    const response = await axios.post('http://localhost:5000/api/auth/register', testUser);
+    const response = await axios.post(`${apiUrl}/api/auth/register`, testUser);
 
     // Check if registration was successful
     console.log('User registration successful:', response.data);

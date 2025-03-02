@@ -5,6 +5,8 @@ import { Spinner, Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Footer from '../Footer';
 import DashboardNavbar from './DashboardNavbar'; // Adjusted import to avoid name conflict
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const Profile = () => {
     const { user, setUser, loading } = useContext(UserContext);
 
@@ -37,7 +39,7 @@ const Profile = () => {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token'); // Get JWT token from local storage
-            const response = await axios.put('http://localhost:5000/api/users/profile', formData, {
+            const response = await axios.put(`${apiUrl}/api/users/profile`, formData, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             setUser(response.data); // Update user context with the new data

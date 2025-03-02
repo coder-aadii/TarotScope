@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/Login.css'; // Assuming the same styles apply for register
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const Register = () => {
     // State to hold name, email, password, confirm password, and checkbox state
     const [name, setName] = useState('');
@@ -56,7 +58,7 @@ const Register = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:5000/api/auth/register', {
+            const response = await fetch(`${apiUrl}/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

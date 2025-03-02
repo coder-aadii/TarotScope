@@ -4,6 +4,8 @@ import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import Footer from '../Footer';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const ReadingInsights = () => {
     const [readingStats, setReadingStats] = useState(null); // Store reading stats
     const [cardFrequency, setCardFrequency] = useState(null); // Store card appearance data
@@ -14,8 +16,8 @@ const ReadingInsights = () => {
         const fetchInsightsData = async () => {
             try {
                 // Fetching data from backend (assuming appropriate endpoints exist)
-                const readingResponse = await axios.get('http://localhost:5000/api/readingStats');
-                const cardFrequencyResponse = await axios.get('http://localhost:5000/api/cardFrequency');
+                const readingResponse = await axios.get(`${apiUrl}/api/readingStats`);
+                const cardFrequencyResponse = await axios.get(`${apiUrl}/api/cardFrequency`);
 
                 // Set data to states
                 setReadingStats(readingResponse.data);

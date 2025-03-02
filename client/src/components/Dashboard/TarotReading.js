@@ -6,7 +6,8 @@ import Footer from '../Footer';
 
 import './TarotReading.css';
 
-const shuffleSoundUrl = 'https://www.soundjay.com/misc/sounds/shuffling-cards-1.mp3'; // Shuffle sound URL
+const shuffleSoundUrl = 'https://www.soundjay.com/misc/sounds/shuffling-cards-1.mp3';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const TarotReading = () => {
     const { state } = useLocation();
@@ -60,7 +61,7 @@ const TarotReading = () => {
             const selectedCardIds = selectedCards.map(card => card.id).join(',');
 
             // Make a GET request to fetch card details based on selected card IDs
-            const response = await axios.get('http://localhost:5000/api/tarotcards/three-random-cards', {
+            const response = await axios.get(`${apiUrl}/api/tarotcards/three-random-cards`, {
                 params: {
                     selectedCardIds
                 }
@@ -80,7 +81,7 @@ const TarotReading = () => {
             };
 
             // Post request to store the reading history with Authorization header
-            await axios.post('http://localhost:5000/api/tarotcards/history', historyData, {
+            await axios.post(`${apiUrl}/api/tarotcards/history`, historyData, {
                 headers: {
                     Authorization: `Bearer ${token}`, // Include token in Authorization header
                 }

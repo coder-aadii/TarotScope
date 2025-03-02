@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // To handle redirection
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const VerifyEmail = () => {
     const [loading, setLoading] = useState(true);
     const [message, setMessage] = useState('');
@@ -27,7 +29,7 @@ const VerifyEmail = () => {
 
             try {
                 // Call backend to verify the email using the token
-                const response = await axios.get(`http://localhost:5000/api/auth/verify-email?token=${token}`);
+                const response = await axios.get(`${apiUrl}/api/auth/verify-email?token=${token}`);
 
                 if (response.status === 200) {
                     setMessage('Email verified successfully! Redirecting to login...');

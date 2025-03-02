@@ -4,6 +4,8 @@ import { jwtDecode } from 'jwt-decode';
 import Footer from '../Footer';
 import DashboardNavbar from './DashboardNavbar';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const Dashboard = () => {
     const [randomCard, setRandomCard] = useState(null);  // State to store random card
     const [currentDateTime, setCurrentDateTime] = useState(new Date());  // State to store current date and time
@@ -13,7 +15,7 @@ const Dashboard = () => {
     useEffect(() => {
         const fetchRandomCard = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/api/tarotcards/day');  // Fetch from the correct endpoint
+                const response = await axios.get(`${apiUrl}/api/tarotcards/day`);  // Fetch from the correct endpoint
                 setRandomCard(response.data);  // Set the "Card of the Day" from the backend
             } catch (error) {
                 console.error('Error fetching card of the day:', error);
@@ -33,7 +35,7 @@ const Dashboard = () => {
                     const userId = decodedToken.userId;
 
                     // Fetch user data from the backend using the user ID
-                    const response = await axios.get(`http://localhost:5000/api/user/${userId}`);
+                    const response = await axios.get(`${apiUrl}/api/user/${userId}`);
                     console.log(response.data); // Log the API response
 
                     // Destructuring to get only the required fields: name, bio, and city
@@ -43,7 +45,7 @@ const Dashboard = () => {
                     setUser({ name, bio, city });
                 }
             } catch (error) {
-                console.error('Error fetching user data:', error);
+                console.error('Error fetching user data:', error.response ? error.response.data : error.message);
             }
         };
 
