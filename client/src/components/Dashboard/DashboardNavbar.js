@@ -1,8 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import logo from '../../assets/images/logo-img.png'; // Correct path to the logo
 
-const Navbar = () => {
+const DashboardNavbar = () => {
+    const navigate = useNavigate();
+
+    // Logout function
+    const handleLogout = () => {
+        // Clear user token and other session-related data
+        localStorage.removeItem('token'); // Assuming you're storing JWT token in localStorage
+
+        // Redirect to the login page
+        navigate('/login');
+    };
+
+    // Handle back navigation after logout
+    useEffect(() => {
+        window.onpopstate = function(event) {
+            if (!localStorage.getItem('token')) {
+                navigate('/login'); // Redirect to login if token doesn't exist
+            }
+        };
+    }, [navigate]);
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
             <div className="container-fluid">
@@ -48,8 +68,8 @@ const Navbar = () => {
                         </li>
                     </ul>
 
-                    <div className="navbar-profile ms-3">
-                        {/* Wrap the profile image inside a Link to redirect to Profile */}
+                    <div className="navbar-profile ms-3 d-flex align-items-center">
+                        {/* Profile image */}
                         <Link to="/Profile">
                             <img
                                 src="https://img.icons8.com/?size=100&id=423kipnPTZJn&format=png&color=000000"
@@ -59,11 +79,16 @@ const Navbar = () => {
                                 height="40"
                             />
                         </Link>
+
+                        {/* Logout button */}
+                        <button className="btn btn-outline-danger ms-3" onClick={handleLogout}>
+                            Logout
+                        </button>
                     </div>
                 </div>
             </div>
         </nav>
     );
-}
+};
 
-export default Navbar;
+export default DashboardNavbar;

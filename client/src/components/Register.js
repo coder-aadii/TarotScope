@@ -68,10 +68,24 @@ const Register = () => {
 
             if (response.ok) {
                 console.log('Registration successful:', data);
-                // Redirect to login or perform further actions
+                // Show alert for successful registration
+                alert('Registration successful! You can now log in.');
+
+                // Clear input fields on successful registration
+                setName('');
+                setEmail('');
+                setPassword('');
+                setConfirmPassword('');
+                setAgreeToTerms(false);
+                setError('');  // Clear any previous error messages
+
+
+                // Redirect to the login page after alert
+                window.location.href = '/login';
             } else {
                 setError(data.message || 'Registration failed.');
             }
+
         } catch (err) {
             console.error('Error during registration:', err);
             setError('An error occurred during registration. Please try again later.');

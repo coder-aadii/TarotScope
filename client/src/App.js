@@ -7,18 +7,26 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Dashboard from './components/Dashboard/Dashboard';
 import Home from './components/Home';
-import CardSelection from './components/Dashboard/CardSelection';
-import AboutUs from './components/AboutUs';
+// import CardSelection from './components/Dashboard/CardSelection';
+// import AboutUs from './components/AboutUs';
 import AskQuestion from './components/Dashboard/AskQuestion';
 import TarotGuide from './components/Dashboard/TarotGuide';
 import PastReadings from './components/Dashboard/History';  // Renamed to PastReadings for clarity
 import ReadingInsights from './components/Dashboard/ReadingInsights';
+import VerifyEmail from './components/verify-email';
+import Profile from './components/Dashboard/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+// Import UserProvider to manage user context
+import { UserProvider } from './context/UserContext';
+
+// Import PrivateRoute for route protection
+import PrivateRoute from './components/PrivateRoute';
 
 // Import CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import Profile from './components/Dashboard/Profile';
+import TarotReading from './components/Dashboard/TarotReading';
 
 function App() {
   useEffect(() => {
@@ -28,25 +36,76 @@ function App() {
   }, []); // Runs once after initial render
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Home />} />                {/* Home page */}
-          <Route path="/login" element={<Login />} />          {/* Login page */}
-          <Route path="/register" element={<Register />} />    {/* Register page */}
-          <Route path="/dashboard" element={<Dashboard />} />  {/* Dashboard page */}
-          <Route path="/tarot-reading" element={<CardSelection />} />  {/* Tarot Reading page */}
-          <Route path="/about" element={<AboutUs />} />        {/* About Us page */}
-
-          {/* Dashboard-specific routes */}
-          <Route path="/AskQuestion" element={<AskQuestion />} />    {/* Ask a Question */}
-          <Route path="/TarotGuide" element={<TarotGuide />} />     {/* Tarot Guide */}
-          <Route path="/History" element={<PastReadings />} />  {/* Past Readings */}
-          <Route path="/ReadingInsights" element={<ReadingInsights />} /> {/* Reading Insights */}
-          <Route path="/Profile" element={<Profile />} /> {/* User Profile */}
-        </Routes>
-      </div>
-    </Router>
+    <UserProvider>  {/* Use UserProvider at the root to manage user context */}
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />} />                {/* Home page */}
+            <Route path="/login" element={<Login />} />          {/* Login page */}
+            <Route path="/register" element={<Register />} />    {/* Register page */}
+            
+            {/* Wrap protected routes with PrivateRoute */}
+            <Route 
+              path="/dashboard" 
+              element={
+                <PrivateRoute>
+                  <Dashboard />
+                </PrivateRoute>
+              } 
+            />
+            <Route 
+              path="/TarotReading" 
+              element={
+                <PrivateRoute>
+                  <TarotReading />
+                </PrivateRoute>
+              } 
+            />
+            <Route 
+              path="/AskQuestion" 
+              element={
+                <PrivateRoute>
+                  <AskQuestion />
+                </PrivateRoute>
+              } 
+            />
+            <Route 
+              path="/TarotGuide" 
+              element={
+                <PrivateRoute>
+                  <TarotGuide />
+                </PrivateRoute>
+              } 
+            />
+            <Route 
+              path="/History" 
+              element={
+                <PrivateRoute>
+                  <PastReadings />
+                </PrivateRoute>
+              } 
+            />
+            <Route 
+              path="/ReadingInsights" 
+              element={
+                <PrivateRoute>
+                  <ReadingInsights />
+                </PrivateRoute>
+              } 
+            />
+            <Route 
+              path="/Profile" 
+              element={
+                <PrivateRoute>
+                  <Profile />
+                </PrivateRoute>
+              } 
+            />
+            <Route path="/verify-email" element={<VerifyEmail />} /> {/* Verify Email */}
+          </Routes>
+        </div>
+      </Router>
+    </UserProvider>
   );
 }
 

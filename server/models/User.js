@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
+  name: { type: String, required: true }, // Full Name field
+  email: { type: String, required: true, unique: true }, // Email remains required and unique
   password: { type: String, required: true },
   profileImageUrl: { type: String, default: "" },
   city: { type: String, default: "" },
@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
     }
   ],
   favoriteCards: [{ type: mongoose.Schema.Types.ObjectId, ref: 'TarotCard' }],
-  lastLogin: { type: Date },
+  lastLogin: { type: Date },  // To track the last login date
   role: { type: String, default: 'user' },
   isActive: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now },
@@ -39,13 +39,12 @@ const UserSchema = new mongoose.Schema({
       createdAt: { type: Date, default: Date.now }
     }
   ],
-  accountStatus: { type: String, default: 'active' },
-  // subscriptionLevel: { type: String, default: 'free' },
+  accountStatus: { type: String, default: 'active' }, // Active by default
   socialMediaHandles: {
     twitter: { type: String },
     instagram: { type: String },
   },
-  tarotReadingCount: { type: Number, default: 0 },
+  tarotReadingCount: { type: Number, default: 0 }
 });
 
 module.exports = mongoose.model('User', UserSchema);

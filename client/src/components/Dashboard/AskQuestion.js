@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
-import Navbar from './Navbar';
+import Navbar from './DashboardNavbar';
 import Footer from '../Footer';
+import { useNavigate } from 'react-router-dom'; // To redirect to TarotReading
 
-const AskQuestion = ({ onSubmit }) => {
+import './AskQuestion.css';
+
+const AskQuestion = () => {
     const [questionType, setQuestionType] = useState('');
     const [question, setQuestion] = useState('');
+    const [submitted, setSubmitted] = useState(false); // State for submission status
+    const navigate = useNavigate(); // For redirection
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (questionType && question) {
-            onSubmit({ questionType, question });
+            setSubmitted(true);  // Mark as submitted
+            // Pass the question type and question as route state or props while navigating to TarotReading
+            navigate('/TarotReading', { state: { questionType, question } }); // Redirect to TarotReading page
         } else {
             alert('Please select a question type and ask your question.');
         }
@@ -61,13 +68,17 @@ const AskQuestion = ({ onSubmit }) => {
                         onChange={(e) => setQuestion(e.target.value)}
                     />
                 </div>
-                <button
-                    className="btn btn-primary w-50"
-                    onClick={handleSubmit}
-                >
+
+                <button className="btn btn-primary w-50" onClick={handleSubmit}>
                     Submit
                 </button>
 
+                {/* Display a confirmation message when submitted */}
+                {submitted && (
+                    <div className="alert alert-success mt-4">
+                        Your question has been submitted! Redirecting to Tarot Reading...
+                    </div>
+                )}
             </div>
             <Footer />
         </>

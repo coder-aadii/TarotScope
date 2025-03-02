@@ -1,257 +1,190 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../../context/UserContext'; // Update the path
 import axios from 'axios';
-import Navbar from './Navbar';
+import { Spinner, Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Footer from '../Footer';
+import DashboardNavbar from './DashboardNavbar'; // Adjusted import to avoid name conflict
 
 const Profile = () => {
-    const [profileData, setProfileData] = useState({
-        username: '',
-        email: '',
-        city: '',
-        bio: '',
-        profileImageUrl: '',
-        favoriteCards: [],  // New field
-        readingPreferences: { preferredSpread: '', preferredQuestionType: '' },  // New field
-        socialMediaHandles: { twitter: '', instagram: '' },  // New field
-        bookmarks: [],  // New field
+    const { user, setUser, loading } = useContext(UserContext);
+
+    const [formData, setFormData] = useState({
+        name: user?.name || '',
+        email: user?.email || '',
+        city: user?.city || '',
+        bio: user?.bio || '',
+        favoriteCards: user?.favoriteCards || [], // Adjusted based on MongoDB field
+        profileImageUrl: user?.profileImageUrl || '', // Adjusted based on MongoDB field
     });
-    const [editMode, setEditMode] = useState(false);
-    const [selectedImage, setSelectedImage] = useState(null);
 
-    useEffect(() => {
-        // Fetch user data when the component loads
-        const fetchProfileData = async () => {
-            const userId = 'USER_ID';  // Replace with actual userId or get from context
-            try {
-                const response = await axios.get(`/api/users/${userId}`);
-                setProfileData(response.data);
-            } catch (error) {
-                console.error('Error fetching profile data', error);
-            }
-        };
-
-        fetchProfileData();
-    }, []);
-
-    const handleInputChange = (e) => {
+    const handleChange = (e) => {
         const { name, value } = e.target;
-        setProfileData((prevData) => ({ ...prevData, [name]: value }));
+        setFormData({ ...formData, [name]: value });
     };
 
     const handleImageChange = (e) => {
-        setSelectedImage(e.target.files[0]);
-    };
-
-    const handleSaveProfile = async () => {
-        try {
-            const userId = 'USER_ID';  // Replace with actual userId
-            const formData = new FormData();
-            formData.append('username', profileData.username);
-            formData.append('city', profileData.city);
-            formData.append('bio', profileData.bio);
-
-            // Append reading preferences
-            formData.append('preferredSpread', profileData.readingPreferences.preferredSpread);
-            formData.append('preferredQuestionType', profileData.readingPreferences.preferredQuestionType);
-
-            // Append social media handles
-            formData.append('twitter', profileData.socialMediaHandles.twitter);
-            formData.append('instagram', profileData.socialMediaHandles.instagram);
-
-            if (selectedImage) {
-                formData.append('profileImage', selectedImage);  // Image upload
-            }
-
-            const response = await axios.put(`/api/users/update-profile/${userId}`, formData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
-
-            setProfileData(response.data);  // Update local state with the new data
-            setEditMode(false);
-        } catch (error) {
-            console.error('Error updating profile', error);
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData({ ...formData, profileImageUrl: reader.result }); // Set the image data in the state
+            };
+            reader.readAsDataURL(file); // Convert the file to a base64 URL
         }
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const token = localStorage.getItem('token'); // Get JWT token from local storage
+            const response = await axios.put('http://localhost:5000/api/users/profile', formData, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+            setUser(response.data); // Update user context with the new data
+            alert('Profile updated successfully!');
+        } catch (error) {
+            console.error('Error updating profile:', error);
+            alert('Failed to update profile');
+        }
+    };
+
+    if (loading) {
+        return <Spinner animation="border" variant="primary" />; // Show spinner while loading
+    }
+
     return (
         <>
-            <Navbar /> {/* Navbar at the top */}
-
-            <div className="profile-page container">
-                <div className="profile-header" style={{ paddingTop: '70px' }}>
-                    <h2>Profile</h2>
-                </div>
-
-                <div className="profile-content">
-                    <div className="profile-picture">
-                        <img
-                            src={profileData.profileImageUrl || 'https://via.placeholder.com/150'}
-                            alt="Profile"
-                            className="profile-image"
-                        />
-                        {editMode && (
-                            <input type="file" name="profileImage" onChange={handleImageChange} />
-                        )}
-                    </div>
-
-                    <div className="profile-details">
-                        <div className="form-group">
-                            <label>Username:</label>
-                            {editMode ? (
-                                <input
+            <DashboardNavbar />  {/* Navbar Component */}
+            <Container className="profile-container" style={{ paddingTop: '60px' }}>
+                <h2 className="text-center mb-4">Profile</h2>
+                <Form onSubmit={handleSubmit}>
+                    <Row>
+                        <Col md={6}>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Full Name</Form.Label>
+                                <Form.Control
                                     type="text"
-                                    name="username"
-                                    value={profileData.username}
-                                    onChange={handleInputChange}
-                                    className="form-control"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    disabled // Full Name is not editable
                                 />
-                            ) : (
-                                <p>{profileData.username}</p>
-                            )}
-                        </div>
-
-                        <div className="form-group">
-                            <label>Email (cannot be changed):</label>
-                            <p>{profileData.email}</p>
-                        </div>
-
-                        <div className="form-group">
-                            <label>City:</label>
-                            {editMode ? (
-                                <input
+                            </Form.Group>
+                        </Col>
+                        <Col md={6}>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    disabled // Email is not editable
+                                />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}>
+                            <Form.Group className="mb-3">
+                                <Form.Label>City</Form.Label>
+                                <Form.Control
                                     type="text"
                                     name="city"
-                                    value={profileData.city}
-                                    onChange={handleInputChange}
-                                    className="form-control"
+                                    value={formData.city}
+                                    onChange={handleChange}
+                                    placeholder="Enter city"
                                 />
-                            ) : (
-                                <p>{profileData.city}</p>
-                            )}
-                        </div>
-
-                        <div className="form-group">
-                            <label>Bio:</label>
-                            {editMode ? (
-                                <textarea
-                                    name="bio"
-                                    value={profileData.bio}
-                                    onChange={handleInputChange}
-                                    className="form-control"
-                                />
-                            ) : (
-                                <p>{profileData.bio}</p>
-                            )}
-                        </div>
-
-                        {/* Favorite Cards */}
-                        <div className="form-group">
-                            <label>Favorite Cards:</label>
-                            <ul>
-                                {profileData.favoriteCards.length ? (
-                                    profileData.favoriteCards.map((card, idx) => (
-                                        <li key={idx}>{card.name}</li>
-                                    ))
+                            </Form.Group>
+                        </Col>
+                        <Col md={6}>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Profile Image</Form.Label>
+                                {formData.profileImageUrl ? (
+                                    <div>
+                                        <img 
+                                            src={formData.profileImageUrl} 
+                                            alt="Profile" 
+                                            style={{ width: '100px', height: '100px', borderRadius: '50%' }}
+                                        />
+                                    </div>
                                 ) : (
-                                    <p>No favorite cards selected</p>
+                                    <p>No image uploaded</p>
                                 )}
-                            </ul>
-                        </div>
-
-                        {/* Reading Preferences */}
-                        <div className="form-group">
-                            <label>Preferred Spread:</label>
-                            {editMode ? (
-                                <input
-                                    type="text"
-                                    name="preferredSpread"
-                                    value={profileData.readingPreferences.preferredSpread}
-                                    onChange={(e) =>
-                                        setProfileData((prev) => ({
-                                            ...prev,
-                                            readingPreferences: { ...prev.readingPreferences, preferredSpread: e.target.value },
-                                        }))
-                                    }
-                                    className="form-control"
+                                <Form.Control
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleImageChange}
+                                    name="profileImageUrl"
                                 />
-                            ) : (
-                                <p>{profileData.readingPreferences.preferredSpread || 'None'}</p>
-                            )}
-                        </div>
-
-                        <div className="form-group">
-                            <label>Preferred Question Type:</label>
-                            {editMode ? (
-                                <input
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Bio</Form.Label>
+                        <Form.Control
+                            as="textarea"
+                            name="bio"
+                            value={formData.bio}
+                            onChange={handleChange}
+                            rows={3}
+                            placeholder="Tell us something about yourself"
+                        />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Favorite Tarot Cards</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="favoriteCards"
+                            value={formData.favoriteCards.join(', ')} // Display as comma-separated string
+                            onChange={(e) => setFormData({ ...formData, favoriteCards: e.target.value.split(', ') })}
+                            placeholder="Enter favorite tarot cards, separated by commas"
+                        />
+                    </Form.Group>
+                    <h4>Social Media Handles</h4>
+                    <Row>
+                        <Col md={4}>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Facebook</Form.Label>
+                                <Form.Control
                                     type="text"
-                                    name="preferredQuestionType"
-                                    value={profileData.readingPreferences.preferredQuestionType}
-                                    onChange={(e) =>
-                                        setProfileData((prev) => ({
-                                            ...prev,
-                                            readingPreferences: { ...prev.readingPreferences, preferredQuestionType: e.target.value },
-                                        }))
-                                    }
-                                    className="form-control"
+                                    name="facebook"
+                                    value={formData.facebook}
+                                    onChange={handleChange}
+                                    placeholder="Enter Facebook URL"
                                 />
-                            ) : (
-                                <p>{profileData.readingPreferences.preferredQuestionType || 'None'}</p>
-                            )}
-                        </div>
-
-                        {/* Social Media Handles */}
-                        <div className="form-group">
-                            <label>Twitter Handle:</label>
-                            {editMode ? (
-                                <input
+                            </Form.Group>
+                        </Col>
+                        <Col md={4}>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Twitter</Form.Label>
+                                <Form.Control
                                     type="text"
                                     name="twitter"
-                                    value={profileData.socialMediaHandles.twitter}
-                                    onChange={(e) =>
-                                        setProfileData((prev) => ({
-                                            ...prev,
-                                            socialMediaHandles: { ...prev.socialMediaHandles, twitter: e.target.value },
-                                        }))
-                                    }
-                                    className="form-control"
+                                    value={formData.twitter}
+                                    onChange={handleChange}
+                                    placeholder="Enter Twitter URL"
                                 />
-                            ) : (
-                                <p>{profileData.socialMediaHandles.twitter || 'Not provided'}</p>
-                            )}
-                        </div>
-
-                        <div className="form-group mb-5">
-                            <label>Instagram Handle:</label>
-                            {editMode ? (
-                                <input
+                            </Form.Group>
+                        </Col>
+                        <Col md={4}>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Instagram</Form.Label>
+                                <Form.Control
                                     type="text"
                                     name="instagram"
-                                    value={profileData.socialMediaHandles.instagram}
-                                    onChange={(e) =>
-                                        setProfileData((prev) => ({
-                                            ...prev,
-                                            socialMediaHandles: { ...prev.socialMediaHandles, instagram: e.target.value },
-                                        }))
-                                    }
-                                    className="form-control"
+                                    value={formData.instagram}
+                                    onChange={handleChange}
+                                    placeholder="Enter Instagram URL"
                                 />
-                            ) : (
-                                <p>{profileData.socialMediaHandles.instagram || 'Not provided'}</p>
-                            )}
-                        </div>
-
-                        {editMode ? (
-                            <button onClick={handleSaveProfile} className="btn btn-primary">
-                                Save Changes
-                            </button>
-                        ) : (
-                            <button onClick={() => setEditMode(true)} className="btn btn-secondary">
-                                Edit Profile
-                            </button>
-                        )}
-                    </div>
-                </div>
-            </div>
+                            </Form.Group>
+                        </Col>
+                    </Row>
+                    <Button variant="primary" type="submit">
+                        Update Profile
+                    </Button>
+                </Form>
+            </Container>
             <Footer />
         </>
     );

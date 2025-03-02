@@ -1,8 +1,76 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 const nodemailer = require('nodemailer');
-const User = require('../models/User'); // Import User model
-const crypto = require('crypto');
+
+// Removed fs and path logic for logo
+const logoURL = 'https://res.cloudinary.com/deoegf9on/image/upload/v1740217290/logo-img_ocgldv.png';
+
+// Create transporter for sending email
+const transporter = nodemailer.createTransport({
+  service: 'Gmail', // Use your email provider (Gmail, Outlook, etc.)
+  auth: {
+    user: process.env.EMAIL_USER, // Your email address (e.g., TarotScope's email)
+    pass: process.env.EMAIL_PASS, // Your email password or app-specific password
+  },
+});
+
+const sendWelcomeEmail = (email, name) => {
+  const mailOptions = {
+    from: `"TarotScope" <${process.env.EMAIL_USER}>`, // Sender address
+    to: email, // Recipient's email address
+    subject: 'Welcome to TarotScope!',
+    html: `
+        <div style="font-family: Arial, sans-serif; color: #333;">
+            <div style="text-align: center;">
+                <!-- Logo Image -->
+                <img src="${logoURL}" alt="TarotScope Logo" style="max-width: 350px;"/>
+
+                <h1>Welcome to TarotScope, ${name}!</h1>
+                <p>We're thrilled to have you join our community. TarotScope is your personal guide to the world of tarot reading, offering deep insights and answers to your most pressing questions.</p>
+                
+                <!-- Description Section -->
+                <div style="background-color: #f9f9f9; padding: 15px; margin: 20px 0; border-radius: 10px;">
+                    <h2>What Can You Do on TarotScope?</h2>
+                    <ul style="list-style-type: none; padding: 0;">
+                        <li>🔮 Get personalized tarot readings</li>
+                        <li>📜 Explore your past readings in the history section</li>
+                        <li>💫 Understand tarot card meanings with our Tarot Guide</li>
+                        <li>🌟 Save your favorite cards and readings</li>
+                    </ul>
+                </div>
+
+                <!-- Animation GIF -->
+                <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3AzOGd6dGN4dThvZjNnbDQ2d3I3MWxkOWVxaWQza3hmaGZzeWVqNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SrWh9peE9r1MTVr8aQ/giphy.gif" alt="Welcome Animation" style="max-width: 100%; border-radius: 10px; margin: 20px 0;" />
+                
+                <p style="font-size: 16px;">Start your journey today by <a href="https://tarotscope.netlify.app/login" style="color:rgb(72, 0, 255); text-decoration: none;">logging into TarotScope</a> and asking your first question!</p>
+                
+                <p>May the cards be ever in your favor!</p>
+                <p style="font-size: 14px;">Best regards,<br/>The TarotScope Team</p>
+
+                <!-- Contact Section -->
+                <div style="margin-top: 20px; padding: 10px; background-color: #f0f0f0; border-radius: 8px; text-align: center;">
+                    <h3 style="margin: 0 0 10px 0;">Need Help?</h3>
+                    <p style="margin: 0;">Feel free to reach out to us!</p>
+                    <a href="mailto:support@tarotscope.com" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #4800ff; color: #fff; border-radius: 5px; text-decoration: none;">
+                        <img src="https://res.cloudinary.com/deoegf9on/image/upload/v1740217291/logo_g2ybxs.png" alt="Contact Icon" style="vertical-align: middle; margin-right: 8px;"/>
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+        `,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error('Error sending email:', error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+  });
+};
+
 
 // Registration Logic
 const registerUser = async (req, res) => {
@@ -11,23 +79,23 @@ const registerUser = async (req, res) => {
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: "User already exists" });
 
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash password
-    const verificationToken = crypto.randomBytes(32).toString('hex'); // Token for email verification
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
       email,
       password: hashedPassword,
       name,
-      verificationToken,
-      verified: false
+      verified: true,  // User is directly marked as verified
     });
 
     await user.save();
-    sendVerificationEmail(email, verificationToken); // Send verification email
 
-    res.status(201).json({ message: "Registration successful. Check your email for verification." });
+    sendWelcomeEmail(email, name); // Send the HTML welcome email
+
+    res.status(201).json({ message: "Registration successful. Please log in." });
   } catch (error) {
-    res.status(500).json({ message: "Error registering user." });
+    console.error("Error during registration:", error);
+    res.status(500).json({ message: "Error registering user.", error });
   }
 };
 
@@ -37,12 +105,15 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ message: "User not found" });
-    if (!user.verified) return res.status(400).json({ message: "Please verify your email first." });
 
     const isMatch = await bcrypt.compare(password, user.password); // Compare passwords
     if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Generate JWT token
+
+    // Update last login date
+    user.lastLogin = new Date();
+    await user.save();
 
     res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
   } catch (error) {
@@ -50,49 +121,34 @@ const loginUser = async (req, res) => {
   }
 };
 
-// Send Verification Email
-const sendVerificationEmail = (email, token) => {
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  const verificationUrl = `${process.env.CLIENT_URL}/verify-email?token=${token}`;
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: email,
-    subject: 'Verify your email',
-    html: `<p>Click the link below to verify your email:</p>
-           <a href="${verificationUrl}">Verify Email</a>`,
-  };
-
-  transporter.sendMail(mailOptions, (err, info) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('Email sent: ' + info.response);
-    }
-  });
-};
-
-// Verify Email
-const verifyEmail = async (req, res) => {
+const updateUserProfile = async (req, res) => {
   try {
-    const { token } = req.query;
-    const user = await User.findOne({ verificationToken: token });
-    if (!user) return res.status(400).json({ message: "Invalid token" });
+    const userId = req.params.id;
+    const { name, city, bio } = req.body;
 
-    user.verified = true;
-    user.verificationToken = null;
-    await user.save();
+    // Find the user by ID
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-    res.status(200).json({ message: "Email verified successfully" });
+    // Update the user's profile fields
+    user.name = name || user.name;
+    user.city = city || user.city;
+    user.bio = bio || user.bio;
+
+    // If a new profile image is uploaded, update the profileImageUrl field
+    if (req.file) {
+      user.profileImageUrl = `/uploads/${req.file.filename}`; // Path to the uploaded file
+    }
+
+    await user.save(); // Save the updated user data
+
+    res.status(200).json({ message: "Profile updated successfully", user });
   } catch (error) {
-    res.status(500).json({ message: "Error verifying email." });
+    console.error("Error updating profile:", error);
+    res.status(500).json({ message: "Error updating profile", error });
   }
 };
 
-module.exports = { registerUser, loginUser, verifyEmail };
+module.exports = { registerUser, loginUser, updateUserProfile };

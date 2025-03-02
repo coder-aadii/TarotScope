@@ -1,0 +1,12 @@
+.verify-email-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    background-color: #f9f9f9;
+}
+
+.loading-spinner {
+    margin-top: 20px;
+}

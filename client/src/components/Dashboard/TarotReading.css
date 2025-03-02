@@ -1,0 +1,143 @@
+/* Animation for sliding cards */
+@keyframes slide-in {
+    from {
+        transform: translateX(-100vw);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.deck-animation {
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10%;
+    padding: 5%;
+}
+
+.card-deck {
+    position: relative;
+    height: 150px;
+    animation: slide-in 1s ease-out;
+}
+
+.card.selected-card {
+    border: 2px solid #28a745;
+    box-shadow: 0 0 10px rgba(0, 128, 0, 0.6);
+    transform: scale(1.05);
+}
+
+.card {
+    transition: all 0.3s ease;
+}
+
+/* Container for the results */
+.result-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 20px; /* Add space between columns */
+    margin-top: 20px;
+    padding: 20px;
+}
+
+/* Styling for each card result section */
+.card-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading above each card */
+.card-heading {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Tarot card image styling */
+.card-img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+/* Tarot card name styling */
+.card-name {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Upright or Reversed text styling */
+.card-status {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Meaning of the card */
+.card-meaning {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #333;
+}
+
+
+/* Responsive Design for smaller screens (mobile) */
+@media (max-width: 767px) {
+    .card-deck {
+        flex-wrap: wrap;
+        height: auto;
+        margin-bottom: 35%;
+    }
+
+    .card {
+        width: 45%;
+        /* Two cards per row */
+        margin-bottom: 15px;
+        left: auto;
+        /* Adjust left property for mobile */
+    }
+
+    .card:nth-child(odd) {
+        left: 0;
+        /* Align first card of each row to the left */
+    }
+
+    .card:nth-child(even) {
+        left: 50%;
+        /* Align second card of each row to the right */
+    }
+}
+
+/* Optional: Add more CSS for shuffling animation */
+.deck-animation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    animation: shuffle 1s infinite;
+}
+
+@keyframes shuffle {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-20px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

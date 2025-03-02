@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Navbar from './Navbar';
+import { jwtDecode } from 'jwt-decode';
 import Footer from '../Footer';
+import DashboardNavbar from './DashboardNavbar';
 
 const Dashboard = () => {
     const [randomCard, setRandomCard] = useState(null);  // State to store random card
     const [currentDateTime, setCurrentDateTime] = useState(new Date());  // State to store current date and time
     const [user, setUser] = useState(null);  // State to store user data
 
-    // Fetch "Card of the Day" from the backend
+    // Fetch "Card of the Day" and user data from the backend
     useEffect(() => {
         const fetchRandomCard = async () => {
             try {
@@ -19,24 +20,34 @@ const Dashboard = () => {
             }
         };
 
-        fetchRandomCard();
-
         const fetchUserData = async () => {
             try {
-                // Assuming your API endpoint for fetching user data is /api/user/profile
-                const response = await axios.get('http://localhost:5000/api/user/profile');
-                console.log(response.data); // Add this line to check the API response
+                // Retrieve the JWT token from local storage
+                const token = localStorage.getItem('token');
+                
+                if (token) {
+                    // Decode the token to get user information
+                    const decodedToken = jwtDecode(token);
+                    
+                    // Assuming the decoded token has a user ID field
+                    const userId = decodedToken.userId;
 
-                // Destructuring to get only the required fields: name, bio, and city
-                const { username, bio, city } = response.data;
+                    // Fetch user data from the backend using the user ID
+                    const response = await axios.get(`http://localhost:5000/api/user/${userId}`);
+                    console.log(response.data); // Log the API response
 
-                // Set the fetched data to user state
-                setUser({ username, bio, city });
+                    // Destructuring to get only the required fields: name, bio, and city
+                    const { name, bio, city } = response.data;
+
+                    // Set the fetched data to user state
+                    setUser({ name, bio, city });
+                }
             } catch (error) {
                 console.error('Error fetching user data:', error);
             }
         };
 
+        fetchRandomCard();
         fetchUserData();
 
         // Update the date and time every second (optional)
@@ -50,9 +61,9 @@ const Dashboard = () => {
 
     return (
         <>
-            <Navbar />  {/* Navbar Component */}
+            <DashboardNavbar />  {/* Navbar Component */}
             <div className="container mt-5" style={{ paddingTop: '30px' }}>
-                <h2>Welcome, {user ? user.username : 'Loading...'}!</h2>
+                <h2>Welcome, {user ? user.name : 'Loading...'}!</h2>
                 <p>Your tarot journey begins here. Ready to ask the cards a question?</p>
 
                 {/* Optional dynamic elements to enhance the dashboard */}

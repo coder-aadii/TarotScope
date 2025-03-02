@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import '../styles/Login.css'; // Ensure you have styles for this component
+import { jwtDecode } from 'jwt-decode';
 
 const Login = () => {
     // State to hold email, password, and checkbox state
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
-    const [agreeToTerms, setAgreeToTerms] = useState(false); // For terms and conditions
+    // const [agreeToTerms, setAgreeToTerms] = useState(false); // For terms and conditions
 
     // State to hold error messages
     const [error, setError] = useState('');
@@ -24,17 +25,17 @@ const Login = () => {
             return;
         }
 
-        if (!agreeToTerms) {
-            setError('You must agree to the terms and conditions.');
-            return;
-        }
+        // if (!agreeToTerms) {
+        //     setError('You must agree to the terms and conditions.');
+        //     return;
+        // }
 
         try {
             setLoading(true);
             setError('');
 
             // Mock login action (replace with actual authentication logic)
-            const response = await fetch('/api/login', {
+            const response = await fetch('http://localhost:5000/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,10 +50,19 @@ const Login = () => {
 
             console.log('Login successful:', data);
 
+            // Store token in localStorage
+            const token = data.token;
+            localStorage.setItem('token', token);
+
+            // Decode the token to get userId
+            const decodedToken = jwtDecode(token);
+            const userId = decodedToken.userId; // Assuming 'userId' is a key in your token
+            console.log("User ID:", userId);
+
             // Clear form and error after login
             setEmail('');
             setPassword('');
-            setAgreeToTerms(false);
+            // setAgreeToTerms(false);
 
             // Redirect to dashboard or handle success
             window.location.href = '/dashboard'; // Redirect to dashboard
@@ -108,7 +118,7 @@ const Login = () => {
                     </div>
 
                     {/* Terms and Conditions Checkbox */}
-                    <div className="input-field checkbox">
+                    {/* <div className="input-field checkbox">
                         <label>
                             <input
                                 type="checkbox"
@@ -117,7 +127,7 @@ const Login = () => {
                             />
                             I agree to the <a href="/terms">terms and conditions</a>
                         </label>
-                    </div>
+                    </div> */}
 
                     {/* Submit Button */}
                     <button type="submit" disabled={loading}>
