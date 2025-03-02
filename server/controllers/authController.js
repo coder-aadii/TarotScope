@@ -57,7 +57,7 @@ const sendWelcomeEmail = (email, name) => {
                 <div style="margin-top: 20px; padding: 15px; background-color: #f0f0f0; border-radius: 8px; text-align: center; border: 1px solid #ddd;">
                     <h3 style="margin: 0 0 10px 0; color: #333;">Need Help?</h3>
                     <p style="margin: 0; font-size: 14px; color: #555;">Feel free to reach out to us!</p>
-                    <a href="mailto:support@tarotscope.com" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #4800ff; color: #fff; border-radius: 5px; text-decoration: none; font-size: 16px;">
+                    <a href="mailto:aaerpule@gmail.com" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #4800ff; color: #fff; border-radius: 5px; text-decoration: none; font-size: 16px;">
                         Contact Us
                     </a>
                 </div>
