@@ -18,7 +18,7 @@ const verifyToken = (req, res, next) => {
     // Verify the token and extract the payload
     const verified = jwt.verify(token, process.env.JWT_SECRET);
 
-    console.log('Token verification is successful!');
+    // console.log('Token verification is successful!');
 
     // Attach the verified user (payload) to the request object
     req.user = verified;
