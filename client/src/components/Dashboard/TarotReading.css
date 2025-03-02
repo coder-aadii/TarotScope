@@ -21,23 +21,37 @@
     position: relative;
     height: 150px;
     animation: slide-in 1s ease-out;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    /* Center and space the cards */
 }
 
+/* Styling for selected card */
 .card.selected-card {
     border: 2px solid #28a745;
     box-shadow: 0 0 10px rgba(0, 128, 0, 0.6);
     transform: scale(1.05);
 }
 
+/* Default card styling */
 .card {
+    cursor: pointer; /* Move cursor styling here */
+    width: 100px; /* Ensure consistent card size here */
+    height: 150px; /* Set the height here */
     transition: all 0.3s ease;
+    margin-bottom: 10px;
+    border-radius: 8px;
 }
+
 
 /* Container for the results */
 .result-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
-    gap: 20px; /* Add space between columns */
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 equal columns */
+    gap: 20px;
+    /* Add space between columns */
     margin-top: 20px;
     padding: 20px;
 }
@@ -64,7 +78,7 @@
 
 /* Tarot card image styling */
 .card-img {
-    width: 150px;
+    width: 100px;
     height: auto;
     margin-bottom: 10px;
     border-radius: 8px;
@@ -91,41 +105,33 @@
     color: #333;
 }
 
-
 /* Responsive Design for smaller screens (mobile) */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .card-deck {
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr); /* 12 cards per row */
+        grid-template-rows: repeat(4, auto); /* 4 rows */
+        gap: 10px; /* Add space between cards */
         height: auto;
-        margin-bottom: 35%;
+        margin-bottom: 50%;
     }
 
     .card {
-        width: 45%;
-        /* Two cards per row */
-        margin-bottom: 15px;
-        left: auto;
-        /* Adjust left property for mobile */
+        width: 100%;
+        height: auto;
+        margin: 0;
+        /* Remove default margins */
     }
 
-    .card:nth-child(odd) {
-        left: 0;
-        /* Align first card of each row to the left */
+    .deck-animation {
+        height: auto;
+        /* Adjust animation height for mobile */
     }
 
-    .card:nth-child(even) {
-        left: 50%;
-        /* Align second card of each row to the right */
+    .deck-animation {
+        margin-top: 35%;
+        margin-bottom: 20%;
     }
-}
-
-/* Optional: Add more CSS for shuffling animation */
-.deck-animation {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 150px;
-    animation: shuffle 1s infinite;
 }
 
 @keyframes shuffle {
