@@ -21,39 +21,43 @@ const sendWelcomeEmail = (email, name) => {
     to: email, // Recipient's email address
     subject: 'Welcome to TarotScope!',
     html: `
-        <div style="font-family: Arial, sans-serif; color: #333;">
-            <div style="text-align: center;">
+        <div style="font-family: Arial, sans-serif; color: #333; background-color: #f4f4f4; padding: 20px;">
+            <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
                 <!-- Logo Image -->
-                <img src="${logoURL}" alt="TarotScope Logo" style="max-width: 350px;"/>
+                <div style="text-align: center;">
+                    <img src="${logoURL}" alt="TarotScope Logo" style="max-width: 250px; border-radius: 50%;"/>
+                </div>
 
-                <h1>Welcome to TarotScope, ${name}!</h1>
-                <p>We're thrilled to have you join our community. TarotScope is your personal guide to the world of tarot reading, offering deep insights and answers to your most pressing questions.</p>
+                <h1 style="color: #4800ff; text-align: center;">Welcome to TarotScope, ${name}!</h1>
+                <p style="font-size: 16px; text-align: center; color: #333;">We're thrilled to have you join our community. TarotScope is your personal guide to the world of tarot reading, offering deep insights and answers to your most pressing questions.</p>
                 
-                <!-- Description Section -->
-                <div style="background-color: #f9f9f9; padding: 15px; margin: 20px 0; border-radius: 10px;">
-                    <h2>What Can You Do on TarotScope?</h2>
-                    <ul style="list-style-type: none; padding: 0;">
-                        <li>🔮 Get personalized tarot readings</li>
-                        <li>📜 Explore your past readings in the history section</li>
-                        <li>💫 Understand tarot card meanings with our Tarot Guide</li>
-                        <li>🌟 Save your favorite cards and readings</li>
+                <!-- Interactive Description Section -->
+                <div style="background-color: #f9f9f9; padding: 15px; margin: 20px 0; border-radius: 10px; border: 1px solid #ddd;">
+                    <h2 style="color: #333; text-align: center;">What Can You Do on TarotScope?</h2>
+                    <ul style="list-style-type: none; padding: 0; text-align: center; font-size: 16px;">
+                        <li style="margin-bottom: 10px;">🔮 Get personalized tarot readings</li>
+                        <li style="margin-bottom: 10px;">📜 Explore your past readings in the history section</li>
+                        <li style="margin-bottom: 10px;">💫 Understand tarot card meanings with our Tarot Guide</li>
+                        <li style="margin-bottom: 10px;">🌟 Save your favorite cards and readings</li>
                     </ul>
                 </div>
 
                 <!-- Animation GIF -->
-                <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3AzOGd6dGN4dThvZjNnbDQ2d3I3MWxkOWVxaWQza3hmaGZzeWVqNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SrWh9peE9r1MTVr8aQ/giphy.gif" alt="Welcome Animation" style="max-width: 100%; border-radius: 10px; margin: 20px 0;" />
-                
-                <p style="font-size: 16px;">Start your journey today by <a href="https://tarotscope.netlify.app/login" style="color:rgb(72, 0, 255); text-decoration: none;">logging into TarotScope</a> and asking your first question!</p>
-                
-                <p>May the cards be ever in your favor!</p>
-                <p style="font-size: 14px;">Best regards,<br/>The TarotScope Team</p>
+                <div style="text-align: center; margin: 20px 0;">
+                    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3AzOGd6dGN4dThvZjNnbDQ2d3I3MWxkOWVxaWQza3hmaGZzeWVqNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/SrWh9peE9r1MTVr8aQ/giphy.gif" alt="Welcome Animation" style="max-width: 100%; border-radius: 10px;"/>
+                </div>
 
-                <!-- Contact Section -->
-                <div style="margin-top: 20px; padding: 10px; background-color: #f0f0f0; border-radius: 8px; text-align: center;">
-                    <h3 style="margin: 0 0 10px 0;">Need Help?</h3>
-                    <p style="margin: 0;">Feel free to reach out to us!</p>
-                    <a href="mailto:support@tarotscope.com" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #4800ff; color: #fff; border-radius: 5px; text-decoration: none;">
-                        <img src="https://res.cloudinary.com/deoegf9on/image/upload/v1740217291/logo_g2ybxs.png" alt="Contact Icon" style="vertical-align: middle; margin-right: 8px;"/>
+                <!-- CTA Button -->
+                <p style="font-size: 16px; text-align: center;">Start your journey today by <a href="https://tarotscope.netlify.app/login" style="color: #4800ff; text-decoration: none; font-weight: bold;">logging into TarotScope</a> and asking your first question!</p>
+                
+                <p style="font-size: 16px; text-align: center;">May the cards be ever in your favor!</p>
+                <p style="font-size: 14px; text-align: center; color: #555;">Best regards,<br/>The TarotScope Team</p>
+
+                <!-- Contact Section with Interactive Button -->
+                <div style="margin-top: 20px; padding: 15px; background-color: #f0f0f0; border-radius: 8px; text-align: center; border: 1px solid #ddd;">
+                    <h3 style="margin: 0 0 10px 0; color: #333;">Need Help?</h3>
+                    <p style="margin: 0; font-size: 14px; color: #555;">Feel free to reach out to us!</p>
+                    <a href="mailto:support@tarotscope.com" style="display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #4800ff; color: #fff; border-radius: 5px; text-decoration: none; font-size: 16px;">
                         Contact Us
                     </a>
                 </div>
