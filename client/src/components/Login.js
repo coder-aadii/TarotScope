@@ -77,6 +77,12 @@ const Login = () => {
 
     return (
         <>
+            {/* loading Animation */}
+            {loading && (
+                <div className="loader-overlay">
+                    <div className="loader"></div>
+                </div>
+            )}
             <a href='/'>
                 <div className='logo-img'></div>
             </a>

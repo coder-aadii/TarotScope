@@ -11,19 +11,25 @@
     --error-color: #ff4d4f;
 }
 
-body{
+body {
     background: var(--gradient-02);
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .logo-img {
-    width: 550px; /* Set the width of the logo */
-    height: 150px; /* Set the height of the logo */
-    background-image: url('../assets/images/logo-img.png'); /* Use the correct path */
-    background-size: contain; /* Ensure the image scales to fit */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    background-position: center; /* Center the image within the div */
+    width: 550px;
+    /* Set the width of the logo */
+    height: 150px;
+    /* Set the height of the logo */
+    background-image: url('../assets/images/logo-img.png');
+    /* Use the correct path */
+    background-size: contain;
+    /* Ensure the image scales to fit */
+    background-repeat: no-repeat;
+    /* Prevent the image from repeating */
+    background-position: center;
+    /* Center the image within the div */
     margin-left: auto;
     margin-right: auto;
     padding: 0%;
@@ -242,9 +248,73 @@ button.google-login img {
     button {
         font-size: 0.85rem;
     }
+
     .logo-img {
-        width: 350px; /* Set the width of the logo */
-        height: 150px; /* Set the height of the logo */
-        
+        width: 350px;
+        /* Set the width of the logo */
+        height: 150px;
+        /* Set the height of the logo */
+
     }
+}
+
+/* CSS Loader */
+.loader {
+    width: 100px; /* Increased size */
+    aspect-ratio: 1;
+    color: #4800ff;
+    position: relative;
+    background:
+        conic-gradient(from 134deg at top, currentColor 92deg, #0000 0) top,
+        conic-gradient(from -46deg at bottom, currentColor 92deg, #0000 0) bottom;
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+}
+
+.loader:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    --g: currentColor 14.5px, #0000 0 calc(100% - 14.5px), currentColor 0;
+    background:
+        linear-gradient(45deg, var(--g)),
+        linear-gradient(-45deg, var(--g));
+    animation: l7 1.5s infinite cubic-bezier(0.3, 1, 0, 1);
+}
+
+@keyframes l7 {
+    33% {
+        inset: -10px;
+        transform: rotate(0deg);
+    }
+    66% {
+        inset: -10px;
+        transform: rotate(90deg);
+    }
+    100% {
+        inset: 0;
+        transform: rotate(90deg);
+    }
+}
+
+/* Loader overlay */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8); /* Light overlay */
+    z-index: 1000;
+}
+
+/* Blurred effect */
+.blurred {
+    filter: blur(5px);
+    pointer-events: none; /* Disable interactions while loading */
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
 }
