@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import logo from '../../assets/images/logo-img.png'; // Correct path to the logo
+import './DashboardNavbar.css'
 
 const DashboardNavbar = () => {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const DashboardNavbar = () => {
 
     // Handle back navigation after logout
     useEffect(() => {
-        window.onpopstate = function(event) {
+        window.onpopstate = function (event) {
             if (!localStorage.getItem('token')) {
                 navigate('/login'); // Redirect to login if token doesn't exist
             }
@@ -40,12 +41,12 @@ const DashboardNavbar = () => {
 
                 <a className="navbar-brand" href="/dashboard">
                     <img
+                        className="d-inline-block align-text-top logo-img"
                         src={logo}
                         alt="TarotScope Logo"
-                        width="200"
-                        height="18"
-                        style={{ marginTop: '3px' }}
-                        className="d-inline-block align-text-top"
+                    // width="350px"
+                    // height="30px"
+                    // style={{ marginTop: '3px' }}
                     />
                 </a>
 

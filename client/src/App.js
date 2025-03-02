@@ -14,6 +14,7 @@ import ReadingInsights from './components/Dashboard/ReadingInsights';
 import VerifyEmail from './components/verify-email';
 import Profile from './components/Dashboard/Profile';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 // Import UserProvider to manage user context
 import { UserProvider } from './context/UserContext';

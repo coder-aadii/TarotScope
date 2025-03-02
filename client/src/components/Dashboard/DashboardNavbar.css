@@ -1,0 +1,122 @@
+/* Custom CSS for DashboardNavbar responsiveness */
+
+/* General navbar styling */
+.navbar {
+    background-color: #f8f9fa;
+    /* Light background */
+    padding: 10px 15px;
+}
+
+/* For the logo image */
+.navbar-brand .logo-img {
+    width: 350px;
+    height: 30px;
+    margin-top: 3px;
+}
+
+/* Navbar-toggler button styling */
+.navbar-toggler {
+    width: 15%;
+    height: 38px;
+    margin-left: 5%;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.navbar-toggler-icon {
+    width: 5px;
+    height: 3px;
+    /* Dark color for the hamburger icon */
+    display: block;
+    position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+    transition: 0.3s;
+}
+
+.navbar-toggler-icon::before {
+    top: -8px;
+}
+
+.navbar-toggler-icon::after {
+    top: 8px;
+}
+
+/* Ensure the collapse menu is hidden on mobile initially */
+.collapse.navbar-collapse {
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+
+    /* Flexbox container for logo and toggler */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 15px;
+    }
+
+    /* Logo styling */
+    .navbar-brand .logo-img {
+        width: 150px;
+        height: 15px;
+        margin-top: 3px;
+    }
+
+    /* Collapse menu styling */
+    .navbar-collapse {
+        background-color: #f8f9fa;
+        padding: 10px;
+    }
+
+    /* Navbar navigation links */
+    .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 10px;
+    }
+
+    /* Profile section */
+    .navbar-profile {
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    /* Adjust button size */
+    .btn-outline-danger {
+        width: 100%;
+    }
+
+    /* Hide the navbar toggler icon when expanded */
+    .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+        background-color: transparent;
+    }
+
+    /* Update hamburger icon size for smartphone screens */
+    .navbar-toggler-icon {
+        width: 30px;
+        height: 30px;
+    }
+
+    .navbar-toggler-icon::before {
+        top: -10px;
+    }
+
+    .navbar-toggler-icon::after {
+        top: 10px;
+    }
+}
