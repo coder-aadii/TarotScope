@@ -25,7 +25,7 @@ const sendWelcomeEmail = (email, name) => {
             <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
                 <!-- Logo Image -->
                 <div style="text-align: center;">
-                    <img src="${logoURL}" alt="TarotScope Logo" style="max-width: 250px; border-radius: 50%;"/>
+                    <img src="${logoURL}" alt="TarotScope Logo" style="max-width: 250px;"/>
                 </div>
 
                 <h1 style="color: #4800ff; text-align: center;">Welcome to TarotScope, ${name}!</h1>
