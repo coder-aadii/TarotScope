@@ -28,7 +28,7 @@ const sendWelcomeEmail = (email, name) => {
                     <img src="${logoURL}" alt="TarotScope Logo" style="max-width: 450px;"/>
                 </div>
 
-                <h1 style="color: #4800ff; text-align: center;">Welcome to TarotScope, ${name}!</h1>
+                <h1 style="color: #4800ff; text-align: center;">Welcome ${name}!</h1>
                 <p style="font-size: 16px; text-align: center; color: #333;">We're thrilled to have you join our community. TarotScope is your personal guide to the world of tarot reading, offering deep insights and answers to your most pressing questions.</p>
                 
                 <!-- Interactive Description Section -->
