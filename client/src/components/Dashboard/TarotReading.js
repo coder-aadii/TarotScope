@@ -92,13 +92,13 @@ const TarotReading = () => {
                 }
             });
 
-            const tarotInterpretation = response.data.interpretation;
+            const tarotInterpretation = response.data?.interpretation;
 
             console.log('Tarot Interpretation:', tarotInterpretation); // Debugging: Check AI-generated reading
 
             // Set AI-generated reading
             setAiReading(tarotInterpretation);
-
+            
         } catch (error) {
             console.error('Error fetching card interpretations or saving history:', error);
         }
