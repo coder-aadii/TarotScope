@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const History = require('../models/History'); // Assuming this is your history model
-const User = require('../models/User'); // Assuming this is your user model
+const History = require('../models/History'); // History model
+const User = require('../models/User'); // User model
 const { getAllCards, getRandomCardOfTheDay, getThreeRandomCards, getTarotInterpretation } = require('../controllers/tarotController');
-const verifyToken = require('../middleware/verifyToken'); // JWT authentication middleware
+const verifyToken = require('../middleware/verifyToken'); // JWT middleware
 
 // Route to get all tarot cards
 router.get('/all', getAllCards);
@@ -17,14 +17,13 @@ router.get('/three-random-cards', getThreeRandomCards);
 // POST: Add tarot card history
 router.post('/history', verifyToken, async (req, res) => {
   try {
-    // Use req.user (set in verifyToken) to fetch the user from the database
-    const user = await User.findById(req.user.userId); // Assuming 'userId' is in the token payload
+    const user = await User.findById(req.user.userId); // Ensure req.user is set in verifyToken
 
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Create a new history record for the user
+    // Create a new history record
     const newHistory = new History({
       userId: user._id,
       selectedCards: req.body.selectedCards,
@@ -43,6 +42,7 @@ router.post('/history', verifyToken, async (req, res) => {
   }
 });
 
-router.post('/tarot/interpretation', getTarotInterpretation);
+// POST: Generate AI Tarot interpretation
+router.post('/interpretation', verifyToken, getTarotInterpretation); // Ensure token verification if necessary
 
 module.exports = router;
