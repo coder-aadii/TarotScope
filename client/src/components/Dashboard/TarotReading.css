@@ -36,9 +36,12 @@
 
 /* Default card styling */
 .card {
-    cursor: pointer; /* Move cursor styling here */
-    width: 100px; /* Ensure consistent card size here */
-    height: 150px; /* Set the height here */
+    cursor: pointer;
+    /* Move cursor styling here */
+    width: 100px;
+    /* Ensure consistent card size here */
+    height: 150px;
+    /* Set the height here */
     transition: all 0.3s ease;
     margin-bottom: 10px;
     border-radius: 8px;
@@ -105,13 +108,24 @@
     color: #333;
 }
 
+.ai-reading-box {
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsive Design for smaller screens (mobile) */
 @media (max-width: 768px) {
     .card-deck {
         display: grid;
-        grid-template-columns: repeat(12, 1fr); /* 12 cards per row */
-        grid-template-rows: repeat(4, auto); /* 4 rows */
-        gap: 10px; /* Add space between cards */
+        grid-template-columns: repeat(12, 1fr);
+        /* 12 cards per row */
+        grid-template-rows: repeat(4, auto);
+        /* 4 rows */
+        gap: 10px;
+        /* Add space between cards */
         height: auto;
         margin-bottom: 50%;
     }

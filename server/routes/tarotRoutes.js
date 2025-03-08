@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const History = require('../models/History'); // Assuming this is your history model
 const User = require('../models/User'); // Assuming this is your user model
-const { getAllCards, getRandomCardOfTheDay, getThreeRandomCards } = require('../controllers/tarotController');
+const { getAllCards, getRandomCardOfTheDay, getThreeRandomCards, getTarotInterpretation } = require('../controllers/tarotController');
 const verifyToken = require('../middleware/verifyToken'); // JWT authentication middleware
 
 // Route to get all tarot cards
@@ -42,5 +42,7 @@ router.post('/history', verifyToken, async (req, res) => {
     return res.status(500).json({ error: 'Server error' });
   }
 });
+
+router.post('/tarot/interpretation', getTarotInterpretation);
 
 module.exports = router;

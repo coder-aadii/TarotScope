@@ -1,3 +1,4 @@
+const { pipeline } = require('@huggingface/transformers');
 const TarotCard = require('../models/TarotCard');
 const History = require('../models/History');
 const mongoose = require('mongoose');
@@ -99,9 +100,46 @@ const saveReadingHistory = async (req, res) => {
     }
 };
 
+const axios = require('axios');
+
+// Hugging Face Inference API call for tarot reading generation
+const getTarotInterpretation = async (req, res) => {
+    try {
+        const { question, selectedCards } = req.body;
+
+        // Prepare the prompt with selected cards and question
+        const cardDetails = selectedCards.map(card => `${card.name} (${card.isReversed ? 'Reversed' : 'Upright'}): ${card.meaning}`).join('\n');
+        const prompt = `Question: "${question}"\nSelected Cards:\n${cardDetails}\nProvide a detailed tarot reading based on this.`;
+
+        // Create a text generation pipeline with Hugging Face model
+        const generator = await pipeline(
+            "text-generation",
+            "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+        );
+
+        // Define the messages
+        const messages = [
+            { role: "system", content: "You are a helpful assistant." },
+            { role: "user", content: prompt },
+        ];
+
+        // Generate a response
+        const output = await generator(messages, { max_new_tokens: 128 });
+
+        const tarotInterpretation = output[0].generated_text.at(-1).content;
+
+        // Send back the tarot interpretation to the frontend
+        res.status(200).json({ interpretation: tarotInterpretation });
+    } catch (error) {
+        console.error('Error generating tarot interpretation:', error);
+        res.status(500).json({ error: 'Failed to generate tarot reading' });
+    }
+};
+
 module.exports = {
     getAllCards,
     getRandomCardOfTheDay,
     getThreeRandomCards,
-    saveReadingHistory
+    saveReadingHistory,
+    getTarotInterpretation
 };

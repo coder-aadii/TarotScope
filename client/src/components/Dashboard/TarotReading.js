@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from './DashboardNavbar';
@@ -11,10 +11,15 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const TarotReading = () => {
     const { state } = useLocation();
-    const [ setCards] = useState([]);
+    const [setCards] = useState([]);
     const [selectedCards, setSelectedCards] = useState([]);
     const [isShuffling, setIsShuffling] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false); // To track if the user submitted the cards
+    const [aiReading, setAiReading] = useState(''); // AI-generated reading state
+
+    useEffect(() => {
+        console.log('AI Reading:', aiReading); // Debugging: Check if AI reading is set
+    }, [aiReading]);
 
     const playShuffleSound = () => {
         const shuffleSound = new Audio(shuffleSoundUrl);
@@ -87,6 +92,13 @@ const TarotReading = () => {
                 }
             });
 
+            const tarotInterpretation = response.data.interpretation;
+
+            console.log('Tarot Interpretation:', tarotInterpretation); // Debugging: Check AI-generated reading
+
+            // Set AI-generated reading
+            setAiReading(tarotInterpretation);
+
         } catch (error) {
             console.error('Error fetching card interpretations or saving history:', error);
         }
@@ -154,8 +166,15 @@ const TarotReading = () => {
                     </>
                 ) : (
                     <>
+
                         {/* Show full-page result after submitting */}
-                        <h3 className="display-4 text-center mt-4">Your Three-Card Reading</h3>
+                        <h3 className="display-4 text-center mt-5">Your Three-Card Reading</h3>
+
+                        {/* Show user's question above the cards */}
+                        <h4 className="text-center mt-4 text-uppercase">
+                            Question: {state?.question || 'Your Question'}
+                        </h4>
+
                         <div className="result-container">
                             {selectedCards.map((card, index) => (
                                 <div key={index} className="card-result">
@@ -175,6 +194,17 @@ const TarotReading = () => {
                                 </div>
                             ))}
                         </div>
+
+                        {/* Display AI-generated reading below the cards */}
+                        {aiReading ? (
+                            <div className="ai-reading-box mt-4 p-3">
+                                <h4>AI-Generated Tarot Reading</h4>
+                                <p>{aiReading}</p>
+                            </div>
+                        ) : (
+                            <p>Loading AI-generated reading...</p>
+                        )}
+
                     </>
                 )}
             </div>
