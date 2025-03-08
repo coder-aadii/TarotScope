@@ -43,6 +43,6 @@ router.post('/history', verifyToken, async (req, res) => {
 });
 
 // POST: Generate AI Tarot interpretation
-router.post('/interpretation', verifyToken, getTarotInterpretation); // Ensure token verification if necessary
+router.post('/interpretation', getTarotInterpretation);
 
 module.exports = router;
