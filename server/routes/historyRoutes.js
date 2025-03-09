@@ -14,6 +14,23 @@ router.get('/:userId', async (req, res) => {
   }
 });
 
+// Get the last history entry for a user
+router.get('/last/:userId', async (req, res) => {
+  try {
+    const lastReading = await History.findOne({ userId: req.params.userId })
+      .sort({ date: -1 })  // Sort by date in descending order to get the latest
+      .limit(1);  // Return only the last entry
+
+    if (!lastReading) {
+      return res.status(404).json({ message: 'No history found for this user' });
+    }
+
+    res.status(200).json(lastReading);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to get the last reading' });
+  }
+});
+
 // Add history
 router.post('/', async (req, res) => {
   try {

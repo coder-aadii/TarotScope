@@ -10,6 +10,7 @@ const Dashboard = () => {
     const [randomCard, setRandomCard] = useState(null);  // State to store random card
     const [currentDateTime, setCurrentDateTime] = useState(new Date());  // State to store current date and time
     const [user, setUser] = useState(null);  // State to store user data
+    const [lastReading, setLastReading] = useState(null);  // State to store the last tarot reading
 
     // Fetch "Card of the Day" and user data from the backend
     useEffect(() => {
@@ -43,11 +44,24 @@ const Dashboard = () => {
 
                     // Set the fetched data to user state
                     setUser({ name, bio, city });
+
+                    // Fetch the last reading after getting the user data
+                    fetchLastReading(userId);
                 }
             } catch (error) {
                 console.error('Error fetching user data:', error.response ? error.response.data : error.message);
             }
         };
+
+        const fetchLastReading = async (userId) => {
+            try {
+                // Fetch the last reading for the user from the backend
+                const lastReadingResponse = await axios.get(`${apiUrl}/api/history/last/${userId}`);
+                setLastReading(lastReadingResponse.data);  // Set last reading data
+            } catch (error) {
+                console.error('Error fetching last reading:', error.response ? error.response.data : error.message);
+            }
+        };        
 
         fetchRandomCard();
         fetchUserData();
@@ -87,10 +101,18 @@ const Dashboard = () => {
                     <a href="/AskQuestion" className="btn btn-primary btn-lg">Start a Tarot Reading</a>
                 </div>
 
+                {/* Display last reading */}
                 <div className="mt-5">
                     <h4>Last Reading</h4>
-                    <p>Last reading date: [Date]</p>
-                    <p>Cards drawn: [Card 1], [Card 2], [Card 3]</p>
+                    {lastReading ? (
+                        <>
+                            <p>Last reading date: {new Date(lastReading.date).toLocaleDateString()}</p>
+                            <p>Question: {lastReading.question}</p>
+                            <p>Cards drawn: {lastReading.selectedCards.map(card => card.name).join(', ')}</p>
+                        </>
+                    ) : (
+                        <p>Loading last reading...</p>
+                    )}
                     <a href="/History" className="btn btn-secondary">View All Past Readings</a>
                 </div>
 

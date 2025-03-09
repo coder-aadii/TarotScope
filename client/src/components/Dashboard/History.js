@@ -16,7 +16,7 @@ const History = () => {
             if (!user) return;  // Ensure we have the user before proceeding
             try {
                 const token = localStorage.getItem('token'); // Assuming token is stored in localStorage
-                const response = await axios.get(`${apiUrl}/api/tarotcards/history/${user.userId}`, {
+                const response = await axios.get(`${apiUrl}/api/history/${user.userId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`, // Pass the token for authentication
                     },
