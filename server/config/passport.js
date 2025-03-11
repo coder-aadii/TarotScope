@@ -2,15 +2,16 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User');
 
-// Log the callback URL for debugging
-console.log('Configuring Passport with callback URL:', process.env.GOOGLE_CALLBACK_URL);
-
-// Configure the Google strategy
-passport.use(new GoogleStrategy({
-    clientID: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK_URL
-},
+// Only configure Google Strategy if credentials are available
+if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET && process.env.GOOGLE_CALLBACK_URL) {
+    console.log('Configuring Google OAuth Strategy');
+    
+    // Configure the Google strategy
+    passport.use(new GoogleStrategy({
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: process.env.GOOGLE_CALLBACK_URL
+    },
     async (accessToken, refreshToken, profile, done) => {
         try {
             console.log('Google OAuth profile received:', {
@@ -64,8 +65,10 @@ passport.use(new GoogleStrategy({
             console.error('Error in Google Strategy:', error);
             return done(error);
         }
-    }
-));
+    }));
+} else {
+    console.log('Google OAuth credentials not found. Google authentication will not be available.');
+}
 
 // Serialize just the user ID to the session
 passport.serializeUser((user, done) => {
