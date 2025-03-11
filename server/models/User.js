@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
   name: { type: String, required: true }, // Full Name field
   email: { type: String, required: true, unique: true }, // Email remains required and unique
-  password: { type: String, required: true },
+  password: { type: String, required: function() { return !this.googleId; } }, // Only required if not using Google auth
+  googleId: { type: String }, // Added for Google OAuth authentication
   profileImageUrl: { type: String, default: "" },
   city: { type: String, default: "" },
   bio: { type: String, default: "" },

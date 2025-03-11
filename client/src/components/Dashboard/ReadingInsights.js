@@ -18,56 +18,60 @@ const ReadingInsights = () => {
         const fetchInsightsData = async () => {
             if (!user || !user.userId) {
                 console.error('User ID is missing or user is not logged in.');
-                return; // Exit if user data is not available
+                return;
             }
-    
+
             try {
                 const readingResponse = await axios.get(`${apiUrl}/api/insights/readingStats/${user.userId}`);
                 const cardFrequencyResponse = await axios.get(`${apiUrl}/api/insights/cardFrequency/${user.userId}`);
-    
-                console.log(readingResponse.data);
-                console.log(cardFrequencyResponse.data);
-    
+
                 setReadingStats(readingResponse.data);
                 setCardFrequency(cardFrequencyResponse.data);
-                setLoading(false);
             } catch (error) {
                 console.error('Error fetching insights data:', error);
-                setError('Failed to load insights data. Please try again later.');
+                setError('No reading history found. Start your first reading to see insights!');
+            } finally {
                 setLoading(false);
             }
         };
-    
+
         if (user) {
             fetchInsightsData();
         }
-    }, [user]);    
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
-    }
+    }, [user]);
 
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
     return (
         <>
             <Navbar />
-            <div className="container mt-5">
-                <h2 className="text-center mb-4" style={{ paddingTop: '30px' }}>Reading Insights</h2>
+            <div className="container mt-3">
+                <h2 className="text-4xl font-extrabold mb-8 text-center text-black" style={{ paddingTop: '70px' }}>Reading Insights</h2>
 
                 {loading ? (
-                    <div>Loading...</div>
+                    <div className="text-center mt-5">
+                        <div className="spinner-border text-primary" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                        <p className="mt-3">Loading your reading insights...</p>
+                    </div>
                 ) : error ? (
-                    <div>{error}</div>
+                    <div className="text-center mt-5">
+                        <div className="alert alert-info" role="alert">
+                            <h4 className="alert-heading">Welcome to Reading Insights!</h4>
+                            <p>{error}</p>
+                            <hr />
+                            <p className="mb-0">
+                                Get started with your first reading to unlock personalized insights and statistics.
+                                <br />
+                                <a href="/AskQuestion" className="btn btn-primary mt-3">Start Your First Reading</a>
+                            </p>
+                        </div>
+                    </div>
                 ) : (
                     <>
-
                         {/* Reading Frequency Section */}
-                        {readingStats && readingStats.readingFrequency && (
+                        {readingStats && readingStats.readingFrequency && readingStats.readingFrequency.length > 0 && (
                             <div className="row mb-5">
                                 <div className="col-12">
                                     <h4>Reading Frequency Over Time</h4>
@@ -84,7 +88,7 @@ const ReadingInsights = () => {
                         )}
 
                         {/* Card Appearance Frequency Section */}
-                        {cardFrequency && cardFrequency.cards && (
+                        {cardFrequency && cardFrequency.cards && cardFrequency.cards.length > 0 && (
                             <div className="row mb-5">
                                 <div className="col-12 col-md-6">
                                     <h4>Card Appearance Frequency</h4>
@@ -109,7 +113,7 @@ const ReadingInsights = () => {
                                 </div>
 
                                 {/* Upright vs Reversed Cards */}
-                                {cardFrequency.uprightVsReversed && (
+                                {cardFrequency.uprightVsReversed && cardFrequency.uprightVsReversed.length > 0 && (
                                     <div className="col-12 col-md-6">
                                         <h4>Upright vs Reversed Cards</h4>
                                         <ResponsiveContainer width="100%" height={300}>
@@ -135,7 +139,7 @@ const ReadingInsights = () => {
                         )}
 
                         {/* Common Themes Section */}
-                        {readingStats && readingStats.commonThemes && (
+                        {readingStats && readingStats.commonThemes && readingStats.commonThemes.length > 0 && (
                             <div className="row mb-5">
                                 <div className="col-12">
                                     <h4>Common Reading Themes</h4>
@@ -151,7 +155,7 @@ const ReadingInsights = () => {
                         )}
 
                         {/* Favorite Cards Section */}
-                        {readingStats && readingStats.favoriteCards && (
+                        {readingStats && readingStats.favoriteCards && readingStats.favoriteCards.length > 0 && (
                             <div className="row mb-5">
                                 <div className="col-12">
                                     <h4>Favorite Cards</h4>

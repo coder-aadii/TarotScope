@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 // Import components
 import Login from './components/Login';
@@ -13,6 +13,7 @@ import PastReadings from './components/Dashboard/History';  // Renamed to PastRe
 import ReadingInsights from './components/Dashboard/ReadingInsights';
 import VerifyEmail from './components/verify-email';
 import Profile from './components/Dashboard/Profile';
+import AuthSuccess from './components/AuthSuccess'; // Import the new AuthSuccess component
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -41,6 +42,7 @@ function App() {
             <Route path="/" element={<Home />} />                {/* Home page */}
             <Route path="/login" element={<Login />} />          {/* Login page */}
             <Route path="/register" element={<Register />} />    {/* Register page */}
+            <Route path="/auth-success" element={<AuthSuccess />} /> {/* Auth success page */}
             
             {/* Wrap protected routes with PrivateRoute */}
             <Route 
@@ -100,6 +102,11 @@ function App() {
               } 
             />
             <Route path="/verify-email" element={<VerifyEmail />} /> {/* Verify Email */}
+            
+            {/* Google OAuth Routes */}
+            <Route path="/auth/google" element={<Navigate to={`${apiUrl}/auth/google`} />} /> {/* Google OAuth Trigger */}
+            <Route path="/auth/google/callback" element={<Navigate to="/" />} /> {/* Google OAuth Callback */}
+
           </Routes>
         </div>
       </Router>

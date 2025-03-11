@@ -25,53 +25,78 @@ const AskQuestion = () => {
     return (
         <>
             <Navbar />
-            <div className="container p-4">
-                <h2 className="display-4 mb-4" style={{ paddingTop: '70px' }}>Ask Your Tarot Question</h2>
-                <p className="text-muted mb-4">Choose a question type and ask the tarot.</p>
+            <div className="container mt-3">
+                <h2 className="text-4xl font-extrabold mb-8 text-center text-black" style={{ paddingTop: '70px' }}>
+                    Ask Your Tarot Question
+                </h2>
+                <p className="text-center mb-8">Choose a question type and ask the tarot.</p>
 
-                <div className="mb-4">
-                    <h3 className="h5 mb-2">Question Type</h3>
-                    <div>
-                        <label className="form-check-label">
+                <div className="mb-5">
+                    <h3 className="text-3xl font-bold mb-4 text-black">Question Type</h3>
+                    <div className="ms-4">
+                        <label className="form-check-label d-block mb-3">
                             <input
                                 type="radio"
-                                className="form-check-input"
+                                className="form-check-input me-2"
                                 name="questionType"
-                                value="yesNo"
-                                checked={questionType === 'yesNo'}
+                                value="general"
+                                checked={questionType === 'general'}
                                 onChange={(e) => setQuestionType(e.target.value)}
                             />
-                            Yes/No Question
+                            General Question
                         </label>
-                        <br />
-                        <label className="form-check-label">
+                        <label className="form-check-label d-block mb-3">
                             <input
                                 type="radio"
-                                className="form-check-input"
+                                className="form-check-input me-2"
                                 name="questionType"
-                                value="detailed"
-                                checked={questionType === 'detailed'}
+                                value="love"
+                                checked={questionType === 'love'}
                                 onChange={(e) => setQuestionType(e.target.value)}
                             />
-                            Detailed Question
+                            Love Question
+                        </label>
+                        <label className="form-check-label d-block mb-3">
+                            <input
+                                type="radio"
+                                className="form-check-input me-2"
+                                name="questionType"
+                                value="career"
+                                checked={questionType === 'career'}
+                                onChange={(e) => setQuestionType(e.target.value)}
+                            />
+                            Career Question
+                        </label>
+                        <label className="form-check-label d-block mb-3">
+                            <input
+                                type="radio"
+                                className="form-check-input me-2"
+                                name="questionType"
+                                value="finance"
+                                checked={questionType === 'finance'}
+                                onChange={(e) => setQuestionType(e.target.value)}
+                            />
+                            Finance Question
                         </label>
                     </div>
                 </div>
 
-                <div className="mb-4">
-                    <h3 className="h5 mb-2">Your Question</h3>
+                <div className="mb-5">
+                    <h3 className="text-3xl font-bold mb-4 text-black">Your Question</h3>
                     <input
                         type="text"
-                        className="form-control w-75"
+                        className="form-control"
                         placeholder="Type your question here"
                         value={question}
                         onChange={(e) => setQuestion(e.target.value)}
                     />
                 </div>
 
-                <button className="btn btn-primary w-50" onClick={handleSubmit}>
-                    Submit
-                </button>
+                <div className="text-center">
+                    <button className="btn btn-primary btn-lg px-5" onClick={handleSubmit}>
+                        Submit
+                    </button>
+                </div>
 
                 {/* Display a confirmation message when submitted */}
                 {submitted && (

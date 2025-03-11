@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
 import Footer from '../Footer';
 import DashboardNavbar from './DashboardNavbar';
+import { UserContext } from '../../context/UserContext';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const Dashboard = () => {
     const [randomCard, setRandomCard] = useState(null);  // State to store random card
     const [currentDateTime, setCurrentDateTime] = useState(new Date());  // State to store current date and time
-    const [user, setUser] = useState(null);  // State to store user data
     const [lastReading, setLastReading] = useState(null);  // State to store the last tarot reading
+    const { user, loading } = useContext(UserContext);  // Get user from context
 
     // Fetch "Card of the Day" and user data from the backend
     useEffect(() => {
@@ -23,40 +23,12 @@ const Dashboard = () => {
             }
         };
 
-        const fetchUserData = async () => {
-            try {
-                // Retrieve the JWT token from local storage
-                const token = localStorage.getItem('token');
-                
-                if (token) {
-                    // Decode the token to get user information
-                    const decodedToken = jwtDecode(token);
-                    
-                    // Assuming the decoded token has a user ID field
-                    const userId = decodedToken.userId;
-
-                    // Fetch user data from the backend using the user ID
-                    const response = await axios.get(`${apiUrl}/api/user/${userId}`);
-                    console.log(response.data); // Log the API response
-
-                    // Destructuring to get only the required fields: name, bio, and city
-                    const { name, bio, city } = response.data;
-
-                    // Set the fetched data to user state
-                    setUser({ name, bio, city });
-
-                    // Fetch the last reading after getting the user data
-                    fetchLastReading(userId);
-                }
-            } catch (error) {
-                console.error('Error fetching user data:', error.response ? error.response.data : error.message);
-            }
-        };
-
-        const fetchLastReading = async (userId) => {
+        const fetchLastReading = async () => {
+            if (!user || !user.userId) return;
+            
             try {
                 // Fetch the last reading for the user from the backend
-                const lastReadingResponse = await axios.get(`${apiUrl}/api/history/last/${userId}`);
+                const lastReadingResponse = await axios.get(`${apiUrl}/api/history/last/${user.userId}`);
                 setLastReading(lastReadingResponse.data);  // Set last reading data
             } catch (error) {
                 console.error('Error fetching last reading:', error.response ? error.response.data : error.message);
@@ -64,7 +36,9 @@ const Dashboard = () => {
         };        
 
         fetchRandomCard();
-        fetchUserData();
+        if (user) {
+            fetchLastReading();
+        }
 
         // Update the date and time every second (optional)
         const timer = setInterval(() => {
@@ -73,26 +47,32 @@ const Dashboard = () => {
 
         // Cleanup the interval on component unmount
         return () => clearInterval(timer);
-    }, []);
+    }, [user]); // Add user as dependency
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <>
             <DashboardNavbar />  {/* Navbar Component */}
-            <div className="container mt-5" style={{ paddingTop: '30px' }}>
-                <h2>Welcome, {user ? user.name : 'Loading...'}!</h2>
-                <p>Your tarot journey begins here. Ready to ask the cards a question?</p>
+            <div className="container mt-3">
+                <h2 className="text-4xl font-extrabold mb-8 text-center text-black" style={{ paddingTop: '70px' }}>
+                    Welcome, {user ? user.name : 'Guest'}!
+                </h2>
+                <p className="text-center mb-8">Your tarot journey begins here. Ready to ask the cards a question?</p>
 
                 {/* Optional dynamic elements to enhance the dashboard */}
                 {user && user.city && (
                     <div className="mt-3">
-                        <h4>Your Location</h4>
+                        <h3 className="text-3xl font-bold mb-4 text-black">Your Location</h3>
                         <p>{user.city}</p>
                     </div>
                 )}
 
                 {user && user.bio && (
                     <div className="mt-3">
-                        <h4>About You</h4>
+                        <h3 className="text-3xl font-bold mb-4 text-black">About You</h3>
                         <p>{user.bio}</p>
                     </div>
                 )}
@@ -103,7 +83,7 @@ const Dashboard = () => {
 
                 {/* Display last reading */}
                 <div className="mt-5">
-                    <h4>Last Reading</h4>
+                    <h3 className="text-3xl font-bold mb-4 text-black">Last Reading</h3>
                     {lastReading ? (
                         <>
                             <p>Last reading date: {new Date(lastReading.date).toLocaleDateString()}</p>
@@ -111,14 +91,14 @@ const Dashboard = () => {
                             <p>Cards drawn: {lastReading.selectedCards.map(card => card.name).join(', ')}</p>
                         </>
                     ) : (
-                        <p>Loading last reading...</p>
+                        <p>No readings yet</p>
                     )}
                     <a href="/History" className="btn btn-secondary">View All Past Readings</a>
                 </div>
 
                 {/* Card of the Day */}
                 <div className="mt-5">
-                    <h4>Card of the Day</h4>
+                    <h3 className="text-3xl font-bold mb-4 text-black">Card of the Day</h3>
                     {randomCard ? (
                         <>
                             <img
@@ -136,8 +116,8 @@ const Dashboard = () => {
                 </div>
 
                 {/* Display current date and time */}
-                <div className="mt-3">
-                    <h4>Today's Date and Time</h4>
+                <div className="mt-5">
+                    <h3 className="text-3xl font-bold mb-4 text-black">Today's Date and Time</h3>
                     <p>{currentDateTime.toLocaleDateString()} {currentDateTime.toLocaleTimeString()}</p>
                 </div>
             </div>

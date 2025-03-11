@@ -42,7 +42,7 @@ const AboutUs = () => {
         <div>
           <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-purple-700">4. Tarot Reading</h3>
           <p className="text-base sm:text-lg leading-relaxed mb-4">
-            Here’s where the magic happens. Ask a question, select the popular Three-Card Spread, and watch as the tarot deck animates before your eyes.
+            Here's where the magic happens. Ask a question, select the popular Three-Card Spread, and watch as the tarot deck animates before your eyes.
             Choose your cards, and let the universe reveal its guidance.
           </p>
         </div>
@@ -50,7 +50,7 @@ const AboutUs = () => {
         <div>
           <h3 className="text-xl sm:text-2xl font-semibold mb-2 text-purple-700">5. Reading Result</h3>
           <p className="text-base sm:text-lg leading-relaxed mb-4">
-            Once you’ve chosen your cards, TarotScope will interpret their meanings and display your personalized reading. You also have the option to save this reading for future reference.
+            Once you've chosen your cards, TarotScope will interpret their meanings and display your personalized reading. You also have the option to save this reading for future reference.
           </p>
         </div>
         
@@ -75,4 +75,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutUs; 

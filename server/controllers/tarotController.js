@@ -1,7 +1,14 @@
-const { pipeline } = require('@huggingface/transformers');
 const TarotCard = require('../models/TarotCard');
 const History = require('../models/History');
 const mongoose = require('mongoose');
+const { HfInference } = require("@huggingface/inference");
+const axios = require('axios'); // Assuming you use axios for Hugging Face API requests
+
+// Load the Hugging Face API key from environment variables
+const hfApiKey = process.env.HF_API_KEY;
+
+// Initialize Hugging Face Inference client
+const client = new HfInference(hfApiKey);
 
 // Get all tarot cards
 const getAllCards = async (req, res) => {
@@ -100,41 +107,162 @@ const saveReadingHistory = async (req, res) => {
     }
 };
 
-const axios = require('axios');
-
-// Hugging Face Inference API call for tarot reading generation
+// Tarot interpretation handler
 const getTarotInterpretation = async (req, res) => {
     try {
-        const { question, selectedCards } = req.body;
+        const { question, selectedCards, questionType } = req.body;
 
-        // Prepare the prompt with selected cards and question
-        const cardDetails = selectedCards.map(card => `${card.name} (${card.isReversed ? 'Reversed' : 'Upright'}): ${card.meaning}`).join('\n');
-        const prompt = `Question: "${question}"\nSelected Cards:\n${cardDetails}\nProvide a detailed tarot reading based on this.`;
+        // Prepare the prompt by including the selected cards, their orientation, and their meanings
+        const cardDetails = selectedCards
+            .map(card => {
+                let meaning;
 
-        // Create a text generation pipeline with Hugging Face model
-        const generator = await pipeline(
-            "text-generation",
-            "HuggingFaceTB/SmolLM2-1.7B-Instruct",
+                // Select the appropriate meaning based on card's orientation and questionType
+                if (card.isReversed) {
+                    // Reversed meaning
+                    meaning = card.meanings?.reversed?.[questionType] || card.meanings?.reversed?.general;
+                } else {
+                    // Upright meaning
+                    meaning = card.meanings?.upright?.[questionType] || card.meanings?.upright?.general;
+                }
+
+                // Fall back to general meaning if specific questionType meaning is not available
+                return `${card.name} (${card.isReversed ? 'Reversed' : 'Upright'}): ${meaning || 'General interpretation'}`;
+            })
+            .join('\n');
+
+        // Generate the prompt for the AI model
+        const prompt = `Question: "${question}"\nQuestion Type: ${questionType}\nSelected Cards:\n${cardDetails}\nProvide a detailed tarot reading based on the question, question type and these three cards while acting as a tarot expert Which should be a paragraph of 100 words.`;
+
+        // Log prompt for debugging
+        console.log('Generated prompt:', prompt);
+
+        // Define the Hugging Face API URL and key
+        const apiUrl = process.env.HF_API_URL || 'https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-1B-Instruct';
+        const apiKey = process.env.HF_API_KEY;
+
+        const response = await axios.post(
+            apiUrl,
+            { inputs: prompt, parameters: { max_tokens: 300 } },
+            {
+                headers: {
+                    Authorization: `Bearer ${apiKey}`,
+                },
+                timeout: 10000,
+            }
         );
 
-        // Define the messages
-        const messages = [
-            { role: "system", content: "You are a helpful assistant." },
-            { role: "user", content: prompt },
-        ];
+        // Check if API response is an array and contains 'generated_text'
+        if (Array.isArray(response.data) && response.data.length > 0 && response.data[0].generated_text) {
+            // Extract the interpretation from the first item in the array
+            const generatedText = response.data[0].generated_text;
 
-        // Generate a response
-        const output = await generator(messages, { max_new_tokens: 128 });
+            // Structure the Response
+            const structuredResponse = {
+                question,
+                questionType,
+                cards: selectedCards.map((card) => ({
+                    name: card.name,
+                    isReversed: card.isReversed,
+                    meaning: card.isReversed 
+                        ? card.meanings?.reversed?.[questionType] || card.meanings?.reversed?.general
+                        : card.meanings?.upright?.[questionType] || card.meanings?.upright?.general,
+                })),
+                interpretation: generatedText,
+            };
 
-        const tarotInterpretation = output[0].generated_text.at(-1).content;
+            // Send the Formatted Response
+            res.status(200).json(structuredResponse);
+        } else {
+            console.error('Invalid API response:', response.data);
+            res.status(500).json({ error: 'Invalid API response from Hugging Face' });
+        }
 
-        // Send back the tarot interpretation to the frontend
-        res.status(200).json({ interpretation: tarotInterpretation });
     } catch (error) {
-        console.error('Error generating tarot interpretation:', error);
+        // Improved error logging
+        console.error('Error generating tarot interpretation:', error.message || error.response?.data || error);
         res.status(500).json({ error: 'Failed to generate tarot reading' });
     }
 };
+
+/*
+
+// Tarot interpretation handler
+const getTarotInterpretation = async (req, res) => {
+    try {
+        const { question, selectedCards, questionType } = req.body;
+
+        // Prepare the card details, simplified to just card names and brief meanings
+        const cardDetails = selectedCards
+            .map(card => {
+                let meaning;
+
+                // Select the appropriate meaning based on the orientation and questionType
+                if (!card.meaning) {
+                    meaning = 'No meaning available';
+                } else if (card.isReversed) {
+                    meaning = card.meaning.reversed?.[questionType] || card.meaning.reversed?.general || 'No reversed meaning available';
+                } else {
+                    meaning = card.meaning.upright?.[questionType] || card.meaning.upright?.general || 'No upright meaning available';
+                }
+
+                return `${card.name} (${card.isReversed ? 'Reversed' : 'Upright'}): ${meaning}`;
+            })
+            .join('\n');
+
+        // Simplified prompt for the AI
+        const prompt = `Question: "${question}"\nCards:\n${cardDetails}\nProvide a tarot interpretation based on the cards and question in about 100 words. And I strictly advise you to not include the information related to question typecard details in the interpretation, just include the interpretation only.`;
+
+        // Log the prompt for debugging
+        console.log('Generated prompt:', prompt);
+
+        // Define the Hugging Face API URL and key
+        const apiUrl = process.env.HF_API_URL || 'https://api-inference.huggingface.co/models/meta-llama/Llama-3.2-1B-Instruct';
+        const apiKey = process.env.HF_API_KEY;
+
+        const response = await axios.post(
+            apiUrl,
+            { inputs: prompt, parameters: { max_tokens: 300 } }, // Keep max_tokens limited for concise answers
+            {
+                headers: {
+                    Authorization: `Bearer ${apiKey}`,
+                },
+                timeout: 10000, // Timeout of 10 seconds
+            }
+        );
+
+        // Handle the API response
+        if (Array.isArray(response.data) && response.data.length > 0 && response.data[0].generated_text) {
+            const generatedText = response.data[0].generated_text.trim(); // Clean up the response
+
+            // Structure the response
+            const structuredResponse = {
+                question,
+                questionType,
+                cards: selectedCards.map((card) => ({
+                    name: card.name,
+                    isReversed: card.isReversed,
+                    meaning: card.isReversed
+                        ? card.meaning.reversed?.[questionType] || card.meaning.reversed?.general || 'No reversed meaning available'
+                        : card.meaning.upright?.[questionType] || card.meaning.upright?.general || 'No upright meaning available',
+                })),
+                interpretation: generatedText, // Use the cleaned-up interpretation
+            };
+
+            // Send the formatted response
+            res.status(200).json(structuredResponse);
+        } else {
+            console.error('Invalid API response:', response.data);
+            res.status(500).json({ error: 'Invalid API response from Hugging Face' });
+        }
+
+    } catch (error) {
+        // Improved error logging
+        console.error('Error generating tarot interpretation:', error.message || error.response || error);
+        res.status(500).json({ error: 'Failed to generate tarot reading' });
+    }
+};
+*/
 
 module.exports = {
     getAllCards,

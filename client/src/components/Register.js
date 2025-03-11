@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-import '../styles/Login.css'; // Assuming the same styles apply for register
+import { useNavigate } from 'react-router-dom';
+import '../styles/Login.css';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const Register = () => {
-    // State to hold name, email, password, confirm password, and checkbox state
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
-    const [agreeToTerms, setAgreeToTerms] = useState(false); // For terms and conditions
-
-    // State to hold error messages
+    const [showPassword, setShowPassword] = useState(false);
+    const [agreeToTerms, setAgreeToTerms] = useState(false);
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false); // Loading state for showing loader
+    const [loading, setLoading] = useState(false);
 
     // Regular expression for email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -38,7 +37,7 @@ const Register = () => {
             return;
         }
 
-        // Password strength validation (minimum 8 characters, at least 1 letter, 1 number, and 1 special character)
+        // Password strength validation
         if (!passwordRegex.test(password)) {
             setError(
                 'Password must be at least 8 characters long and include at least one letter, one number, and one special character.'
@@ -58,7 +57,6 @@ const Register = () => {
             return;
         }
 
-        // Start loading
         setLoading(true);
 
         try {
@@ -74,36 +72,31 @@ const Register = () => {
 
             if (response.ok) {
                 console.log('Registration successful:', data);
-                // Show alert for successful registration
                 alert('Registration successful! You can now log in.');
 
-                // Clear input fields on successful registration
+                // Clear input fields
                 setName('');
                 setEmail('');
                 setPassword('');
                 setConfirmPassword('');
                 setAgreeToTerms(false);
-                setError('');  // Clear any previous error messages
+                setError('');
 
-
-                // Redirect to the login page after alert
+                // Redirect to login page
                 window.location.href = '/login';
             } else {
                 setError(data.message || 'Registration failed.');
             }
-
         } catch (err) {
             console.error('Error during registration:', err);
             setError('An error occurred during registration. Please try again later.');
         } finally {
-            // Stop loading
             setLoading(false);
         }
     };
 
     return (
         <>
-            {/* Loading Animation */}
             {loading && (
                 <div className="loader-overlay">
                     <div className="loader"></div>
@@ -114,9 +107,12 @@ const Register = () => {
             </a>
             <div className="login-container">
                 <h2>Register</h2>
-                {error && <p className="error">{error}</p>}
+                {error && (
+                    <div className="alert alert-danger" role="alert">
+                        {error}
+                    </div>
+                )}
                 <form onSubmit={handleSubmit}>
-                    {/* Name Input */}
                     <div className="input-field">
                         <label htmlFor="name">Full Name</label>
                         <input
@@ -129,7 +125,6 @@ const Register = () => {
                         />
                     </div>
 
-                    {/* Email Input */}
                     <div className="input-field">
                         <label htmlFor="email">Email</label>
                         <input
@@ -142,7 +137,6 @@ const Register = () => {
                         />
                     </div>
 
-                    {/* Password Input with Toggle Visibility */}
                     <div className="input-field">
                         <label htmlFor="password">Password</label>
                         <div className="password-input">
@@ -164,7 +158,6 @@ const Register = () => {
                         </div>
                     </div>
 
-                    {/* Confirm Password Input */}
                     <div className="input-field">
                         <label htmlFor="confirmPassword">Confirm Password</label>
                         <div className="password-input">
@@ -179,7 +172,6 @@ const Register = () => {
                         </div>
                     </div>
 
-                    {/* Terms and Conditions Checkbox */}
                     <div className="input-field checkbox">
                         <label>
                             <input
@@ -191,20 +183,8 @@ const Register = () => {
                         </label>
                     </div>
 
-                    {/* Submit Button */}
                     <button type="submit">Register</button>
 
-                    <div className="divider">
-                        <span>OR</span>
-                    </div>
-
-                    {/* Register with Google */}
-                    <button className="google-login" type="button">
-                        <img src="https://img.icons8.com/?size=20&id=17949&format=png&color=000000" alt="Google" />
-                        Register with Google
-                    </button>
-
-                    {/* Link to Login */}
                     <p className="register-link">
                         Already have an account? <a href="/login">Login</a>
                     </p>

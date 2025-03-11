@@ -56,54 +56,98 @@ const TarotReading = () => {
     const handleSubmit = async () => {
         try {
             const token = localStorage.getItem('token'); // Get JWT from localStorage
-
+    
             if (!token) {
                 console.error("No token found. Please login.");
                 return;
             }
-
+    
             // Prepare the selectedCardIds as query parameters
             const selectedCardIds = selectedCards.map(card => card.id).join(',');
-
+    
             // Make a GET request to fetch card details based on selected card IDs
+            console.log('Fetching interpreted cards with selectedCardIds:', selectedCardIds);
             const response = await axios.get(`${apiUrl}/api/tarotcards/three-random-cards`, {
                 params: {
                     selectedCardIds
                 }
             });
-
+    
             const interpretedCards = response.data;
-
+            console.log('Interpreted Cards:', interpretedCards); // Log the fetched card details
+    
             // Update the state with interpreted card data
             setSelectedCards(interpretedCards);
             setIsSubmitted(true); // Show the result page after submitting
-
+    
+            console.log('Question:', state?.question);
+            console.log('Question Type:', state?.questionType);
+    
             // Save the reading history
             const historyData = {
                 userId: state?.userId || 'defaultUserId', // Replace with actual user ID from context or state
                 selectedCards: interpretedCards,
-                question: state?.question || 'Default Question' // Add any relevant question or reading context
+                question: state?.question || 'Default Question', // Add any relevant question or reading context
+                questionType: state?.questionType || 'general' // Ensure questionType is saved in history
             };
-
+    
+            console.log('Saving history data:', historyData); // Log the history data being sent
+    
             // Post request to store the reading history with Authorization header
             await axios.post(`${apiUrl}/api/tarotcards/history`, historyData, {
                 headers: {
                     Authorization: `Bearer ${token}`, // Include token in Authorization header
                 }
             });
-
-            const tarotInterpretation = response.data?.interpretation;
-
-            console.log('Tarot Interpretation:', tarotInterpretation); // Debugging: Check AI-generated reading
-
-            // Set AI-generated reading
-            setAiReading(tarotInterpretation);
-            
+    
+            // AI Interpretation (No Bearer Token for AI request)
+            const aiRequestData = {
+                question: historyData.question,
+                questionType: historyData.questionType,
+                selectedCards: interpretedCards.map(card => {
+                    // Log each card's data for better debugging
+                    console.log('Processing card:', card);
+    
+                    // Safeguard against undefined meanings
+                    const meaningsForType = card.meanings?.[historyData.questionType];
+                    if (!meaningsForType) {
+                        console.warn(`No meanings found for question type '${historyData.questionType}' in card:`, card.name);
+                        return {
+                            name: card.name,
+                            isReversed: card.isReversed,
+                            meaning: `No ${historyData.questionType} meaning available.`, // Default message when meanings are missing
+                        };
+                    }
+    
+                    // Log the specific meaning for the card
+                    console.log(`Found meanings for '${historyData.questionType}' in card '${card.name}':`, meaningsForType);
+    
+                    return {
+                        name: card.name,
+                        isReversed: card.isReversed,
+                        meaning: meaningsForType[card.isReversed ? 'reversed' : 'upright'] || `No specific ${historyData.questionType} meaning found.`, // Safeguard for missing upright/reversed meanings
+                    };
+                })
+            };
+    
+            console.log('Sending AI tarot interpretation request with:', aiRequestData); // Log AI request data
+    
+            const tarotInterpretationResponse = await axios.post(`${apiUrl}/api/tarotcards/interpretation`, aiRequestData);
+    
+            console.log('AI tarot interpretation response:', tarotInterpretationResponse.data); // Log the response from the AI
+    
+            if (tarotInterpretationResponse.data?.interpretation) {
+                // Set AI-generated reading
+                setAiReading(tarotInterpretationResponse.data.interpretation);
+            } else {
+                console.error('Invalid AI interpretation response:', tarotInterpretationResponse.data);
+            }
+    
         } catch (error) {
             console.error('Error fetching card interpretations or saving history:', error);
         }
     };
-
+    
     return (
         <>
             <Navbar />
@@ -202,7 +246,7 @@ const TarotReading = () => {
                                 <p>{aiReading}</p>
                             </div>
                         ) : (
-                            <p>Loading AI-generated reading...</p>
+                            <p>Soon provide AI-generated reading...</p>
                         )}
 
                     </>

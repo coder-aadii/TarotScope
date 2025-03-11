@@ -33,13 +33,17 @@ const History = () => {
     return (
         <>
             <DashboardNavbar />  {/* Navbar Component */}
-            <div className="history-container p-4">
-                <h2 className="history-heading text-2xl font-bold mb-4" style={{ paddingTop: '30px' }}>Your Tarot Reading History</h2>
+            <div className="container mt-3">
+                <h2 className="text-4xl font-extrabold mb-8 text-center text-black" style={{ paddingTop: '70px' }}>
+                    Your Tarot Reading History
+                </h2>
+                
                 {history.length === 0 ? (
-                    <p>No history found.</p>
+                    <p className="text-center">No readings found in your history.</p>
                 ) : (
-                    <div className="table-container">
-                        <table className="history-table">
+                    <div className="table-responsive">
+                        <h3 className="text-3xl font-bold mb-4 text-black">Past Readings</h3>
+                        <table className="table table-hover">
                             <thead>
                                 <tr>
                                     <th>Question</th>
@@ -56,7 +60,7 @@ const History = () => {
                                             <div className="cards-container">
                                                 {reading.selectedCards.map((card) => (
                                                     <div key={card._id} className="card-info">
-                                                        <h4>{card.name}</h4>
+                                                        <h4 className="text-xl font-semibold mb-2">{card.name}</h4>
                                                         <p>{card.meaning.general}</p>
                                                         <p>{card.isReversed ? 'Reversed' : 'Upright'}</p>
                                                         <img

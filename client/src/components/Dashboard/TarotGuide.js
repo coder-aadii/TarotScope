@@ -10,23 +10,21 @@ const TarotGuide = () => {
     };
 
     return (
-        <div className='flex flex-col min-h-screen bg-gradient-to-r from-purple-500 to-indigo-500 text-gray-900'>
+        <>
             <Navbar />
-
-            {/* Main Content */}
-            <main className='flex-grow container mx-auto px-4 py-8'>
+            <div className="container mt-3">
                 <h2 className='text-4xl font-extrabold mb-8 text-center text-black' style={{ paddingTop: '70px' }}>Tarot Guide</h2>
 
                 <section className='mb-12'>
                     <h3 className='text-3xl font-bold mb-4 text-black'>Introduction to Tarot Reading</h3>
-                    <p className='text-base leading-relaxed mb-4 text-gray-100'>
+                    <p className='text-base leading-relaxed mb-4'>
                         Tarot reading is an ancient practice of divination using a deck of tarot cards. Each card has a unique meaning, and when drawn in a specific spread, they can provide guidance and insight.
                     </p>
                 </section>
 
                 <section className='mb-12'>
                     <h3 className='text-3xl font-bold mb-4 text-black'>How TarotScope Works</h3>
-                    <ul className='list-disc list-inside text-lg space-y-3 text-gray-100'>
+                    <ul className='list-disc list-inside text-lg space-y-3'>
                         <li>Log in or create an account.</li>
                         <li>Choose a tarot spread (Three-Card Spread is currently available).</li>
                         <li>Ask a question and select cards.</li>
@@ -64,23 +62,22 @@ const TarotGuide = () => {
                     <h3 className='text-3xl font-bold mb-4 text-black'>FAQs</h3>
                     <div className='space-y-6'>
                         <div>
-                            <h4 className='cursor-pointer text-lg font-semibold mb-2 text-yellow-400' onClick={() => toggleFAQ(0)}>
+                            <h4 className='cursor-pointer text-lg font-semibold mb-2 text-black-400' onClick={() => toggleFAQ(0)}>
                                 What is Tarot Reading? {expanded === 0 ? '-' : '+'}
                             </h4>
-                            {expanded === 0 && <p className='text-gray-200 text-base'>Tarot reading is a tool used to gain insights by interpreting tarot cards.</p>}
+                            {expanded === 0 && <p className='text-black-200 text-base'>Tarot reading is a tool used to gain insights by interpreting tarot cards.</p>}
                         </div>
                         <div>
-                            <h4 className='cursor-pointer text-lg font-semibold mb-2 text-yellow-400' onClick={() => toggleFAQ(1)}>
+                            <h4 className='cursor-pointer text-lg font-semibold mb-2 text-black-400' onClick={() => toggleFAQ(1)}>
                                 Can I ask any question? {expanded === 1 ? '-' : '+'}
                             </h4>
-                            {expanded === 1 && <p className='text-gray-200 text-base'>Yes, you can ask about love, career, or personal growth.</p>}
+                            {expanded === 1 && <p className='text-black-200 text-base'>Yes, you can ask about love, career, or personal growth.</p>}
                         </div>
                     </div>
                 </section>
-            </main>
-
+            </div>
             <Footer />
-        </div>
+        </>
     );
 };
 

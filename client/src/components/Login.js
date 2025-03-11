@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
-import '../styles/Login.css'; // Ensure you have styles for this component
-import { jwtDecode } from 'jwt-decode';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/Login.css';
+import { UserContext } from '../context/UserContext';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const Login = () => {
-    // State to hold email, password, and checkbox state
+    const navigate = useNavigate();
+    const { setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [showPassword, setShowPassword] = useState(false); // Toggle password visibility
-    // const [agreeToTerms, setAgreeToTerms] = useState(false); // For terms and conditions
-
-    // State to hold error messages
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
-
-    // State for login status
     const [loading, setLoading] = useState(false);
 
     // Handler for form submission
@@ -27,25 +24,21 @@ const Login = () => {
             return;
         }
 
-        // if (!agreeToTerms) {
-        //     setError('You must agree to the terms and conditions.');
-        //     return;
-        // }
-
         try {
             setLoading(true);
             setError('');
 
-            // Mock login action (replace with actual authentication logic)
             const response = await fetch(`${apiUrl}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({ email, password }),
+                credentials: 'include'
             });
 
             const data = await response.json();
+            
             if (!response.ok) {
                 throw new Error(data.message || 'Login failed');
             }
@@ -53,23 +46,25 @@ const Login = () => {
             console.log('Login successful:', data);
 
             // Store token in localStorage
-            const token = data.token;
-            localStorage.setItem('token', token);
+            localStorage.setItem('token', data.token);
 
-            // Decode the token to get userId
-            const decodedToken = jwtDecode(token);
-            const userId = decodedToken.userId; // Assuming 'userId' is a key in your token
-            console.log("User ID:", userId);
+            // Set user in context
+            setUser({
+                isAuthenticated: true,
+                id: data.user.id,
+                name: data.user.name,
+                email: data.user.email
+            });
 
             // Clear form and error after login
             setEmail('');
             setPassword('');
-            // setAgreeToTerms(false);
 
-            // Redirect to dashboard or handle success
-            window.location.href = '/dashboard'; // Redirect to dashboard
+            // Redirect to dashboard
+            navigate('/dashboard');
         } catch (err) {
-            setError(err.message);
+            console.error('Login error:', err);
+            setError(err.message || 'Failed to login. Please try again.');
         } finally {
             setLoading(false);
         }
@@ -88,7 +83,11 @@ const Login = () => {
             </a>
             <div className="login-container">
                 <h2>Login</h2>
-                {error && <p className="error">{error}</p>}
+                {error && (
+                    <div className="alert alert-danger" role="alert">
+                        {error}
+                    </div>
+                )}
                 <form onSubmit={handleSubmit}>
                     {/* Email Input */}
                     <div className="input-field">
@@ -125,31 +124,9 @@ const Login = () => {
                         </div>
                     </div>
 
-                    {/* Terms and Conditions Checkbox */}
-                    {/* <div className="input-field checkbox">
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={agreeToTerms}
-                                onChange={(e) => setAgreeToTerms(e.target.checked)}
-                            />
-                            I agree to the <a href="/terms">terms and conditions</a>
-                        </label>
-                    </div> */}
-
                     {/* Submit Button */}
                     <button type="submit" disabled={loading}>
                         {loading ? 'Logging in...' : 'Login'}
-                    </button>
-
-                    <div className="divider">
-                        <span>OR</span>
-                    </div>
-
-                    {/* Login with Google */}
-                    <button className="google-login" type="button">
-                        <img src="https://img.icons8.com/?size=20&id=17949&format=png&color=000000" alt="Google" />
-                        Login with Google
                     </button>
 
                     {/* Link to Register */}

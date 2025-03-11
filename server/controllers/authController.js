@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const nodemailer = require('nodemailer');
+const passport = require('passport');
 
 // Removed fs and path logic for logo
 const logoURL = 'https://res.cloudinary.com/deoegf9on/image/upload/v1740217290/logo-img_ocgldv.png';
@@ -19,7 +20,7 @@ const sendWelcomeEmail = (email, name) => {
   const mailOptions = {
     from: `"TarotScope" <${process.env.EMAIL_USER}>`, // Sender address
     to: email, // Recipient's email address
-    subject: 'Welcome to TarotScope!',
+    subject: 'Start Your Journey at TarotScope!',
     html: `
         <div style="font-family: Arial, sans-serif; color: #333; background-color: #f4f4f4; padding: 20px;">
             <div style="max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
@@ -103,6 +104,35 @@ const registerUser = async (req, res) => {
   }
 };
 
+// Google Authentication Success Handler
+const googleAuthSuccess = (req, res) => {
+  try {
+    if (!req.user) {
+      console.log("No user data in request");
+      return res.redirect(`${process.env.CLIENT_URL}/login?error=auth_failed`);
+    }
+
+    console.log("Google auth success for user:", req.user);
+
+    // Generate JWT token for the authenticated user
+    const token = jwt.sign(
+      { 
+        userId: req.user._id,
+        email: req.user.email,
+        name: req.user.name
+      }, 
+      process.env.JWT_SECRET, 
+      { expiresIn: '24h' }
+    );
+    
+    // Redirect to the client with the token
+    res.redirect(`${process.env.CLIENT_URL}/auth-success?token=${token}`);
+  } catch (error) {
+    console.error("Error in Google auth success:", error);
+    res.redirect(`${process.env.CLIENT_URL}/login?error=auth_failed`);
+  }
+};
+
 // Login Logic
 const loginUser = async (req, res) => {
   try {
@@ -113,14 +143,32 @@ const loginUser = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password); // Compare passwords
     if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' }); // Generate JWT token
+    // Generate JWT token with consistent structure
+    const token = jwt.sign(
+      { 
+        userId: user._id,
+        email: user.email,
+        name: user.name
+      }, 
+      process.env.JWT_SECRET, 
+      { expiresIn: '24h' }
+    );
 
     // Update last login date
     user.lastLogin = new Date();
     await user.save();
 
-    res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
+    // Send response with token and user data
+    res.json({
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email
+      }
+    });
   } catch (error) {
+    console.error("Login error:", error);
     res.status(500).json({ message: "Error logging in." });
   }
 };
@@ -155,4 +203,85 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser, updateUserProfile };
+// Google Auth (triggered when the user clicks on the Google Login/Register button)
+const googleAuth = (req, res, next) => {
+    console.log('Starting Google authentication...');
+    console.log('Session before auth:', req.session);
+    passport.authenticate('google', {
+        scope: ['profile', 'email']
+    })(req, res, next);
+};
+
+// Google Callback (triggered after Google authentication is successful)
+const googleCallback = (req, res, next) => {
+    console.log('Google callback received');
+    console.log('Session in callback:', req.session);
+
+    passport.authenticate('google', (err, user, info) => {
+        console.log('Inside passport.authenticate callback');
+        
+        if (err) {
+            console.error("Google auth error:", err);
+            return res.redirect(`${process.env.CLIENT_URL}/login?error=auth_failed`);
+        }
+
+        if (!user) {
+            console.log("No user data in request");
+            return res.redirect(`${process.env.CLIENT_URL}/login?error=auth_failed`);
+        }
+
+        console.log('User authenticated:', user);
+
+        req.logIn(user, (err) => {
+            if (err) {
+                console.error("Login error:", err);
+                return res.redirect(`${process.env.CLIENT_URL}/login?error=auth_failed`);
+            }
+
+            console.log('User logged in successfully');
+
+            // Generate JWT token
+            const token = jwt.sign(
+                { 
+                    userId: user._id,
+                    email: user.email,
+                    name: user.name
+                }, 
+                process.env.JWT_SECRET, 
+                { expiresIn: '24h' }
+            );
+
+            console.log('JWT token generated');
+            console.log('Redirecting to:', `${process.env.CLIENT_URL}/auth-success?token=${token}`);
+
+            // Set the token in a cookie as well
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                maxAge: 24 * 60 * 60 * 1000, // 24 hours
+                sameSite: 'lax'
+            });
+
+            // Redirect to frontend with token
+            res.redirect(`${process.env.CLIENT_URL}/auth-success?token=${token}`);
+        });
+    })(req, res, next);
+};
+
+// Logout Logic
+const logout = (req, res, next) => {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
+};
+
+module.exports = {
+  registerUser,
+  loginUser,
+  updateUserProfile,
+  googleAuth,
+  googleCallback,
+  logout,
+  googleAuthSuccess,
+};
