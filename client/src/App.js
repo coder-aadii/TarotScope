@@ -14,6 +14,7 @@ import ReadingInsights from './components/Dashboard/ReadingInsights';
 import VerifyEmail from './components/verify-email';
 import Profile from './components/Dashboard/Profile';
 import AuthSuccess from './components/AuthSuccess'; // Import the new AuthSuccess component
+import NotFound from './components/NotFound'; // Import the NotFound component
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
@@ -107,6 +108,8 @@ function App() {
             <Route path="/auth/google" element={<Navigate to={`${apiUrl}/auth/google`} />} /> {/* Google OAuth Trigger */}
             <Route path="/auth/google/callback" element={<Navigate to="/" />} /> {/* Google OAuth Callback */}
 
+            {/* 404 Route - Must be last */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
       </Router>

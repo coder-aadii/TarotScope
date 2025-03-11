@@ -44,9 +44,14 @@ app.use(cors({
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    exposedHeaders: ['Authorization', 'Set-Cookie']
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin', 'Accept', 'X-Requested-With'],
+    exposedHeaders: ['Authorization', 'Set-Cookie'],
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 }));
+
+// Enable pre-flight requests for all routes
+app.options('*', cors());
 
 // Initialize session BEFORE passport
 app.use(session({
