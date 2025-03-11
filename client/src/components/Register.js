@@ -82,8 +82,8 @@ const Register = () => {
                 setAgreeToTerms(false);
                 setError('');
 
-                // Redirect to login page
-                window.location.href = '/login';
+                // Redirect to login page using navigate
+                navigate('/login');
             } else {
                 setError(data.message || 'Registration failed.');
             }
