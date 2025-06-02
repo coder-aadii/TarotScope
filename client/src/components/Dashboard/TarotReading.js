@@ -168,29 +168,112 @@ const TarotReading = () => {
                                 <h2 className="display-5 mb-4" style={{ paddingTop: '40px' }}>Select Three Cards</h2>
                                 <p className="text-muted mb-4">Click on three cards to select them.</p>
 
-                                <div className="card-deck d-flex justify-content-center position-relative">
-                                    {[...Array(48)].map((_, idx) => (
-                                        <div
-                                            key={idx}
-                                            className={`card ${selectedCards.includes(idx + 1) ? 'selected-card' : ''}`}
-                                            style={{
-                                                cursor: 'pointer',
-                                                position: 'absolute',
-                                                width: '100px',
-                                                height: '150px',
-                                                left: `${idx * 25}px`,
-                                                zIndex: idx,
-                                            }}
-                                            onClick={() => handleCardSelection(idx + 1)}
-                                        >
-                                            <img
-                                                src="https://res.cloudinary.com/deoegf9on/image/upload/v1740566464/card-back-1-min_tn0ses.png"
-                                                alt={`Card ${idx + 1}`}
-                                                className="img-fluid"
-                                                style={{ width: '100px', height: '150px' }}
-                                            />
+                                <div className="card-deck-container">
+                                    {/* Desktop view - stacked cards */}
+                                    <div className="card-deck d-none d-md-flex justify-content-center position-relative">
+                                        {[...Array(48)].map((_, idx) => (
+                                            <div
+                                                key={idx}
+                                                className={`card ${selectedCards.includes(idx + 1) ? 'selected-card' : ''}`}
+                                                style={{
+                                                    cursor: 'pointer',
+                                                    position: 'absolute',
+                                                    width: '100px',
+                                                    height: '150px',
+                                                    left: `${idx * 25}px`,
+                                                    zIndex: idx,
+                                                    transition: 'all 0.3s ease',
+                                                }}
+                                                onClick={() => handleCardSelection(idx + 1)}
+                                                onMouseEnter={(e) => {
+                                                    e.currentTarget.style.transform = 'translateY(-15px)';
+                                                    e.currentTarget.style.zIndex = '100';
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.currentTarget.style.transform = 'translateY(0)';
+                                                    e.currentTarget.style.zIndex = idx;
+                                                }}
+                                            >
+                                                <img
+                                                    src="https://res.cloudinary.com/deoegf9on/image/upload/v1740566464/card-back-1-min_tn0ses.png"
+                                                    alt={`Card ${idx + 1}`}
+                                                    className="img-fluid"
+                                                    style={{ width: '100px', height: '150px' }}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Mobile view - 3 rows of stacked cards */}
+                                    <div className="d-md-none">
+                                        <div className="card-deck">
+                                            {/* First row - stacked cards */}
+                                            <div className="card-row">
+                                                {[...Array(16)].map((_, idx) => (
+                                                    <div
+                                                        key={idx}
+                                                        className={`mobile-card ${selectedCards.includes(idx + 1) ? 'selected-card' : ''}`}
+                                                        style={{
+                                                            left: `calc(50% - 50px + ${idx * 12}px)`,
+                                                            zIndex: idx,
+                                                            transform: `rotate(${idx % 2 === 0 ? -1 : 1}deg)`,
+                                                        }}
+                                                        onClick={() => handleCardSelection(idx + 1)}
+                                                    >
+                                                        <img
+                                                            src="https://res.cloudinary.com/deoegf9on/image/upload/v1740566464/card-back-1-min_tn0ses.png"
+                                                            alt={`Card ${idx + 1}`}
+                                                            className="img-fluid"
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            
+                                            {/* Second row - stacked cards */}
+                                            <div className="card-row">
+                                                {[...Array(16)].map((_, idx) => (
+                                                    <div
+                                                        key={idx + 16}
+                                                        className={`mobile-card ${selectedCards.includes(idx + 17) ? 'selected-card' : ''}`}
+                                                        style={{
+                                                            left: `calc(50% - 50px + ${idx * 12}px)`,
+                                                            zIndex: idx,
+                                                            transform: `rotate(${idx % 2 === 0 ? -1 : 1}deg)`,
+                                                        }}
+                                                        onClick={() => handleCardSelection(idx + 17)}
+                                                    >
+                                                        <img
+                                                            src="https://res.cloudinary.com/deoegf9on/image/upload/v1740566464/card-back-1-min_tn0ses.png"
+                                                            alt={`Card ${idx + 17}`}
+                                                            className="img-fluid"
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            
+                                            {/* Third row - stacked cards */}
+                                            <div className="card-row">
+                                                {[...Array(16)].map((_, idx) => (
+                                                    <div
+                                                        key={idx + 32}
+                                                        className={`mobile-card ${selectedCards.includes(idx + 33) ? 'selected-card' : ''}`}
+                                                        style={{
+                                                            left: `calc(50% - 50px + ${idx * 12}px)`,
+                                                            zIndex: idx,
+                                                            transform: `rotate(${idx % 2 === 0 ? -1 : 1}deg)`,
+                                                        }}
+                                                        onClick={() => handleCardSelection(idx + 33)}
+                                                    >
+                                                        <img
+                                                            src="https://res.cloudinary.com/deoegf9on/image/upload/v1740566464/card-back-1-min_tn0ses.png"
+                                                            alt={`Card ${idx + 33}`}
+                                                            className="img-fluid"
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
-                                    ))}
+                                    </div>
                                 </div>
 
                                 {/* Button changes from shuffle to submit after selecting 3 cards */}

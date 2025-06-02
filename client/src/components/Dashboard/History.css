@@ -88,12 +88,58 @@
     .card-image {
         width: 50px;
     }
+    
+    /* Adjust table for mobile */
+    .history-table {
+        display: block;
+    }
+    
+    .history-table thead {
+        display: none; /* Hide table headers on mobile */
+    }
+    
+    .history-table tbody, 
+    .history-table tr, 
+    .history-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .history-table tr {
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .history-table td {
+        text-align: left;
+        position: relative;
+        padding-left: 50%;
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .history-table td:before {
+        position: absolute;
+        left: 10px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+    }
+    
+    /* Add labels for each cell */
+    .history-table td:nth-of-type(1):before { content: "Date"; }
+    .history-table td:nth-of-type(2):before { content: "Question"; }
+    .history-table td:nth-of-type(3):before { content: "Cards"; }
+    .history-table td:nth-of-type(4):before { content: "Reading"; }
 }
 
 @media (max-width: 480px) {
-    .history-table th,
     .history-table td {
         padding: 8px;
+        padding-left: 45%;
         font-size: 0.85rem;
     }
 

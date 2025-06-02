@@ -29,3 +29,4 @@ server/node_modules/
 
 # Coverage directory used by testing frameworks
 coverage/
+.qodo

@@ -25,6 +25,16 @@
     flex-wrap: wrap;
     justify-content: space-around;
     /* Center and space the cards */
+    overflow: visible;
+}
+
+.card-deck-container {
+    position: relative;
+    overflow: visible;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 50px;
+    padding-top: 20px;
 }
 
 /* Styling for selected card */
@@ -118,33 +128,109 @@
 
 /* Responsive Design for smaller screens (mobile) */
 @media (max-width: 768px) {
+    .card-deck-container {
+        height: 550px;
+        margin-bottom: 80px;
+        overflow: visible;
+        padding-top: 20px;
+    }
+    
     .card-deck {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        /* 12 cards per row */
-        grid-template-rows: repeat(4, auto);
-        /* 4 rows */
-        gap: 10px;
-        /* Add space between cards */
+        position: relative;
         height: auto;
-        margin-bottom: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-
-    .card {
+    
+    .card-deck .card-row {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
         width: 100%;
-        height: auto;
-        margin: 0;
-        /* Remove default margins */
+        position: relative;
+        height: 170px;
+        overflow: visible;
+        margin-left: -170px;
+    }
+    
+    /* Style for mobile deck cards - maintain the stacked appearance */
+    .mobile-card {
+        position: absolute !important;
+        width: 100px !important;
+        height: 150px !important;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        cursor: pointer;
+        transform: rotate(0deg);
+    }
+    
+    .mobile-card img {
+        width: 100px !important;
+        height: 150px !important;
+        border-radius: 8px;
+    }
+    
+    /* Selected card styling for mobile */
+    .mobile-card.selected-card {
+        border: 3px solid #28a745;
+        box-shadow: 0 0 15px rgba(0, 128, 0, 0.8);
+        transform: translateY(-15px) !important;
+        z-index: 100 !important;
     }
 
     .deck-animation {
         height: auto;
-        /* Adjust animation height for mobile */
+        margin-top: 20%;
+        margin-bottom: 10%;
+        padding: 10px;
     }
+    
+    /* Result container for mobile */
+    .result-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 50px;
+    }
+    
+    .card-result {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    /* Ensure footer doesn't overlap */
+    .container.p-4 {
+        margin-bottom: 60px;
+        min-height: calc(100vh - 400px);
+    }
+}
 
+/* Extra small devices */
+@media (max-width: 480px) {
+    .card-deck-container {
+        height: 550px;
+        overflow: visible;
+    }
+    
+    .mobile-card {
+        width: 90px !important;
+        height: 135px !important;
+    }
+    
+    .mobile-card img {
+        width: 90px !important;
+        height: 135px !important;
+    }
+    
     .deck-animation {
-        margin-top: 35%;
-        margin-bottom: 20%;
+        margin-top: 25%;
+    }
+    
+    /* Ensure footer doesn't overlap */
+    .container.p-4 {
+        margin-bottom: 80px;
     }
 }
 

@@ -9,9 +9,11 @@
 
 /* For the logo image */
 .navbar-brand .logo-img {
-    width: 350px;
-    height: 30px;
+    width: 250px;
+    height: auto;
+    max-height: 30px;
     margin-top: 3px;
+    object-fit: contain;
 }
 
 /* Active link styling */
@@ -92,7 +94,8 @@
     /* Logo styling */
     .navbar-brand .logo-img {
         width: 150px;
-        height: 15px;
+        height: auto;
+        max-height: 20px;
         margin-top: 3px;
     }
 

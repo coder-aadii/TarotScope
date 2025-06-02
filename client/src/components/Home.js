@@ -1,10 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 import Footer from './Footer';
 
 const Home = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+    
+    // Close menu when clicking outside or pressing escape
+    useEffect(() => {
+        const handleEscape = (e) => {
+            if (e.key === 'Escape') {
+                setMenuOpen(false);
+            }
+        };
+        
+        const handleClickOutside = (e) => {
+            if (menuOpen && e.target.classList.contains('menu-overlay')) {
+                setMenuOpen(false);
+            }
+        };
+        
+        document.addEventListener('keydown', handleEscape);
+        document.addEventListener('click', handleClickOutside);
+        
+        // Prevent scrolling when menu is open
+        if (menuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+        
+        return () => {
+            document.removeEventListener('keydown', handleEscape);
+            document.removeEventListener('click', handleClickOutside);
+            document.body.style.overflow = 'auto';
+        };
+    }, [menuOpen]);
 
     const [formData, setFormData] = useState({
         name: '',
@@ -54,18 +86,25 @@ const Home = () => {
                     {/* <a href="/Register" className="mainNav__link">Register</a> */}
                 </div>
 
-                <div className="mainNav__icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <g data-name="Layer 2" fill="#9197AE">
-                            <g data-name="menu-2">
-                                <rect width="24" height="24" transform="rotate(180 12 12)" opacity="0" />
-                                <circle cx="4" cy="12" r="1" />
-                                <rect x="7" y="11" width="14" height="2" rx=".94" ry=".94" />
-                                <rect x="3" y="16" width="18" height="2" rx=".94" ry=".94" />
-                                <rect x="3" y="6" width="18" height="2" rx=".94" ry=".94" />
-                            </g>
-                        </g>
-                    </svg>
+                <div 
+                    className={`mainNav__icon ${menuOpen ? 'open' : ''}`} 
+                    onClick={() => setMenuOpen(!menuOpen)} 
+                    aria-label="Toggle menu"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                {/* Mobile Menu Overlay */}
+                <div className={`menu-overlay ${menuOpen ? 'open' : ''}`}></div>
+                
+                {/* Mobile Menu */}
+                <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+                    <a href="/" onClick={() => setMenuOpen(false)}>Home</a>
+                    <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+                    <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+                    <a href="/Login" onClick={() => setMenuOpen(false)}>Login</a>
                 </div>
             </nav>
 

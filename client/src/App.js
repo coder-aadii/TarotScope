@@ -17,6 +17,8 @@ import AuthSuccess from './components/AuthSuccess'; // Import the new AuthSucces
 import NotFound from './components/NotFound'; // Import the NotFound component
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import './styles/global.css';
+import './styles/footer.css';
 
 // Import UserProvider to manage user context
 import { UserProvider } from './context/UserContext';

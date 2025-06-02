@@ -18,21 +18,16 @@ body {
 }
 
 .logo-img {
-    width: 550px;
-    /* Set the width of the logo */
+    width: 100%;
+    max-width: 550px;
     height: 150px;
-    /* Set the height of the logo */
     background-image: url('../assets/images/logo-img.png');
-    /* Use the correct path */
     background-size: contain;
-    /* Ensure the image scales to fit */
     background-repeat: no-repeat;
-    /* Prevent the image from repeating */
     background-position: center;
-    /* Center the image within the div */
     margin-left: auto;
     margin-right: auto;
-    padding: 0%;
+    padding: 0;
 }
 
 
@@ -250,11 +245,9 @@ button.google-login img {
     }
 
     .logo-img {
-        width: 350px;
-        /* Set the width of the logo */
-        height: 150px;
-        /* Set the height of the logo */
-
+        width: 100%;
+        max-width: 350px;
+        height: 100px;
     }
 }
 
