@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
 import { UserContext } from '../context/UserContext';
@@ -7,12 +7,20 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const Login = () => {
     const navigate = useNavigate();
-    const { setUser } = useContext(UserContext);
+    const { user, setUser, loading: contextLoading } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    // Redirect to dashboard if user is already logged in
+    useEffect(() => {
+        // Check if user is authenticated and not in loading state
+        if (user && !contextLoading) {
+            navigate('/dashboard');
+        }
+    }, [user, contextLoading, navigate]);
 
     // Handler for form submission
     const handleSubmit = async (e) => {

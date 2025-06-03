@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const logger = require('../utils/logger');
 
 const verifyToken = (req, res, next) => {
   const authHeader = req.header('Authorization');
@@ -18,7 +19,7 @@ const verifyToken = (req, res, next) => {
     // Verify the token and extract the payload
     const verified = jwt.verify(token, process.env.JWT_SECRET);
 
-    // console.log('Token verification is successful!');
+    // logger.debug('Token verification is successful!');
 
     // Attach the verified user (payload) to the request object
     req.user = verified;
@@ -27,7 +28,7 @@ const verifyToken = (req, res, next) => {
     next();
   } catch (error) {
     // Catch and handle invalid token or verification errors
-    console.error('Token verification failed:', error.message);
+    logger.error('Token verification failed:', error.message);
     return res.status(401).json({ error: 'Invalid token' });
   }
 };

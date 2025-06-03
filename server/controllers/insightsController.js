@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'); // Import mongoose for ObjectId conversion
 const History = require('../models/History'); // Import the History model
+const logger = require('../utils/logger');
 
 // Function to get reading statistics for a specific user
 const getReadingStats = async (req, res) => {
@@ -62,7 +63,7 @@ const getReadingStats = async (req, res) => {
             favoriteCards
         });
     } catch (error) {
-        console.error('Error fetching reading stats:', error);
+        logger.error('Error fetching reading stats:', error);
         res.status(500).json({ message: 'Server Error' });
     }
 };
@@ -108,7 +109,7 @@ const getCardFrequency = async (req, res) => {
             uprightVsReversed
         });
     } catch (error) {
-        console.error('Error fetching card frequency:', error);
+        logger.error('Error fetching card frequency:', error);
         res.status(500).json({ message: 'Server Error' });
     }
 };

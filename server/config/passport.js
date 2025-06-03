@@ -1,10 +1,11 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User');
+const logger = require('../utils/logger');
 
 // Only configure Google Strategy if credentials are available
 if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET && process.env.GOOGLE_CALLBACK_URL) {
-    console.log('Configuring Google OAuth Strategy');
+    logger.debug('Configuring Google OAuth Strategy');
     
     // Configure the Google strategy
     passport.use(new GoogleStrategy({
@@ -14,14 +15,14 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET && process.
     },
     async (accessToken, refreshToken, profile, done) => {
         try {
-            console.log('Google OAuth profile received:', {
+            logger.debug('Google OAuth profile received:', {
                 id: profile.id,
                 name: profile.displayName,
                 email: profile.emails?.[0]?.value
             });
 
             if (!profile.emails || !profile.emails[0].value) {
-                console.error('No email found in Google profile');
+                logger.error('No email found in Google profile');
                 return done(null, false, { message: 'No email found in Google profile' });
             }
 
@@ -37,12 +38,12 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET && process.
                     
                     if (user) {
                         // User exists with this email but no googleId, link accounts
-                        console.log('Linking Google account to existing user with email:', email);
+                        logger.debug('Linking Google account to existing user with email:', email);
                         user.googleId = profile.id;
                         await user.save();
                     } else {
                         // Create new user
-                        console.log('Creating new user from Google profile');
+                        logger.debug('Creating new user from Google profile');
                         user = new User({
                             googleId: profile.id,
                             name: profile.displayName,
@@ -50,45 +51,45 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET && process.
                             verified: true
                         });
                         await user.save();
-                        console.log('New user created with ID:', user._id);
+                        logger.debug('New user created with ID:', user._id);
                     }
                 } else {
-                    console.log('Existing Google user found:', user._id);
+                    logger.debug('Existing Google user found:', user._id);
                 }
                 
                 return done(null, user);
             } catch (dbError) {
-                console.error('Database error during Google auth:', dbError);
+                logger.error('Database error during Google auth:', dbError);
                 return done(dbError);
             }
         } catch (error) {
-            console.error('Error in Google Strategy:', error);
+            logger.error('Error in Google Strategy:', error);
             return done(error);
         }
     }));
 } else {
-    console.log('Google OAuth credentials not found. Google authentication will not be available.');
+    logger.debug('Google OAuth credentials not found. Google authentication will not be available.');
 }
 
 // Serialize just the user ID to the session
 passport.serializeUser((user, done) => {
-    console.log('Serializing user ID:', user._id);
+    logger.debug('Serializing user ID:', user._id);
     done(null, user._id);
 });
 
 // Deserialize user from the session ID
 passport.deserializeUser(async (id, done) => {
     try {
-        console.log('Deserializing user ID:', id);
+        logger.debug('Deserializing user ID:', id);
         const user = await User.findById(id);
         if (!user) {
-            console.log('User not found during deserialization');
+            logger.debug('User not found during deserialization');
             return done(null, false);
         }
-        console.log('User found during deserialization:', user._id);
+        logger.debug('User found during deserialization:', user._id);
         done(null, user);
     } catch (err) {
-        console.error('Error deserializing user:', err);
+        logger.error('Error deserializing user:', err);
         done(err, null);
     }
 });

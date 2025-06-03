@@ -3,6 +3,7 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const TarotCard = require('../models/TarotCard');
+const logger = require('../utils/logger');
 
 dotenv.config(); // Load environment variables
 
@@ -41,10 +42,10 @@ const tarotCards = [
 // Insert tarot card data into the database
 TarotCard.insertMany(tarotCards)
     .then(() => {
-        console.log('Tarot cards seeded successfully');
+        logger.debug('Tarot cards seeded successfully');
         mongoose.connection.close(); // Close the connection after seeding
     })
     .catch((error) => {
-        console.error('Error seeding tarot cards:', error);
+        logger.error('Error seeding tarot cards:', error);
         mongoose.connection.close();
     });

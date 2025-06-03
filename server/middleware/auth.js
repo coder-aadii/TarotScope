@@ -1,17 +1,18 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const logger = require('../utils/logger');
 
 const auth = async (req, res, next) => {
   // Skip auth check for Google auth routes
   if (req.path.includes('/google')) {
-    console.log("Skipping auth check for Google route:", req.path);
+    logger.debug("Skipping auth check for Google route:", req.path);
     return next();
   }
 
   try {
     // First check if user is already authenticated via session
     if (req.isAuthenticated() && req.user) {
-      console.log("User authenticated via session:", req.user._id);
+      logger.debug("User authenticated via session:", req.user._id);
       return next();
     }
 
@@ -23,7 +24,7 @@ const auth = async (req, res, next) => {
     
     // If no auth header and no cookie token, return error
     if (!authHeader && !cookieToken) {
-      console.log("No Authorization header or cookie token found");
+      logger.debug("No Authorization header or cookie token found");
       return res.status(401).json({ message: 'Authentication required' });
     }
 
@@ -40,7 +41,7 @@ const auth = async (req, res, next) => {
     }
 
     if (!token) {
-      console.log("No valid token found");
+      logger.debug("No valid token found");
       return res.status(401).json({ message: 'Authentication required' });
     }
 
@@ -51,18 +52,18 @@ const auth = async (req, res, next) => {
     const user = await User.findById(decoded.userId);
     
     if (!user) {
-      console.log("User not found for token");
+      logger.debug("User not found for token");
       return res.status(401).json({ message: 'User not found' });
     }
 
     // Attach the user and token to the request
     req.user = user;
     req.token = token;
-    console.log("User authenticated via token:", user._id);
+    logger.debug("User authenticated via token:", user._id);
     
     next();
   } catch (error) {
-    console.error("Authentication error:", error);
+    logger.error("Authentication error:", error);
     res.status(401).json({ message: 'Authentication failed' });
   }
 };

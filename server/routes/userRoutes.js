@@ -6,6 +6,7 @@ const profileController = require('../controllers/profileController');
 const auth = require('../middleware/auth'); // Import the auth middleware
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
+const logger = require('../utils/logger');
 
 // Define storage for images
 const storage = multer.diskStorage({
@@ -37,35 +38,35 @@ router.put('/update-profile/:id', auth, upload.single('profileImage'), authContr
 // Google OAuth Routes
 router.get('/google', (req, res, next) => {
     try {
-        console.log('Starting Google OAuth flow');
+        logger.debug('Starting Google OAuth flow');
         passport.authenticate('google', { 
             scope: ['profile', 'email'],
             session: true,
             prompt: 'select_account'
         })(req, res, next);
     } catch (error) {
-        console.error('Error initiating Google OAuth:', error);
+        logger.error('Error initiating Google OAuth:', error);
         res.redirect(`${process.env.CLIENT_URL}/login?googleError=true`);
     }
 });
 
 router.get('/google/callback', (req, res, next) => {
-    console.log('Google callback received');
+    logger.debug('Google callback received');
     
     passport.authenticate('google', { 
         failureRedirect: `${process.env.CLIENT_URL}/login?googleError=true`,
         session: true
     })(req, res, (err) => {
         if (err) {
-            console.error('Error in Google authentication:', err);
+            logger.error('Error in Google authentication:', err);
             return res.redirect(`${process.env.CLIENT_URL}/login?googleError=true`);
         }
 
         try {
-            console.log('Google auth successful, user:', req.user ? req.user._id : 'undefined');
+            logger.debug('Google auth successful, user:', req.user ? req.user._id : 'undefined');
             
             if (!req.user) {
-                console.error('No user in request after Google auth');
+                logger.error('No user in request after Google auth');
                 return res.redirect(`${process.env.CLIENT_URL}/login?googleError=true`);
             }
             
@@ -80,7 +81,7 @@ router.get('/google/callback', (req, res, next) => {
                 { expiresIn: '24h' }
             );
             
-            console.log('Generated token, redirecting to dashboard');
+            logger.debug('Generated token, redirecting to dashboard');
             
             // Set token in cookie and localStorage
             res.cookie('token', token, {
@@ -93,7 +94,7 @@ router.get('/google/callback', (req, res, next) => {
             // Redirect to dashboard with success
             res.redirect(`${process.env.CLIENT_URL}/dashboard`);
         } catch (error) {
-            console.error('Error in Google callback handler:', error);
+            logger.error('Error in Google callback handler:', error);
             res.redirect(`${process.env.CLIENT_URL}/login?googleError=true`);
         }
     });
@@ -103,7 +104,7 @@ router.get('/google/callback', (req, res, next) => {
 router.get('/logout', (req, res) => {
     req.logout(function(err) {
         if (err) { 
-            console.error("Logout error:", err);
+            logger.error("Logout error:", err);
             return res.status(500).json({ error: 'Error logging out' }); 
         }
         // Clear the token cookie

@@ -15,6 +15,7 @@ import VerifyEmail from './components/verify-email';
 import Profile from './components/Dashboard/Profile';
 import AuthSuccess from './components/AuthSuccess'; // Import the new AuthSuccess component
 import NotFound from './components/NotFound'; // Import the NotFound component
+import AuthRedirect from './components/AuthRedirect'; // Import the AuthRedirect component
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './styles/global.css';
@@ -40,22 +41,23 @@ function App() {
   return (
     <UserProvider>  {/* Use UserProvider at the root to manage user context */}
       <Router>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<Home />} />                {/* Home page */}
-            <Route path="/login" element={<Login />} />          {/* Login page */}
-            <Route path="/register" element={<Register />} />    {/* Register page */}
-            <Route path="/auth-success" element={<AuthSuccess />} /> {/* Auth success page */}
-            
-            {/* Wrap protected routes with PrivateRoute */}
-            <Route 
-              path="/dashboard" 
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              } 
-            />
+        <AuthRedirect> {/* Add AuthRedirect to handle automatic redirections */}
+          <div className="App">
+            <Routes>
+              <Route path="/" element={<Home />} />                {/* Home page */}
+              <Route path="/login" element={<Login />} />          {/* Login page */}
+              <Route path="/register" element={<Register />} />    {/* Register page */}
+              <Route path="/auth-success" element={<AuthSuccess />} /> {/* Auth success page */}
+              
+              {/* Wrap protected routes with PrivateRoute */}
+              <Route 
+                path="/dashboard" 
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                } 
+              />
             <Route 
               path="/TarotReading" 
               element={
@@ -113,7 +115,8 @@ function App() {
             {/* 404 Route - Must be last */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </div>
+          </div>
+        </AuthRedirect>
       </Router>
     </UserProvider>
   );

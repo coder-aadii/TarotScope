@@ -12,6 +12,7 @@ const userRoutes = require('./routes/userRoutes');
 const passport = require('passport');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const logger = require('./utils/logger'); // Import custom logger
 require('dotenv').config(); // Load environment variables from .env
 require('./config/passport');  // Import passport configuration to initialize the Google OAuth strategy
 
@@ -70,17 +71,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Debug middleware for auth - ONLY log, don't block requests
+// Debug middleware for auth - ONLY log in development
 app.use((req, res, next) => {
-    // Only log for specific routes to avoid cluttering the console
-    if (req.url.includes('/api/auth/google')) {
-        console.log('\n=== Auth Debug ===');
-        console.log('URL:', req.url);
-        console.log('Session ID:', req.sessionID);
-        console.log('Session:', req.session);
-        console.log('User:', req.user);
-        console.log('Is Authenticated:', req.isAuthenticated());
-        console.log('==================\n');
+    // Only log for specific routes in development environment
+    if (req.url.includes('/api/auth/google') && process.env.NODE_ENV !== 'production') {
+        logger.debug('\n=== Auth Debug ===');
+        logger.debug('URL:', req.url);
+        logger.debug('Session ID:', req.sessionID);
+        logger.debug('Session:', req.session);
+        logger.debug('User:', req.user);
+        logger.debug('Is Authenticated:', req.isAuthenticated());
+        logger.debug('==================\n');
     }
     
     // Always continue to next middleware
@@ -107,10 +108,10 @@ app.use((req, res) => {
 
 // Error handling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);
+    logger.error(err.stack);
     res.status(500).json({ error: 'Something went wrong!' });
 });
 
 // Start the server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));

@@ -6,6 +6,7 @@
  */
 
 const axios = require('axios');
+const logger = require('./logger');
 require('dotenv').config();
 
 // Default model if not specified in environment variables
@@ -20,7 +21,7 @@ class HuggingFaceClient {
         this.apiUrl = process.env.HF_API_URL || `https://api-inference.huggingface.co/models/${DEFAULT_MODEL}`;
         
         if (!this.apiKey) {
-            console.warn('Warning: HF_API_KEY not found in environment variables. Hugging Face API calls will fail.');
+            logger.warn('Warning: HF_API_KEY not found in environment variables. Hugging Face API calls will fail.');
         }
     }
 
@@ -61,7 +62,7 @@ class HuggingFaceClient {
             // Process the response based on the model's output format
             return this.processResponse(response.data, prompt);
         } catch (error) {
-            console.error('Error in Hugging Face API call:', error);
+            logger.error('Error in Hugging Face API call:', error);
             throw this.formatError(error);
         }
     }

@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
+import { UserContext } from '../context/UserContext';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const Register = () => {
     const navigate = useNavigate();
+    const { user, loading: contextLoading } = useContext(UserContext);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -14,6 +16,14 @@ const Register = () => {
     const [agreeToTerms, setAgreeToTerms] = useState(false);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+
+    // Redirect to dashboard if user is already logged in
+    useEffect(() => {
+        // Check if user is authenticated and not in loading state
+        if (user && !contextLoading) {
+            navigate('/dashboard');
+        }
+    }, [user, contextLoading, navigate]);
 
     // Regular expression for email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

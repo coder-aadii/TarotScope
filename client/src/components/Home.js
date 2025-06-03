@@ -1,11 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/Home.css';
 import Footer from './Footer';
+import { UserContext } from '../context/UserContext';
 
 const Home = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const { user, loading } = useContext(UserContext);
+    const navigate = useNavigate();
+    
+    // Redirect to dashboard if user is already logged in
+    useEffect(() => {
+        // Check if user is authenticated and not in loading state
+        if (user && !loading) {
+            navigate('/dashboard');
+        }
+    }, [user, loading, navigate]);
     
     // Close menu when clicking outside or pressing escape
     useEffect(() => {

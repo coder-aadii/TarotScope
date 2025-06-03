@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const nodemailer = require('nodemailer');  // Ensure nodemailer is imported
+const logger = require('../utils/logger');
 
 // Email verification controller
 exports.verifyEmail = async (req, res) => {
@@ -29,7 +30,7 @@ exports.verifyEmail = async (req, res) => {
 
         return res.status(200).json({ message: 'Email successfully verified' });
     } catch (error) {
-        console.error('Error in verifyEmail:', error);
+        logger.error('Error in verifyEmail:', error);
 
         // Differentiate between JWT-specific errors
         if (error.name === 'TokenExpiredError') {
@@ -105,9 +106,9 @@ const sendVerificationEmail = (email, token) => {
 
     transporter.sendMail(mailOptions, (err, info) => {
         if (err) {
-            console.error("Error sending email:", err);  // Use console.error for error logging
+            logger.error("Error sending email:", err);  // Use console.error for error logging
         } else {
-            console.log('Verification email sent:', info.response);
+            logger.debug('Verification email sent:', info.response);
         }
     });
 };

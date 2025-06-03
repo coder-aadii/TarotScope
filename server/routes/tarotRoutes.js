@@ -4,6 +4,7 @@ const History = require('../models/History'); // History model
 const User = require('../models/User'); // User model
 const { getAllCards, getRandomCardOfTheDay, getThreeRandomCards, getTarotInterpretation } = require('../controllers/tarotController');
 const verifyToken = require('../middleware/verifyToken'); // JWT middleware
+const logger = require('../utils/logger');
 
 // Route to get all tarot cards
 router.get('/all', getAllCards);
@@ -37,7 +38,7 @@ router.post('/history', verifyToken, async (req, res) => {
       history: newHistory,
     });
   } catch (error) {
-    console.error('Error saving tarot card history:', error);
+    logger.error('Error saving tarot card history:', error);
     return res.status(500).json({ error: 'Server error' });
   }
 });

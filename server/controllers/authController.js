@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const nodemailer = require('nodemailer');
 const passport = require('passport');
+const logger = require('../utils/logger');
 
 // Removed fs and path logic for logo
 const logoURL = 'https://res.cloudinary.com/deoegf9on/image/upload/v1740217290/logo-img_ocgldv.png';
@@ -69,9 +70,9 @@ const sendWelcomeEmail = (email, name) => {
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      console.error('Error sending email:', error);
+      logger.error('Error sending email:', error);
     } else {
-      console.log('Email sent: ' + info.response);
+      logger.debug('Email sent: ' + info.response);
     }
   });
 };
@@ -99,7 +100,7 @@ const registerUser = async (req, res) => {
 
     res.status(201).json({ message: "Registration successful. Please log in." });
   } catch (error) {
-    console.error("Error during registration:", error);
+    logger.error("Error during registration:", error);
     res.status(500).json({ message: "Error registering user.", error });
   }
 };
@@ -108,11 +109,11 @@ const registerUser = async (req, res) => {
 const googleAuthSuccess = (req, res) => {
   try {
     if (!req.user) {
-      console.log("No user data in request");
+      logger.debug("No user data in request");
       return res.redirect(`${process.env.CLIENT_URL}/login?error=auth_failed`);
     }
 
-    console.log("Google auth success for user:", req.user);
+    logger.debug("Google auth success for user:", req.user);
 
     // Generate JWT token for the authenticated user
     const token = jwt.sign(
@@ -128,7 +129,7 @@ const googleAuthSuccess = (req, res) => {
     // Redirect to the client with the token
     res.redirect(`${process.env.CLIENT_URL}/auth-success?token=${token}`);
   } catch (error) {
-    console.error("Error in Google auth success:", error);
+    logger.error("Error in Google auth success:", error);
     res.redirect(`${process.env.CLIENT_URL}/login?error=auth_failed`);
   }
 };
@@ -168,7 +169,7 @@ const loginUser = async (req, res) => {
       }
     });
   } catch (error) {
-    console.error("Login error:", error);
+    logger.error("Login error:", error);
     res.status(500).json({ message: "Error logging in." });
   }
 };
@@ -198,15 +199,15 @@ const updateUserProfile = async (req, res) => {
 
     res.status(200).json({ message: "Profile updated successfully", user });
   } catch (error) {
-    console.error("Error updating profile:", error);
+    logger.error("Error updating profile:", error);
     res.status(500).json({ message: "Error updating profile", error });
   }
 };
 
 // Google Auth (triggered when the user clicks on the Google Login/Register button)
 const googleAuth = (req, res, next) => {
-    console.log('Starting Google authentication...');
-    console.log('Session before auth:', req.session);
+    logger.debug('Starting Google authentication...');
+    logger.debug('Session before auth:', req.session);
     passport.authenticate('google', {
         scope: ['profile', 'email']
     })(req, res, next);
@@ -214,31 +215,31 @@ const googleAuth = (req, res, next) => {
 
 // Google Callback (triggered after Google authentication is successful)
 const googleCallback = (req, res, next) => {
-    console.log('Google callback received');
-    console.log('Session in callback:', req.session);
+    logger.debug('Google callback received');
+    logger.debug('Session in callback:', req.session);
 
     passport.authenticate('google', (err, user, info) => {
-        console.log('Inside passport.authenticate callback');
+        logger.debug('Inside passport.authenticate callback');
         
         if (err) {
-            console.error("Google auth error:", err);
+            logger.error("Google auth error:", err);
             return res.redirect(`${process.env.CLIENT_URL}/login?error=auth_failed`);
         }
 
         if (!user) {
-            console.log("No user data in request");
+            logger.debug("No user data in request");
             return res.redirect(`${process.env.CLIENT_URL}/login?error=auth_failed`);
         }
 
-        console.log('User authenticated:', user);
+        logger.debug('User authenticated:', user);
 
         req.logIn(user, (err) => {
             if (err) {
-                console.error("Login error:", err);
+                logger.error("Login error:", err);
                 return res.redirect(`${process.env.CLIENT_URL}/login?error=auth_failed`);
             }
 
-            console.log('User logged in successfully');
+            logger.debug('User logged in successfully');
 
             // Generate JWT token
             const token = jwt.sign(
@@ -251,8 +252,8 @@ const googleCallback = (req, res, next) => {
                 { expiresIn: '24h' }
             );
 
-            console.log('JWT token generated');
-            console.log('Redirecting to:', `${process.env.CLIENT_URL}/auth-success?token=${token}`);
+            logger.debug('JWT token generated');
+            logger.debug('Redirecting to:', `${process.env.CLIENT_URL}/auth-success?token=${token}`);
 
             // Set the token in a cookie as well
             res.cookie('token', token, {
