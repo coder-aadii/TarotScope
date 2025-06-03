@@ -13,7 +13,7 @@ const isProduction = process.env.NODE_ENV === 'production';
  */
 const info = (...args) => {
   if (!isProduction) {
-    logger.debug(...args);
+    console.log(...args);
   }
 };
 
@@ -23,7 +23,7 @@ const info = (...args) => {
  */
 const debug = (...args) => {
   if (!isProduction) {
-    logger.debug(...args);
+    console.log(...args);
   }
 };
 
@@ -32,7 +32,7 @@ const debug = (...args) => {
  * @param {...any} args - Arguments to log
  */
 const warn = (...args) => {
-  logger.warn(...args);
+  console.warn(...args);
 };
 
 /**
@@ -40,7 +40,7 @@ const warn = (...args) => {
  * @param {...any} args - Arguments to log
  */
 const error = (...args) => {
-  logger.error(...args);
+  console.error(...args);
 };
 
 module.exports = {
