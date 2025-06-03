@@ -337,10 +337,26 @@ const TarotReading = () => {
                             </div>
                         ) : (
                             <div className="ai-reading-loading mt-4 p-4 text-center">
-                                <div className="spinner-border text-primary mb-2" role="status">
+                                <div className="spinner-border text-primary mb-3" role="status">
                                     <span className="visually-hidden">Loading...</span>
                                 </div>
-                                <p>Generating your personalized tarot reading...</p>
+                                <h5 className="mb-3">Creating Your Personalized Tarot Reading</h5>
+                                <p className="mb-2">Our AI is carefully analyzing your cards and question...</p>
+                                <p className="text-muted">
+                                    <small>
+                                        This may take up to 20-30 seconds. The AI is crafting a detailed interpretation 
+                                        based on your specific question and the unique combination of cards you've drawn.
+                                    </small>
+                                </p>
+                                <div className="progress mt-3" style={{ height: "5px" }}>
+                                    <div className="progress-bar progress-bar-striped progress-bar-animated" 
+                                         role="progressbar" 
+                                         style={{ width: "100%" }}
+                                         aria-valuenow="100" 
+                                         aria-valuemin="0" 
+                                         aria-valuemax="100">
+                                    </div>
+                                </div>
                             </div>
                         )}
 
