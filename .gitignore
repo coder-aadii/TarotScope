@@ -30,3 +30,14 @@ server/node_modules/
 # Coverage directory used by testing frameworks
 coverage/
 .qodo
+
+# Test files and directories
+/server/tests/
+**/tests/
+**/*.test.js
+**/*.spec.js
+**/test/
+**/mock*.js
+**/directTest.js
+**/testAIReading.js
+**/manualTest.js
