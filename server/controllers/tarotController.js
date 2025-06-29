@@ -1,7 +1,7 @@
 const TarotCard = require('../models/TarotCard');
 const History = require('../models/History');
 const mongoose = require('mongoose');
-const huggingFaceClient = require('../utils/huggingFaceClient');
+const aiClient = require('../utils/aiClient');
 const logger = require('../utils/logger');
 
 // Get all tarot cards
@@ -106,20 +106,24 @@ const getTarotInterpretation = async (req, res) => {
     try {
         const { question, selectedCards, questionType } = req.body;
 
+        // Get user's name if authenticated
+        const userName = req.user?.name || null;
+
         // Log the request data for debugging
         logger.debug('Tarot interpretation request:', { 
             question, 
             questionType,
-            cardCount: selectedCards?.length || 0
+            cardCount: selectedCards?.length || 0,
+            userName: userName || 'anonymous'
         });
 
-        // Create the prompt using our utility
-        const prompt = huggingFaceClient.createTarotPrompt(question, questionType, selectedCards);
+        // Create the prompt using our utility (with user's name if available)
+        const prompt = aiClient.createTarotPrompt(question, questionType, selectedCards, userName);
         
-        // Generate the reading using the Hugging Face client
-        const generatedText = await huggingFaceClient.generateReading(prompt, {
-            maxTokens: 300,
-            temperature: 0.7,
+        // Generate the reading using the AI client
+        const generatedText = await aiClient.generateReading(prompt, {
+            maxTokens: 500,
+            temperature: 0.8,
             topP: 0.9
         });
 
