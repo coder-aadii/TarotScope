@@ -11,6 +11,7 @@ const emailVerificationRoutes = require('./routes/emailVerificationRoutes'); // 
 const userRoutes = require('./routes/userRoutes');
 const passport = require('passport');
 const session = require('express-session');
+const MongoStore = require('connect-mongo');
 const cookieParser = require('cookie-parser');
 const logger = require('./utils/logger'); // Import custom logger
 require('dotenv').config(); // Load environment variables from .env
@@ -57,8 +58,13 @@ app.options('*', cors());
 // Initialize session BEFORE passport
 app.use(session({
     secret: process.env.JWT_SECRET,
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI,
+        touchAfter: 24 * 3600, // lazy session update
+        collectionName: 'sessions'
+    }),
     cookie: {
         secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
