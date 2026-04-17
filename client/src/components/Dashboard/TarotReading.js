@@ -11,7 +11,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
 
 const TarotReading = () => {
   const { state } = useLocation();
-  const [cards, setCards] = useState([]);
+  // const [cards, setCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]); // indexes
   const [displayedCards, setDisplayedCards] = useState([]); // actual cards
   const [isShuffling, setIsShuffling] = useState(false);
@@ -35,7 +35,7 @@ const TarotReading = () => {
       try {
         const response = await axios.get(`${apiUrl}/api/tarotcards/three-random-cards`);
         const shuffledCards = response.data;
-        setCards(shuffledCards);
+        // setCards(shuffledCards);
       } catch (error) {
         console.error('Error fetching shuffled cards:', error);
       } finally {
