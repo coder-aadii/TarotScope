@@ -28,20 +28,18 @@ const TarotReading = () => {
   };
 
   const shuffleCards = async () => {
-    setIsShuffling(true); // Show the shuffle animation
-    playShuffleSound(); // Play shuffle sound
-
+    setIsShuffling(true);
+    playShuffleSound();
+  
     setTimeout(async () => {
       try {
-        const response = await axios.get(`${apiUrl}/api/tarotcards/three-random-cards`);
-        const shuffledCards = response.data;
-        // setCards(shuffledCards);
+        await axios.get(`${apiUrl}/api/tarotcards/three-random-cards`);
       } catch (error) {
         console.error('Error fetching shuffled cards:', error);
       } finally {
-        setIsShuffling(false); // Hide the shuffle animation after 3 seconds, even if there's an error
+        setIsShuffling(false);
       }
-    }, 3000); // 3 seconds delay for animation
+    }, 3000);
   };
 
   const handleCardSelection = (idx) => {
